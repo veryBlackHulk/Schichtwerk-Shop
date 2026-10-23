@@ -1,4 +1,4 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Schichtwerk Shop</title><meta name="description" content="Fidgets, Haushaltshelfer und Deko, Schicht für Schicht gedruckt."><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Schichtwerk Shop</title><meta name="description" content="Fidgets, Haushaltshelfer und Deko, Schicht für Schicht gedruckt."><meta property="og:title" content="Schichtwerk – 3D-gedruckt"><meta property="og:description" content="Fidgets, Haushaltshelfer und Deko, Schicht für Schicht gedruckt."><meta property="og:type" content="website"><meta name="theme-color" content="#F1F2EE"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23181B19'/%3E%3Cg fill='%23D9481A'%3E%3Crect x='7' y='8' width='18' height='3' rx='1'/%3E%3Crect x='7' y='13' width='18' height='3' rx='1'/%3E%3Crect x='7' y='18' width='18' height='3' rx='1'/%3E%3Crect x='7' y='23' width='18' height='3' rx='1'/%3E%3C/g%3E%3C/svg%3E"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -18,6 +18,8 @@
   --ok:#2F7D4A;
   --warn:#A86A00;
   --bad:#B3302A;
+  --warn-ink:#FFFFFF;
+  --bad-ink:#FFFFFF;
   --scrim:rgba(18,21,19,.48);
   --shadow:0 1px 2px rgba(20,24,21,.06),0 8px 24px rgba(20,24,21,.08);
   --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
@@ -28,13 +30,13 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#111412;--surface:#1A1E1B;--surface-2:#232824;--ink:#ECEFEA;--muted:#9AA39C;--line:#2E3530;
-    --accent:#FF7140;--accent-ink:#1A0B04;--deal:#3CC4AE;--deal-ink:#06201B;--ok:#5DBB7D;--warn:#E0A63A;--bad:#F07167;--scrim:rgba(0,0,0,.6);
+    --accent:#FF7140;--accent-ink:#1A0B04;--deal:#3CC4AE;--deal-ink:#06201B;--ok:#5DBB7D;--warn:#E0A63A;--bad:#F07167;--warn-ink:#1E1400;--bad-ink:#2A0705;--scrim:rgba(0,0,0,.6);
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#111412;--surface:#1A1E1B;--surface-2:#232824;--ink:#ECEFEA;--muted:#9AA39C;--line:#2E3530;
-  --accent:#FF7140;--accent-ink:#1A0B04;--deal:#3CC4AE;--deal-ink:#06201B;--ok:#5DBB7D;--warn:#E0A63A;--bad:#F07167;--scrim:rgba(0,0,0,.6);
+  --accent:#FF7140;--accent-ink:#1A0B04;--deal:#3CC4AE;--deal-ink:#06201B;--ok:#5DBB7D;--warn:#E0A63A;--bad:#F07167;--warn-ink:#1E1400;--bad-ink:#2A0705;--scrim:rgba(0,0,0,.6);
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -137,8 +139,8 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .badge.neu{background:var(--accent);color:var(--accent-ink)}
 .badge.deal{background:var(--deal);color:var(--deal-ink);text-transform:none;letter-spacing:0}
 .badge.aus{background:var(--ink);color:var(--bg)}
-.badge.knapp{background:var(--warn);color:#fff;text-transform:none;letter-spacing:0}
-.badge.entwurf{background:var(--warn);color:#fff}
+.badge.knapp{background:var(--warn);color:var(--warn-ink);text-transform:none;letter-spacing:0}
+.badge.entwurf{background:var(--warn);color:var(--warn-ink)}
 .badge.beispiel{background:var(--surface);color:var(--muted);border:1px dashed var(--muted)}
 .badge.pin{background:var(--ink);color:var(--bg)}
 .k-bearbeiten{position:absolute;top:8px;right:8px;z-index:3;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}
@@ -348,7 +350,7 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .modell-zeile .txt span{color:var(--muted);font-size:12.5px;font-family:var(--f-mono)}
 
 .toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:90;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}
-.toast.fehler{background:var(--bad);color:#fff}
+.toast.fehler{background:var(--bad);color:var(--bad-ink)}
 
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -466,16 +468,22 @@ const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
 const klon = o => JSON.parse(JSON.stringify(o));
 const neueId = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 
-function geldLesen(s) {
+/* "8,99" · "8.99" · "1.299" · "1.299,50" · "1,299.50" · "8,99 €" → Zahl als Text mit Punkt */
+function zahlNormal(s) {
   s = String(s || '').trim().replace(/€/g, '').replace(/\s/g, '');
+  if (/^\d{1,3}(\.\d{3})+(,\d*)?$/.test(s)) return s.replace(/\./g, '').replace(',', '.');
+  if (s.includes(',') && s.includes('.')) return s.lastIndexOf(',') > s.lastIndexOf('.') ? s.replace(/\./g, '').replace(',', '.') : s.replace(/,/g, '');
+  return s.replace(',', '.');
+}
+function geldLesen(s) {
+  s = zahlNormal(s);
   if (!s) return { ok: true, wert: null };
-  s = s.includes(',') ? s.replace(/\./g, '').replace(',', '.') : s;
   const x = Number(s);
   if (!isFinite(x) || x < 0 || x > 100000) return { ok: false };
   return { ok: true, wert: Math.round(x * 100) };
 }
 function zahlLesen(s) {
-  s = String(s || '').trim().replace(',', '.');
+  s = zahlNormal(s);
   if (!s) return null;
   const x = Number(s); return isFinite(x) && x >= 0 ? x : NaN;
 }
@@ -579,12 +587,13 @@ function effStatus(p) {
   return 'verfuegbar';
 }
 function lieferText(p) {
-  if (effStatus(p) === 'ausverkauft') return 'Zurzeit nicht lieferbar';
-  if (typeof p.lager === 'number' && p.lager > 0) return p.lager <= 5 ? `Sofort lieferbar, noch ${p.lager} Stück da` : 'Sofort lieferbar';
+  const st = effStatus(p);
+  if (st === 'ausverkauft') return 'Zurzeit nicht lieferbar';
+  if (st !== 'anfrage' && typeof p.lager === 'number' && p.lager > 0) return p.lager <= 5 ? `Sofort lieferbar, noch ${p.lager} Stück da` : 'Sofort lieferbar';
   const t = p.druckTage || 3;
   return `Dauert ca. ${t} ${t === 1 ? 'Tag' : 'Tage'}`;
 }
-const sofortDa = p => typeof p.lager === 'number' && p.lager > 0;
+const sofortDa = p => effStatus(p) === 'verfuegbar' && typeof p.lager === 'number' && p.lager > 0;
 const maxMenge = p => (typeof p.lager === 'number' && p.nachdrucken === false) ? Math.max(0, p.lager) : 99;
 
 function preisSpanne(p) {
@@ -592,7 +601,8 @@ function preisSpanne(p) {
   if (Array.isArray(p.varianten) && p.varianten.length) ps = p.varianten.map(v => v.preisCent).filter(x => typeof x === 'number');
   else ps = typeof p.preisCent === 'number' ? [p.preisCent] : [];
   if (!ps.length) return null;
-  return { min: Math.min(...ps), max: Math.max(...ps) };
+  const auf = Math.max(0, ...(p.farben || []).map(f => f.aufpreisCent || 0));
+  return { min: Math.min(...ps), max: Math.max(...ps) + auf };
 }
 function preisText(p) {
   const s = preisSpanne(p); if (!s) return 'Preis auf Anfrage';
@@ -616,16 +626,19 @@ function passt(a, p) {
   return false;
 }
 const angeboteFuer = p => aktiveAngebote().filter(a => passt(a, p));
+/* nur Angebote, die bei diesem Preis wirklich etwas sparen */
+const lohnendeAngebote = (p, preis) => preis == null ? [] : angeboteFuer(p).filter(a => angebotsPreis(a, preis) < preis);
 const angebotsPreis = (a, preis) => a.art === 'prozent' ? Math.round(preis * (100 - Math.min(100, a.wert)) / 100) : Math.min(preis, a.wert);
 function bereichName(a, mehrzahl = true) {
   if (a.bereich === 'kategorie') return (katVon(a.zielId) || {}).name || 'Kategorie';
-  if (a.bereich === 'produkt') { const p = S.produkte.find(x => x.id === a.zielId); return p ? (mehrzahl ? `× ${p.name}` : p.name) : 'Produkt'; }
+  if (a.bereich === 'produkt') { const p = S.produkte.find(x => x.id === a.zielId); return p ? (mehrzahl ? `× ${p.name}` : p.name) : (mehrzahl ? '× Produkt' : 'Produkt'); }
   return 'Stück';
 }
 function angebotTitel(a) {
   if (a.titel) return a.titel;
-  const was = a.bereich === 'produkt' ? bereichName(a) : (a.bereich === 'alle' ? 'Stück' : bereichName(a));
-  const ab = a.bereich === 'produkt' ? `Ab ${a.abMenge}${was}` : `Ab ${a.abMenge} ${was}`;
+  const ab = a.bereich === 'produkt' ? `Ab ${a.abMenge}${bereichName(a)}`
+    : a.bereich === 'kategorie' ? `Ab ${a.abMenge} Stück aus „${bereichName(a)}“`
+    : `Ab ${a.abMenge} Stück`;
   return a.art === 'prozent' ? `${ab}: ${a.wert} % günstiger` : `${ab} je ${euroKurz(a.wert)}`;
 }
 const angebotBadge = a => a.art === 'prozent' ? `Ab ${a.abMenge}: −${a.wert} %` : `Ab ${a.abMenge} je ${euroKurz(a.wert)}`;
@@ -708,9 +721,10 @@ function renderKopf() {
   if (S.shop.logo) { logo.src = blobUrl(S.shop.logo); logo.alt = `Logo ${S.shop.name}`; logo.hidden = false; logo.onerror = () => { logo.hidden = true; }; }
   else logo.hidden = true;
   const n = sichtbar().length, k = S.shop.kategorien.length;
-  $('#zahlen').textContent = S.status === 'laedt' ? 'Shop wird geladen …'
+  $('#zahlen').textContent = (S.status === 'laedt' || (S.status === 'bereit' && !S.produkteGeladen)) ? 'Shop wird geladen …'
     : S.status === 'offline' ? 'Produkte gerade nicht erreichbar'
-    : `${n} ${n === 1 ? 'Produkt' : 'Produkte'} · ${k} ${k === 1 ? 'Kategorie' : 'Kategorien'}`;
+    : `${n} ${n === 1 ? 'Produkt' : 'Produkte'}` + (k ? ` · ${k} ${k === 1 ? 'Kategorie' : 'Kategorien'}` : '');
+  if (S.shopGeladen) document.title = S.shop.name || 'Shop';
 
   const ort = $('#modus-ort'); ort.replaceChildren();
   if (S.darfVerwalten) {
@@ -738,12 +752,15 @@ function renderKopf() {
   renderKonto();
 }
 
+function merkeKat() {
+  try { history.replaceState(null, '', S.kat === 'alle' ? location.pathname + location.search : '#' + encodeURIComponent(S.kat)); } catch {}
+}
 function renderChips() {
   const box = $('#chips'); box.replaceChildren();
   const alle = sichtbar();
   const chip = (id, name, farbe, n) => h('button', {
     class: 'chip', 'aria-pressed': String(S.kat === id), vars: farbe ? { '--c': farbe } : null,
-    onclick: () => { S.kat = id; render(); }
+    onclick: () => { S.kat = id; merkeKat(); render(); }
   }, farbe ? h('span', { class: 'punkt' }) : null, name, h('span', { class: 'n', text: String(n) }));
   box.append(chip('alle', 'Alle', null, alle.length));
   for (const k of S.shop.kategorien) box.append(chip(k.id, k.name, k.farbe, alle.filter(p => p.kategorie === k.id).length));
@@ -759,12 +776,16 @@ function renderAngebote() {
     return S.kat === 'alle' || betroffen.some(p => p.kategorie === S.kat);
   });
   box.hidden = !liste.length;
-  for (const a of liste) box.append(h('button', {
-    class: 'angebot', onclick: () => {
-      if (a.bereich === 'kategorie') { S.kat = a.zielId; render(); }
-      else if (a.bereich === 'produkt') oeffneDetail(a.zielId);
-    }
-  }, h('span', { class: 'tag', text: 'Angebot' }), angebotTitel(a)));
+  for (const a of liste) {
+    const inhalt = [h('span', { class: 'tag', text: 'Angebot' }), angebotTitel(a)];
+    if (a.bereich === 'alle') { box.append(h('div', { class: 'angebot' }, inhalt)); continue; }
+    box.append(h('button', {
+      class: 'angebot', onclick: () => {
+        if (a.bereich === 'kategorie') { S.kat = a.zielId; merkeKat(); render(); }
+        else if (a.bereich === 'produkt') oeffneDetail(a.zielId);
+      }
+    }, inhalt));
+  }
 }
 
 function karte(p, { reihenfolge = null } = {}) {
@@ -777,9 +798,10 @@ function karte(p, { reihenfolge = null } = {}) {
   if (st === 'ausverkauft') badges.push(h('span', { class: 'badge aus', text: 'Ausverkauft' }));
   else {
     if (istNeu(p)) badges.push(h('span', { class: 'badge neu', text: 'Neu' }));
-    const ang = angeboteFuer(p)[0];
+    const sp = preisSpanne(p);
+    const ang = sp && lohnendeAngebote(p, sp.max)[0];
     if (ang) badges.push(h('span', { class: 'badge deal', text: angebotBadge(ang) }));
-    if (typeof p.lager === 'number' && p.lager > 0 && p.lager <= 3) badges.push(h('span', { class: 'badge knapp', text: `Nur noch ${p.lager}` }));
+    if (p.nachdrucken === false && typeof p.lager === 'number' && p.lager > 0 && p.lager <= 3) badges.push(h('span', { class: 'badge knapp', text: `Nur noch ${p.lager}` }));
   }
   if (p.modell && p.modell.id) badges.push(h('span', { class: 'badge drei', text: '3D' }));
   let adminZeile = null;
@@ -797,10 +819,10 @@ function karte(p, { reihenfolge = null } = {}) {
   }
   const s = preisSpanne(p);
   return h('article', { class: 'karte' + (p.sichtbar === false ? ' entwurf' : '') },
-    h('button', { class: 'oeffnen', 'aria-label': `${p.name} ansehen`, onclick: () => oeffneDetail(p.id) }),
+    h('button', { class: 'oeffnen', 'aria-label': `${p.name || 'Produkt'} ansehen`, onclick: () => oeffneDetail(p.id) }),
     h('div', { class: 'bild' }, titelMedium(p), hatVideo(p) && titelBildId(p) ? h('span', { class: 'video-mark', 'aria-hidden': 'true' }, icon('play')) : null),
     badges.length ? h('div', { class: 'badges' }, badges) : null,
-    verwalten() ? h('button', { class: 'k-bearbeiten', 'aria-label': `${p.name} bearbeiten`, onclick: e => { e.stopPropagation(); oeffneEditor(p.id); } }, icon('stift')) : null,
+    verwalten() ? h('button', { class: 'k-bearbeiten', 'aria-label': `${p.name || 'Produkt'} bearbeiten`, onclick: e => { e.stopPropagation(); oeffneEditor(p.id); } }, icon('stift')) : null,
     h('div', { class: 'k-text' },
       h('div', { class: 'k-kat', vars: { '--c': katFarbe(p.kategorie) } }, h('i'), kat ? kat.name : 'Ohne Kategorie'),
       h('div', { class: 'k-name', text: p.name || 'Ohne Namen' }),
@@ -860,7 +882,7 @@ function renderRaster() {
     let rf = null;
     if (reihenModus) {
       const a = liste[i - 1], b = liste[i + 1];
-      rf = { vor: !!a && !!a.angepinnt === !!p.angepinnt, zurueck: !!b && !!b.angepinnt === !!p.angepinnt };
+      rf = { vor: !!a && gleicheGruppe(a, p), zurueck: !!b && gleicheGruppe(b, p) };
     }
     r.append(karte(p, { reihenfolge: rf }));
   });
@@ -871,10 +893,13 @@ function renderRaster() {
     h('span', { class: 'btn primaer' }, 'Wunsch äußern')));
 }
 
+function gleicheGruppe(a, b) {
+  return !!a.angepinnt === !!b.angepinnt && (effStatus(a) === 'ausverkauft') === (effStatus(b) === 'ausverkauft');
+}
+
 function renderKorbKnopf(huepfen) {
   const k = $('#korb-knopf');
-  const S2 = S.korb.filter(z => S.produkte.some(p => p.id === z.id) || !S.produkteGeladen);
-  const n = S2.reduce((s, z) => s + z.menge, 0);
+  const n = S.produkteGeladen ? korbRechnen().zeilen.reduce((s, r) => s + r.z.menge, 0) : S.korb.reduce((s, z) => s + z.menge, 0);
   k.hidden = n === 0;
   k.replaceChildren(icon('liste'), 'Anfrage', h('span', { class: 'zahl', text: String(n) }));
   k.setAttribute('aria-label', `Anfrage ansehen, ${n} ${n === 1 ? 'Teil' : 'Teile'}`);
@@ -882,7 +907,7 @@ function renderKorbKnopf(huepfen) {
 }
 
 function render() {
-  if (S.kat !== 'alle' && !katVon(S.kat)) S.kat = 'alle';
+  if (S.shopGeladen && S.kat !== 'alle' && !katVon(S.kat)) { S.kat = 'alle'; merkeKat(); }
   renderKopf(); renderChips(); renderAngebote(); renderBereiche(); renderRaster(); renderKorbKnopf();
 }
 function setModus(m) { S.modus = m; lsSet('shop-modus', m); render(); }
@@ -890,7 +915,7 @@ function setModus(m) { S.modus = m; lsSet('shop-modus', m); render(); }
 async function verschieben(p, richtung) {
   const liste = gefiltert();
   const i = liste.findIndex(x => x.id === p.id), j = i + richtung;
-  const q = liste[j]; if (!q || !!q.angepinnt !== !!p.angepinnt) return;
+  const q = liste[j]; if (!q || !gleicheGruppe(q, p)) return;
   let rp = rangVon(q), rq = rangVon(p);
   if (rp === rq) rp += richtung;
   try {
@@ -909,12 +934,26 @@ function oeffneBlatt(titel, inhalt, { beimSchliessen, kopfExtra } = {}) {
     document.body.style.overflow = '';
     if (vorher && vorher.focus) try { vorher.focus({ preventScroll: true }); } catch {}
   };
-  const taste = e => { if (e.key === 'Escape' && !document.querySelector('[role=alertdialog]')) schliessen('esc'); };
+  const taste = e => {
+    if (document.querySelector('[role=alertdialog]')) return;
+    if (e.key === 'Escape') { schliessen('esc'); return; }
+    if (e.key !== 'Tab') return;
+    const f = [...blatt.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),video[controls],[tabindex]:not([tabindex="-1"])')]
+      .filter(el => el.offsetParent !== null || el === document.activeElement);
+    if (!f.length) return;
+    const erst = f[0], letzt = f[f.length - 1];
+    if (!blatt.contains(document.activeElement)) { e.preventDefault(); erst.focus(); }
+    else if (e.shiftKey && document.activeElement === erst) { e.preventDefault(); letzt.focus(); }
+    else if (!e.shiftKey && document.activeElement === letzt) { e.preventDefault(); erst.focus(); }
+  };
   const zuBtn = h('button', { class: 'zu', 'aria-label': 'Schließen', onclick: () => schliessen('knopf') }, icon('zu'));
   const blatt = h('div', { class: 'blatt', role: 'dialog', 'aria-modal': 'true', 'aria-label': titel },
     h('div', { class: 'blatt-kopf' }, h('h2', { text: titel }), h('div', { style: 'display:flex;gap:8px;align-items:center;flex:none' }, kopfExtra || null, zuBtn)),
     inhalt);
-  const hg = h('div', { class: 'blatt-hg', onclick: e => { if (e.target === hg) schliessen('hintergrund'); } }, blatt);
+  let druckAufHg = false;
+  const hg = h('div', { class: 'blatt-hg',
+    onpointerdown: e => { druckAufHg = e.target === hg; },
+    onclick: e => { if (e.target === hg && druckAufHg) schliessen('hintergrund'); druckAufHg = false; } }, blatt);
   document.removeEventListener('keydown', oeffneBlatt._taste || (() => {}));
   oeffneBlatt._taste = taste;
   ort.replaceChildren(hg);
@@ -947,8 +986,18 @@ function toast(text, fehler = false) {
 }
 function kopieren(text, ersatzEl, okText = 'Kopiert') {
   const ersatz = () => {
-    if (ersatzEl) { const r = document.createRange(); r.selectNodeContents(ersatzEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
-    toast('Kopieren ging nicht automatisch. Der Text ist markiert, kopier ihn von Hand.', true);
+    try {
+      const ta = h('textarea', { readonly: true, style: 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px' });
+      ta.value = text; document.body.append(ta);
+      ta.focus({ preventScroll: true }); ta.setSelectionRange(0, text.length);
+      const ok = document.execCommand && document.execCommand('copy');
+      ta.remove();
+      if (ok) { toast(okText); return; }
+    } catch {}
+    if (ersatzEl) {
+      const r = document.createRange(); r.selectNodeContents(ersatzEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      toast('Kopieren ging nicht automatisch. Der Text ist markiert, kopier ihn von Hand.', true);
+    } else toast(`Kopieren ging nicht automatisch: ${text}`, true);
   };
   try {
     if (!navigator.clipboard || !navigator.clipboard.writeText) return ersatz();
@@ -975,7 +1024,7 @@ function oeffneDetail(id) {
     daumen = h('div', { class: 'daumen' }, medien.map((m, i) => h('button', {
       'aria-label': `${m.typ === 'video' ? 'Video' : 'Bild'} ${i + 1}`, 'aria-current': String(i === 0),
       onclick: () => spur.scrollTo({ left: spur.clientWidth * i, behavior: 'smooth' })
-    }, (m.typ === 'bild' || m.poster) ? h('img', { src: blobUrl(m.typ === 'bild' ? m.id : m.poster), alt: '', loading: 'lazy' }) : null,
+    }, (m.typ === 'bild' || m.poster) ? h('img', { src: blobUrl(m.typ === 'bild' ? m.id : m.poster), alt: '', loading: 'lazy', onerror: e => e.target.remove() }) : null,
       m.typ === 'video' ? h('span', { class: 'v' }, icon('play')) : null)));
     spur.addEventListener('scroll', () => {
       const i = Math.round(spur.scrollLeft / Math.max(1, spur.clientWidth));
@@ -990,7 +1039,7 @@ function oeffneDetail(id) {
     farbe: (p.farben && p.farben.length) ? p.farben[0].name : null,
     menge: 1
   };
-  const max = maxMenge(p);
+  const max = Math.max(0, maxMenge(p) - imKorb(p.id));
   const preisBox = h('div', { class: 'd-preis' });
   const dealBox = h('div');
   const mengeSpan = h('span', { class: 'num' });
@@ -1003,7 +1052,7 @@ function oeffneDetail(id) {
   function aktualisieren() {
     const unit = einzelpreis(p, wahl.variante, wahl.farbe);
     preisBox.replaceChildren();
-    const angs = angeboteFuer(p);
+    const angs = lohnendeAngebote(p, unit);
     if (unit == null) preisBox.append(h('span', { text: 'Preis auf Anfrage' }));
     else {
       // Bester Angebotspreis, falls die Menge allein schon reicht
@@ -1014,7 +1063,7 @@ function oeffneDetail(id) {
     }
     preisBox.append(h('span', { class: 'status ' + st, text: STATUS[st] }));
     dealBox.replaceChildren(...angs.map(a => h('div', { class: 'deal-hinweis' }, h('b', { text: 'Angebot: ' }), angebotTitel(a),
-      a.bereich === 'kategorie' ? `. Du kannst alle ${bereichName(a)} mischen.` : a.bereich === 'alle' ? '. Gilt für den ganzen Shop.' : '.')));
+      a.bereich === 'kategorie' ? `. Du kannst alles aus „${bereichName(a)}“ mischen.` : a.bereich === 'alle' ? '. Gilt für den ganzen Shop.' : '.')));
     varBox.replaceChildren(...(p.varianten || []).map(v => h('button', { type: 'button', 'aria-pressed': String(wahl.variante === v.name), onclick: () => { wahl.variante = v.name; aktualisieren(); } },
       v.name, typeof v.preisCent === 'number' ? h('small', { text: euro(v.preisCent) }) : null)));
     farbBox.replaceChildren(...(p.farben || []).map(f => h('button', { type: 'button', class: 'farbig', vars: { '--c': farbFlaeche(f) }, 'aria-pressed': String(wahl.farbe === f.name), onclick: () => { wahl.farbe = f.name; aktualisieren(); } },
@@ -1022,12 +1071,16 @@ function oeffneDetail(id) {
     mengeSpan.textContent = String(wahl.menge);
     minus.disabled = wahl.menge <= 1; plus.disabled = wahl.menge >= max;
     addBtn.disabled = st === 'ausverkauft' || max <= 0;
-    addBtn.textContent = st === 'ausverkauft' ? 'Zurzeit ausverkauft' : 'Zur Anfrage hinzufügen';
+    addBtn.textContent = st === 'ausverkauft' ? 'Zurzeit ausverkauft' : max <= 0 ? 'Alles schon in der Anfrage' : 'Zur Anfrage hinzufügen';
   }
   addBtn.addEventListener('click', () => {
+    const zaehle = () => S.korb.reduce((s, z) => s + (z.id === p.id ? z.menge : 0), 0);
+    const vorher = zaehle();
     inKorb(p, wahl.variante, wahl.farbe, wahl.menge);
+    const dazu = zaehle() - vorher;
+    if (!dazu) { toast('Mehr ist gerade nicht auf Lager.', true); return; }
     schliesseBlattSofort();
-    toast(`${wahl.menge}× ${p.name} in der Anfrage`);
+    toast(`${dazu}× ${p.name} zur Anfrage hinzugefügt`);
   });
 
   const kat = katVon(p.kategorie);
@@ -1055,6 +1108,9 @@ function oeffneDetail(id) {
 const THREE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
 const ORBIT_URL = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js';
 const JSZIP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+/* Fehler mit Text für Menschen; alles andere (englische Browser-Meldungen) wird durch einen deutschen Text ersetzt */
+class Hinweis extends Error {}
+const fehlerText = (err, sonst) => (err instanceof Hinweis && err.message) ? err.message : sonst;
 const ladeSkript = (() => {
   const cache = {};
   return src => cache[src] || (cache[src] = new Promise((res, rej) => {
@@ -1238,7 +1294,7 @@ async function oeffne3D(id, farbeStart) {
   try {
     await ladeSkript(THREE_URL); await ladeSkript(ORBIT_URL);
     const antw = await fetch(blobUrl(p.modell.id));
-    if (!antw.ok) throw new Error('Das 3D-Modell ist gerade nicht erreichbar.');
+    if (!antw.ok) throw new Hinweis('Das 3D-Modell ist gerade nicht erreichbar.');
     const d = await antw.json();
     if (!box.isConnected) return;
     const T = window.THREE;
@@ -1246,7 +1302,8 @@ async function oeffne3D(id, farbeStart) {
     const tok = n => css.getPropertyValue(n).trim() || '#888888';
     let renderer;
     try { renderer = new T.WebGLRenderer({ antialias: true, alpha: true }); }
-    catch { throw new Error('Dein Gerät kann die 3D-Ansicht leider nicht anzeigen.'); }
+    catch { throw new Hinweis('Dein Gerät kann die 3D-Ansicht leider nicht anzeigen.'); }
+    aufraeumen = () => { renderer.dispose(); try { renderer.forceContextLoss(); } catch {} };
     const szene = baueSzene(T, renderer, d, { linie: tok('--muted'), linie2: tok('--line') });
     const { scene, camera, gruppe, materialien, raster, ext, aufraeumenSzene } = szene;
     box.append(renderer.domElement);
@@ -1294,7 +1351,7 @@ async function oeffne3D(id, farbeStart) {
       renderer.dispose(); try { renderer.forceContextLoss(); } catch {}
     };
   } catch (err) {
-    status.textContent = (err && err.message) || 'Die 3D-Ansicht konnte nicht geladen werden.';
+    status.textContent = fehlerText(err, 'Die 3D-Ansicht konnte nicht geladen werden. Prüf deine Verbindung.');
   }
 }
 
@@ -1320,11 +1377,11 @@ function liesStl(buf) {
   return [{ farbe: null, pos: Float32Array.from(arr.slice(0, k)) }];
 }
 
-function matrixAus(s) {
+function matrixAus(s, k = 1) { // k: Einheit der Datei in mm, gilt auch für die Verschiebung
   const I = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
   if (!s) return I;
   const v = s.trim().split(/\s+/).map(Number); if (v.length !== 12 || v.some(x => !isFinite(x))) return I;
-  return [v[0], v[1], v[2], 0, v[3], v[4], v[5], 0, v[6], v[7], v[8], 0, v[9], v[10], v[11], 1];
+  return [v[0], v[1], v[2], 0, v[3], v[4], v[5], 0, v[6], v[7], v[8], 0, v[9] * k, v[10] * k, v[11] * k, 1];
 }
 function mal(a, b) { // Zeilenvektor-Konvention: erst a, dann b
   const r = new Array(16);
@@ -1334,13 +1391,13 @@ function mal(a, b) { // Zeilenvektor-Konvention: erst a, dann b
 
 async function lies3mf(buf, status) {
   status('3MF wird entpackt …');
-  try { await ladeSkript(JSZIP_URL); } catch { throw new Error('Der 3MF-Leser konnte nicht geladen werden. Prüf deine Verbindung.'); }
+  try { await ladeSkript(JSZIP_URL); } catch { throw new Hinweis('Der 3MF-Leser konnte nicht geladen werden. Prüf deine Verbindung.'); }
   let zip;
-  try { zip = await window.JSZip.loadAsync(buf); } catch { throw new Error('Die 3MF-Datei ist beschädigt oder keine echte 3MF-Datei.'); }
+  try { zip = await window.JSZip.loadAsync(buf); } catch { throw new Hinweis('Die 3MF-Datei ist beschädigt oder keine echte 3MF-Datei.'); }
   const namen = Object.keys(zip.files);
   const finde = pfad => { pfad = pfad.replace(/^\//, ''); return zip.file(pfad) || zip.file(namen.find(k => k.toLowerCase() === pfad.toLowerCase()) || '\0'); };
   const modelle = namen.filter(n => /\.model$/i.test(n) && !zip.files[n].dir);
-  if (!modelle.length) throw new Error('In der 3MF-Datei ist kein 3D-Modell.');
+  if (!modelle.length) throw new Hinweis('In der 3MF-Datei ist kein 3D-Modell.');
   let wurzel = modelle.find(n => /^3D\/3dmodel\.model$/i.test(n)) || modelle[0];
   const rels = finde('_rels/.rels');
   if (rels) { const m = /Target="\/?([^"]+\.model)"/i.exec(await rels.async('string')); if (m && finde(m[1])) wurzel = m[1]; }
@@ -1419,17 +1476,17 @@ async function lies3mf(buf, status) {
     for (const c of o.getElementsByTagNameNS('*', 'component')) {
       const cid = c.getAttribute('objectid');
       const cp = c.getAttributeNS(PROD_NS, 'path') || c.getAttribute('p:path');
-      await aufloesen(cp ? cp.replace(/^\//, '') : pfad, cid, mal(matrixAus(c.getAttribute('transform')), M), { wurzel: kette.wurzel, teil: kette.teil != null ? kette.teil : cid }, tiefe + 1);
+      await aufloesen(cp ? cp.replace(/^\//, '') : pfad, cid, mal(matrixAus(c.getAttribute('transform'), R.skala), M), { wurzel: kette.wurzel, teil: kette.teil != null ? kette.teil : cid }, tiefe + 1);
     }
   }
   const R0 = await ressourcen(wurzel);
-  if (!R0) throw new Error('Das Modell in der 3MF-Datei konnte nicht gelesen werden.');
+  if (!R0) throw new Hinweis('Das Modell in der 3MF-Datei konnte nicht gelesen werden.');
   const items = R0.doc.getElementsByTagNameNS('*', 'item');
   if (items.length) {
     for (const it of items) {
       const ip = it.getAttributeNS(PROD_NS, 'path') || it.getAttribute('p:path');
       const oid = it.getAttribute('objectid');
-      await aufloesen(ip ? ip.replace(/^\//, '') : wurzel, oid, matrixAus(it.getAttribute('transform')), { wurzel: oid, teil: null }, 0);
+      await aufloesen(ip ? ip.replace(/^\//, '') : wurzel, oid, matrixAus(it.getAttribute('transform'), R0.skala), { wurzel: oid, teil: null }, 0);
     }
   } else for (const oid of R0.objekte.keys()) await aufloesen(wurzel, oid, matrixAus(null), { wurzel: oid, teil: null }, 0);
   return [...gruppen].map(([farbe, arr]) => ({ farbe: farbe || null, pos: arr }));
@@ -1485,20 +1542,29 @@ function aufbereiten(gruppen) {
     return { farbe: farbig ? t.farbe : null, nv, ni: idx.length, i32, pos: b64ausBytes(new Uint8Array(pos.buffer)), idx: b64ausBytes(new Uint8Array(idx.buffer)) };
   });
   const dreiecke = aus.reduce((s, t) => s + t.ni / 3, 0);
-  if (!dreiecke) throw new Error('Im Modell wurden keine Flächen gefunden.');
+  if (!dreiecke) throw new Hinweis('Im Modell wurden keine Flächen gefunden.');
   return { v: 1, min, max, farbig, dreiecke, vereinfacht: schritt > 1, masse: ext.map(x => Math.round(x * 10) / 10), teile: aus };
 }
 
+const MAX_EINLESEN = 3000000;
+const ZU_GROSS_TEXT = 'Das Modell ist zu fein (über 3 Millionen Dreiecke). Exportier es im Slicer mit weniger Details und versuch es nochmal.';
 async function modellLesen(file, status) {
   const buf = await file.arrayBuffer();
   const u8 = new Uint8Array(buf, 0, Math.min(4, buf.byteLength));
   const istZip = u8[0] === 0x50 && u8[1] === 0x4b;
   let gruppen;
   if (istZip || /\.3mf$/i.test(file.name || '')) gruppen = await lies3mf(buf, status);
-  else if (/\.(stl)$/i.test(file.name || '') || buf.byteLength >= 84) { status('STL wird gelesen …'); await pause(); gruppen = liesStl(buf); }
-  else throw new Error('Bitte eine STL- oder 3MF-Datei wählen.');
+  else if (/\.(stl)$/i.test(file.name || '') || buf.byteLength >= 84) {
+    if (buf.byteLength >= 84) {
+      const tri = new DataView(buf).getUint32(80, true);
+      if (84 + tri * 50 === buf.byteLength && tri > MAX_EINLESEN) throw new Hinweis(ZU_GROSS_TEXT);
+    }
+    status('STL wird gelesen …'); await pause(); gruppen = liesStl(buf);
+  }
+  else throw new Hinweis('Bitte eine STL- oder 3MF-Datei wählen.');
   const n = gruppen.reduce((s, g) => s + g.pos.length / 9, 0);
-  if (!n) throw new Error('Im Modell wurden keine Dreiecke gefunden. Ist es eine STL- oder 3MF-Datei?');
+  if (!n) throw new Hinweis('Im Modell wurden keine Dreiecke gefunden. Ist es eine STL- oder 3MF-Datei?');
+  if (n > MAX_EINLESEN) throw new Hinweis(ZU_GROSS_TEXT);
   status(`${zahlDe(n)} Dreiecke werden aufbereitet …`); await pause();
   return aufbereiten(gruppen);
 }
@@ -1506,23 +1572,37 @@ async function modellLesen(file, status) {
 /* ============ Anfrage (Korb) ============ */
 function ladeKorb() { try { const k = JSON.parse(lsGet('shop-korb') || '[]'); return Array.isArray(k) ? k.filter(z => z && z.id && z.menge > 0) : []; } catch { return []; } }
 function speichereKorb(huepfen) { lsSet('shop-korb', JSON.stringify(S.korb)); renderKorbKnopf(huepfen); }
+const imKorb = (id, ohneKey) => S.korb.reduce((s, z) => s + (z.id === id && z.key !== ohneKey ? z.menge : 0), 0);
 function inKorb(p, variante, farbe, menge) {
   const key = [p.id, variante || '', farbe || ''].join('|');
-  const max = maxMenge(p);
+  const frei = Math.max(0, maxMenge(p) - imKorb(p.id, key));
   const z = S.korb.find(z => z.key === key);
-  if (z) z.menge = Math.min(max, z.menge + menge);
-  else S.korb.push({ key, id: p.id, variante: variante || null, farbe: farbe || null, menge: Math.min(max, menge) });
+  if (z) z.menge = Math.min(frei, z.menge + menge);
+  else if (frei > 0) S.korb.push({ key, id: p.id, variante: variante || null, farbe: farbe || null, menge: Math.min(frei, menge) });
   speichereKorb(true);
 }
+/* passt die gespeicherte Auswahl noch zum Produkt (Größe/Farbe umbenannt oder gelöscht)? */
+function auswahlGueltig(p, z) {
+  const vs = p.varianten || [], fs = p.farben || [];
+  const vOk = vs.length ? vs.some(v => v.name === z.variante) : !z.variante;
+  const fOk = fs.length ? fs.some(f => f.name === z.farbe) : !z.farbe;
+  return vOk && fOk;
+}
 function korbRechnen() {
-  const zeilen = [];
+  const zeilen = [], frei = new Map(), weg = [];
   for (const z of S.korb) {
-    const p = S.produkte.find(x => x.id === z.id && x.sichtbar !== false) || (verwalten() ? S.produkte.find(x => x.id === z.id) : null);
-    if (!p) continue;
+    const da = S.produkte.find(x => x.id === z.id);
+    if (S.produkteGeladen && (!da || !auswahlGueltig(da, z))) { weg.push(z); continue; }
+    const p = da && (da.sichtbar !== false || verwalten()) ? da : null;
+    if (!p || effStatus(p) === 'ausverkauft') continue;
+    const rest = frei.has(p.id) ? frei.get(p.id) : maxMenge(p);
+    const menge = Math.min(z.menge, rest);
+    if (menge <= 0) continue;
+    z.menge = menge; frei.set(p.id, rest - menge);
     zeilen.push({ z, p, unit: einzelpreis(p, z.variante, z.farbe), preis: null, angebot: null });
   }
   const angs = aktiveAngebote();
-  const zaehler = new Map(angs.map(a => [a, zeilen.filter(r => passt(a, r.p)).reduce((s, r) => s + r.z.menge, 0)]));
+  const zaehler = new Map(angs.map(a => [a, zeilen.filter(r => r.unit != null && passt(a, r.p)).reduce((s, r) => s + r.z.menge, 0)]));
   for (const r of zeilen) {
     if (r.unit == null) continue;
     let best = r.unit, bestA = null;
@@ -1535,7 +1615,7 @@ function korbRechnen() {
   const fehlt = [];
   for (const a of angs) { const n = zaehler.get(a); if (n > 0 && n < a.abMenge) fehlt.push({ a, noch: a.abMenge - n }); }
   const erfuellt = angs.filter(a => zaehler.get(a) >= a.abMenge && zeilen.some(r => r.angebot === a));
-  return { zeilen, summe, ersparnis: normal - summe, ohnePreis, fehlt, erfuellt };
+  return { zeilen, summe, ersparnis: normal - summe, ohnePreis, nurOhnePreis: ohnePreis && !zeilen.some(r => r.unit != null), fehlt, erfuellt, weg };
 }
 function optionText(z) { return [z.variante, z.farbe].filter(Boolean).join(', '); }
 function anfrageText(rech, name, nachricht) {
@@ -1548,22 +1628,32 @@ function anfrageText(rech, name, nachricht) {
   }
   L.push('');
   for (const a of rech.erfuellt) L.push(`Angebot: ${angebotTitel(a)}`);
-  L.push(`Summe: ${euro(rech.summe)}${rech.ohnePreis ? ' plus Teile mit Preis auf Anfrage' : ''}${rech.ersparnis > 0 ? ` (gespart: ${euro(rech.ersparnis)})` : ''}`);
-  if (name) { L.push(''); L.push(`Name: ${name}`); }
-  if (nachricht) { L.push(`Nachricht: ${nachricht}`); }
+  L.push(rech.nurOhnePreis ? 'Summe: Preis auf Anfrage'
+    : `Summe: ${euro(rech.summe)}${rech.ohnePreis ? ' plus Teile mit Preis auf Anfrage' : ''}${rech.ersparnis > 0 ? ` (gespart: ${euro(rech.ersparnis)})` : ''}`);
+  if (name || nachricht) L.push('');
+  if (name) L.push(`Name: ${name}`);
+  if (nachricht) L.push(`Nachricht: ${nachricht}`);
   return L.join('\n');
 }
 function waNummer(s) {
-  let d = String(s || '').replace(/[^\d+]/g, '');
+  let d = String(s || '').replace(/\(0\)/g, '').replace(/[^\d+]/g, '');
   if (d.startsWith('+')) d = d.slice(1); else if (d.startsWith('00')) d = d.slice(2); else if (d.startsWith('0')) d = '49' + d.slice(1);
-  return d.replace(/\D/g, '');
+  d = d.replace(/\D/g, '');
+  if (d.startsWith('490')) d = '49' + d.slice(3);
+  return d.length >= 8 ? d : '';
 }
 function sendeAktionen(text, vorschau, art) {
   const k = S.shop.kontakt, aus = [];
   const wa = waNummer(k.whatsapp);
   const betreff = art === 'Wunsch' ? 'Mein Wunsch für ' + S.shop.name : 'Anfrage für ' + S.shop.name;
   if (wa) aus.push(h('a', { class: 'btn primaer voll', href: `https://wa.me/${wa}?text=${encodeURIComponent(text)}`, target: '_blank', rel: 'noopener', text: 'In WhatsApp senden' }));
-  if (k.email) aus.push(h('a', { class: 'btn voll' + (wa ? '' : ' primaer'), href: `mailto:${k.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`, text: 'Per E-Mail senden' }));
+  if (k.email) {
+    let href = `mailto:${k.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`;
+    const zuLang = href.length > 1800;
+    if (zuLang) href = `mailto:${k.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent('Der Text ist kopiert. Bitte hier einfügen.')}`;
+    aus.push(h('a', { class: 'btn voll' + (wa ? '' : ' primaer'), href, text: 'Per E-Mail senden',
+      onclick: zuLang ? () => kopieren(text, vorschau, 'Text kopiert, bitte in die E-Mail einfügen') : null }));
+  }
   aus.push(h('button', { type: 'button', class: 'btn voll' + (wa || k.email ? '' : ' primaer'), onclick: () => kopieren(text, vorschau, art + ' kopiert') }, art + ' kopieren'));
   const kb = h('div', { class: 'kontakt-box' });
   if (k.whatsapp) kb.append(h('div', { class: 'z' }, 'WhatsApp:', h('span', { class: 'wert', text: k.whatsapp }), h('button', { type: 'button', onclick: () => kopieren(k.whatsapp, null, 'Nummer kopiert'), text: 'Kopieren' })));
@@ -1588,7 +1678,7 @@ function oeffneWunsch(vorschlag) {
   const aktionen = h('div', { style: 'display:grid;gap:8px' });
   function wunschText() {
     const L = ['Hallo, ich habe einen Wunsch:', '', fWas.value.trim(), ''];
-    const n = Math.max(1, parseInt(fAnzahl.value, 10) || 1);
+    const n = Math.min(99, Math.max(1, parseInt(fAnzahl.value, 10) || 1));
     L.push(`Anzahl: ${n}`);
     if (fFarbe.value.trim()) L.push(`Farbe: ${fFarbe.value.trim()}`);
     if (fGroesse.value.trim()) L.push(`Größe: ${fGroesse.value.trim()}`);
@@ -1645,11 +1735,17 @@ function oeffneKorb() {
   }
 
   function zeichnen() {
-    rech = korbRechnen();
-    // Korb von gelöschten Produkten säubern
-    const gueltig = new Set(rech.zeilen.map(r => r.z.key));
-    if (S.produkteGeladen && S.korb.some(z => !gueltig.has(z.key))) { S.korb = S.korb.filter(z => gueltig.has(z.key)); speichereKorb(); }
     inhalt.replaceChildren();
+    if (!S.produkteGeladen) {
+      inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Anfrage wird geladen …' })));
+      return;
+    }
+    rech = korbRechnen();
+    // Gelöschte Produkte und nicht mehr vorhandene Größen/Farben entfernen, gekürzte Mengen speichern
+    const hinweis = rech.weg.length ? h('div', { class: 'fortschritt', text: 'Ein Teil in deiner Anfrage hat sich im Shop geändert und wurde entfernt. Bitte wähl es neu aus.' }) : null;
+    if (rech.weg.length) S.korb = S.korb.filter(z => !rech.weg.includes(z));
+    speichereKorb();
+    if (hinweis) inhalt.append(hinweis);
     if (!rech.zeilen.length) {
       inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Deine Anfrage ist leer' }), h('span', { text: 'Öffne ein Produkt und tippe auf „Zur Anfrage hinzufügen“.' }),
         h('button', { class: 'btn', onclick: () => blatt.schliessen(), text: 'Weiter stöbern' })));
@@ -1657,7 +1753,7 @@ function oeffneKorb() {
     }
     const liste = h('div', { class: 'korb-liste' });
     for (const r of rech.zeilen) {
-      const p = r.p, z = r.z, max = maxMenge(p);
+      const p = r.p, z = r.z, max = maxMenge(p) - imKorb(p.id, z.key);
       const tb = titelBildId(p);
       const mini = h('div', { class: 'mini' }, tb ? h('img', { src: blobUrl(tb), alt: '' }) : platzhalter(p));
       const step = h('div', { class: 'stepper klein', role: 'group', 'aria-label': 'Anzahl' },
@@ -1681,11 +1777,11 @@ function oeffneKorb() {
     }
     inhalt.append(liste);
     for (const f of rech.fehlt) inhalt.append(h('div', { class: 'fortschritt' },
-      h('b', { text: `Noch ${f.noch} ${f.a.bereich === 'kategorie' ? bereichName(f.a) : 'Stück'}` }), `, dann gilt: ${angebotTitel(f.a)}`));
+      h('b', { text: `Noch ${f.noch} Stück${f.a.bereich === 'kategorie' ? ` aus „${bereichName(f.a)}“` : ''}` }), `, dann gilt: ${angebotTitel(f.a)}`));
     const summe = h('div', { class: 'summe' });
     if (rech.ersparnis > 0) summe.append(h('div', { class: 'z spar' }, h('span', { text: 'Du sparst' }), h('span', { text: euro(rech.ersparnis) })));
-    summe.append(h('div', { class: 'z gross' }, h('span', { text: 'Summe' }), h('span', { text: euro(rech.summe) })));
-    if (rech.ohnePreis) summe.append(h('small', { class: 'klein-hinweis', text: 'Dazu kommen Teile mit Preis auf Anfrage.' }));
+    summe.append(h('div', { class: 'z gross' }, h('span', { text: 'Summe' }), h('span', { text: rech.nurOhnePreis ? 'Preis auf Anfrage' : euro(rech.summe) })));
+    if (rech.ohnePreis && !rech.nurOhnePreis) summe.append(h('small', { class: 'klein-hinweis', text: 'Dazu kommen Teile mit Preis auf Anfrage.' }));
     inhalt.append(summe,
       h('div', { class: 'zwei' },
         h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
@@ -1704,20 +1800,31 @@ function oeffneKorb() {
 $('#korb-knopf').addEventListener('click', oeffneKorb);
 
 /* ============ Medien ============ */
+/* Bild dekodieren: erst createImageBitmap, sonst über <img> (z. B. HEIC-Fotos vom iPhone in Safari) */
+async function bildLaden(file) {
+  try { return await createImageBitmap(file, { imageOrientation: 'from-image' }); } catch {}
+  const url = URL.createObjectURL(file);
+  try {
+    const img = new Image(); img.src = url;
+    await img.decode();
+    return img;
+  } finally { setTimeout(() => URL.revokeObjectURL(url), 1000); }
+}
 async function verkleinern(file, max = 1600) {
   try {
-    const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
-    const s = Math.min(1, max / Math.max(bmp.width, bmp.height));
+    const bmp = await bildLaden(file);
+    const bw = bmp.naturalWidth || bmp.width, bh = bmp.naturalHeight || bmp.height;
+    const s = Math.min(1, max / Math.max(bw, bh));
     const c = document.createElement('canvas');
-    c.width = Math.round(bmp.width * s); c.height = Math.round(bmp.height * s);
+    c.width = Math.max(1, Math.round(bw * s)); c.height = Math.max(1, Math.round(bh * s));
     c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
     if (bmp.close) bmp.close();
-    return await canvasBlob(c);
+    return (await canvasBlob(c, /png|webp|gif/i.test(file.type))) || file;
   } catch { return file; }
 }
-async function canvasBlob(c) {
+async function canvasBlob(c, durchsichtig = false) {
   let b = await new Promise(r => c.toBlob(r, 'image/webp', 0.85));
-  if (!b || b.type !== 'image/webp') b = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.86));
+  if (!b || b.type !== 'image/webp') b = await new Promise(r => durchsichtig ? c.toBlob(r, 'image/png') : c.toBlob(r, 'image/jpeg', 0.86));
   return b;
 }
 function verstecktesVideo(file) {
@@ -1751,6 +1858,7 @@ async function videoUmwandeln(file, fortschritt) {
   const typ = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].find(t => { try { return MediaRecorder.isTypeSupported(t); } catch { return false; } });
   if (!typ) throw new Error('kein Rekorder');
   const { v, weg } = verstecktesVideo(file);
+  let rec = null, stream = null;
   try {
     await warteEvent(v, 'loadedmetadata', 8000);
     const max = 720, s = Math.min(1, max / Math.max(v.videoWidth, v.videoHeight));
@@ -1758,7 +1866,8 @@ async function videoUmwandeln(file, fortschritt) {
     c.width = Math.max(2, Math.round(v.videoWidth * s / 2) * 2); c.height = Math.max(2, Math.round(v.videoHeight * s / 2) * 2);
     const ctx = c.getContext('2d');
     const dauer = Math.min(isFinite(v.duration) ? v.duration : 30, 30);
-    const rec = new MediaRecorder(c.captureStream(30), { mimeType: typ, videoBitsPerSecond: 2500000 });
+    stream = c.captureStream(30);
+    rec = new MediaRecorder(stream, { mimeType: typ, videoBitsPerSecond: 2500000 });
     const teile = []; rec.ondataavailable = e => { if (e.data && e.data.size) teile.push(e.data); };
     const gestoppt = new Promise(r => { rec.onstop = r; });
     ctx.drawImage(v, 0, 0, c.width, c.height);
@@ -1783,7 +1892,11 @@ async function videoUmwandeln(file, fortschritt) {
     const blob = new Blob(teile, { type: typ.split(';')[0] });
     if (blob.size < 1000) throw new Error('leer');
     return blob;
-  } finally { weg(); }
+  } finally {
+    if (rec && rec.state !== 'inactive') try { rec.stop(); } catch {}
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    weg();
+  }
 }
 const MB = 1024 * 1024;
 async function videoVorbereiten(file, fortschritt) {
@@ -1802,11 +1915,11 @@ async function videoVorbereiten(file, fortschritt) {
 }
 function uploadFehlerText(e) {
   const c = e && e.code;
-  if (c === 'too_large') return 'Die Datei ist zu groß. Videos höchstens ca. 30 Sekunden.';
+  if (c === 'too_large') return 'Die Datei ist zu groß (höchstens 50 MB). Videos höchstens ca. 30 Sekunden.';
   if (c === 'unsupported_type') return 'Dieses Format geht nicht. Nimm JPG, PNG, WebP oder ein MP4-Video.';
   if (c === 'quota_or_state') return 'Der Speicher für Fotos ist voll. Lösche alte Fotos oder Videos.';
   if (c === 'rate_limited') return 'Zu viele Dateien auf einmal. Warte kurz und versuch es nochmal.';
-  if (c === 'not_granted' || c === 'capability_disabled') return 'Hochladen ist hier nicht erlaubt.';
+  if (c === 'nicht_angemeldet') return 'Du bist nicht mehr angemeldet. Lade die Seite neu und melde dich wieder an.';
   return 'Datei konnte nicht hochgeladen werden.';
 }
 const istVideoDatei = f => /^video\//.test(f.type) || /\.(mov|mp4|m4v|webm)$/i.test(f.name || '');
@@ -1831,9 +1944,12 @@ function oeffneEditor(id) {
   const neuHochgeladen = new Set();
   const entfernt = new Set();
   const laufend = new Map();
-  let gespeichert = false;
+  let gespeichert = false, zu = false;
   const fehlerBox = h('div', { class: 'fehler', role: 'alert' });
   const alleIds = m => [m.id, m.poster].filter(Boolean);
+  // Datei merken – oder sofort wieder löschen, wenn der Editor inzwischen zu ist
+  const merke = id => { if (zu) { S.assets?.delete(id).catch(() => {}); return false; } neuHochgeladen.add(id); return true; };
+  const neuRef = alt ? null : S.db.collection('produkte').doc();
 
   /* Fotos & Videos */
   const fotoBox = h('div', { class: 'fotos' });
@@ -1865,20 +1981,20 @@ function oeffneEditor(id) {
         const { blob, typ, poster } = await videoVorbereiten(f, x => { const t = `Video wird umgewandelt ${Math.round(x * 100)} %`; if (laufend.get(key) !== t) setze(t); });
         setze('Video wird hochgeladen …');
         const r = await S.assets.upload(blob, { type: typ });
-        neuHochgeladen.add(r.id);
+        if (!merke(r.id)) return;
         let posterId = null;
-        if (poster) { try { const pr = await S.assets.upload(poster, { type: poster.type }); posterId = pr.id; neuHochgeladen.add(pr.id); } catch {} }
+        if (poster) { try { const pr = await S.assets.upload(poster, { type: poster.type }); if (merke(pr.id)) posterId = pr.id; } catch {} }
         e.medien.push({ id: r.id, typ: 'video', poster: posterId });
       } else {
         setze('Foto lädt …');
         const blob = await verkleinern(f);
         const typ = blob.type && /^image\/(png|jpeg|gif|webp)$/.test(blob.type) ? blob.type : undefined;
         const r = await S.assets.upload(blob, typ ? { type: typ } : undefined);
-        neuHochgeladen.add(r.id);
+        if (!merke(r.id)) return;
         e.medien.push({ id: r.id, typ: 'bild' });
       }
-    } catch (err) { toast(uploadFehlerText(err), true); }
-    laufend.delete(key); renderFotos();
+    } catch (err) { if (!zu) toast(uploadFehlerText(err), true); }
+    finally { laufend.delete(key); if (!zu) renderFotos(); }
   }
   renderFotos();
 
@@ -1907,16 +2023,16 @@ function oeffneEditor(id) {
     try {
       const d = await modellLesen(f, t => { modellStatus = t; renderModell(); });
       const json = JSON.stringify(d);
-      if (json.length > 19.5 * MB) throw new Error('Das Modell ist zu groß für die Vorschau.');
+      if (json.length > 19.5 * MB) throw new Hinweis('Das Modell ist zu groß für die Vorschau.');
       modellStatus = 'Wird hochgeladen …'; renderModell();
       const r = await S.assets.upload(new Blob([json], { type: 'application/json' }), { type: 'application/json' });
-      neuHochgeladen.add(r.id);
+      if (!merke(r.id)) return;
       if (e.modell) entfernt.add(e.modell.id);
       e.modell = { id: r.id, masse: d.masse, dreiecke: d.dreiecke, farbig: d.farbig, vereinfacht: d.vereinfacht, datei: (f.name || '').slice(0, 80) };
       if (!fMasse.value.trim()) fMasse.value = masseText(d.masse, 'cm');
       toast('3D-Modell ist bereit. Speichern nicht vergessen.');
     } catch (err) {
-      toast(err && err.code ? uploadFehlerText(err) : ((err && err.message) || 'Das Modell konnte nicht gelesen werden.'), true);
+      toast(err && err.code ? uploadFehlerText(err) : fehlerText(err, 'Das Modell konnte nicht gelesen werden.'), true);
     }
     modellStatus = null; renderModell();
   }
@@ -1945,13 +2061,24 @@ function oeffneEditor(id) {
     if (e.varianten.length) varBox.append(h('div', { class: 'zeile' }, h('span', { class: 'zeile-kopf', text: 'Name' }), h('span', { class: 'zeile-kopf', text: 'Preis €' }), h('span')));
     e.varianten.forEach((v, i) => {
       const n = h('input', { type: 'text', value: v.name, maxlength: '30', 'aria-label': 'Name der Variante', placeholder: 'z. B. groß', autocomplete: 'off' });
-      n.addEventListener('input', () => { v.name = n.value; renderKostenZeilen(); });
+      n.addEventListener('input', () => {
+        const vorher = v.name.trim() || '(ohne Namen)';
+        v.name = n.value;
+        const jetzt = v.name.trim() || '(ohne Namen)';
+        if (vorher !== jetzt && kost.zeilen[vorher] && !kost.zeilen[jetzt] && !e.varianten.some(x => x !== v && (x.name.trim() || '(ohne Namen)') === vorher)) {
+          kost.zeilen[jetzt] = kost.zeilen[vorher]; delete kost.zeilen[vorher];
+        }
+        renderKostenZeilen();
+      });
       const pr = h('input', { type: 'text', value: v.roh, inputmode: 'decimal', 'aria-label': 'Preis der Variante', autocomplete: 'off' });
       pr.addEventListener('input', () => { v.roh = pr.value; rechneKosten(); });
       varBox.append(h('div', { class: 'zeile' }, n, pr, h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Variante entfernen', onclick: () => { e.varianten.splice(i, 1); renderVarianten(); } }, icon('muell'))));
     });
     varBox.append(h('div', null, h('button', { type: 'button', class: 'btn', onclick: () => {
-      if (!e.varianten.length) e.varianten.push({ name: 'normal', roh: fPreis.value });
+      if (!e.varianten.length) {
+        e.varianten.push({ name: 'normal', roh: fPreis.value });
+        if (kost.zeilen._ && !kost.zeilen.normal) kost.zeilen.normal = kost.zeilen._;
+      }
       e.varianten.push({ name: '', roh: '' }); renderVarianten();
       const ins = varBox.querySelectorAll('input[type=text]'); ins[ins.length - 2]?.focus();
     } }, icon('plus'), e.varianten.length ? 'Weitere Variante' : 'Größen oder Varianten anlegen')));
@@ -2166,25 +2293,31 @@ function oeffneEditor(id) {
       lager, nachdrucken: e.nachdrucken !== false, druckTage: tage, modell: e.modell || null,
       erstellt: (alt && alt.erstellt) || jetzt, geaendert: jetzt
     };
-    if (alt && typeof alt.rang === 'number') daten.rang = alt.rang;
-    if (alt && alt.beispiel) daten.beispiel = true;
+    if (alt) {
+      const akt = S.produkte.find(x => x.id === alt.id) || alt;
+      const basis = { ...akt }; delete basis.id; delete basis.bilder;
+      Object.assign(daten, { ...basis, ...daten });
+      if (typeof akt.rang === 'number') daten.rang = akt.rang;
+    }
     speichernBtn.disabled = true; speichernBtn.textContent = 'Speichert …';
     try {
-      const ref = alt ? S.db.doc('produkte/' + alt.id) : S.db.collection('produkte').doc();
+      const ref = alt ? S.db.doc('produkte/' + alt.id) : neuRef;
       await ref.set(daten);
-      gespeichert = true;
+      gespeichert = true; zu = true;
+      let kostenFehler = false;
       const hatKosten = Object.keys(zeilen).length || extra.wert;
       if (hatKosten || S.intern.kosten[ref.id]) {
         try { await S.db.doc('intern/kosten/produkte/' + ref.id).set({ zeilen, extraCent: extra.wert || 0 }); }
-        catch { toast('Produkt gespeichert, aber die Kosten nicht. Versuch es nochmal.', true); }
+        catch { kostenFehler = true; }
       }
       const bleibt = new Set(daten.medien.flatMap(alleIds)); if (daten.modell) bleibt.add(daten.modell.id);
       for (const bid of entfernt) if (!bleibt.has(bid)) S.assets?.delete(bid).catch(() => {});
       schliesseBlattSofort();
-      toast(alt ? 'Gespeichert' : (daten.sichtbar ? 'Produkt ist jetzt im Shop' : 'Als Entwurf gespeichert'));
+      if (kostenFehler) toast('Produkt gespeichert, aber die Kosten nicht. Öffne es nochmal und speichere erneut.', true);
+      else toast(alt ? 'Gespeichert' : (daten.sichtbar ? 'Produkt ist jetzt im Shop' : 'Als Entwurf gespeichert'));
     } catch (err) {
       speichernBtn.disabled = false; speichernBtn.textContent = alt ? 'Speichern' : 'Produkt anlegen';
-      fehler(err && err.code === 'quota_exceeded' ? 'Der Shop-Speicher ist voll. Lösche alte Produkte.' : 'Speichern hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.');
+      fehler(speicherFehlerText(err));
     }
   });
 
@@ -2203,11 +2336,17 @@ function oeffneEditor(id) {
     } catch { fehlerBox.textContent = 'Löschen hat nicht geklappt. Versuch es nochmal.'; }
   }
 
+  const zustand = () => JSON.stringify([
+    [fName, fKat, fPreis, fText, fMat, fMasse, fGewicht, fLager, fTage, fExtra].map(f => f.value),
+    [fSichtbar, fBeliebt, fPin].map(f => f.checked),
+    e.medien, e.modell, e.varianten, e.farben, e.status, e.nachdrucken, kost]);
+  const startZustand = zustand();
   const blatt = oeffneBlatt(alt ? 'Produkt bearbeiten' : 'Neues Produkt', form, {
     beimSchliessen: async () => {
       if (gespeichert) return true;
-      const geaendert = neuHochgeladen.size || entfernt.size || fName.value.trim() !== (alt ? alt.name : '') || fText.value.trim() !== (alt ? (alt.beschreibung || '') : '');
+      const geaendert = neuHochgeladen.size || entfernt.size || laufend.size || zustand() !== startZustand;
       if (geaendert && !(await bestaetigen('Änderungen verwerfen?', 'Was du eingetragen hast, wird nicht gespeichert.', 'Verwerfen'))) return false;
+      zu = true;
       for (const bid of neuHochgeladen) S.assets?.delete(bid).catch(() => {});
       return true;
     }
@@ -2374,20 +2513,24 @@ function oeffneShopEinstellungen() {
       return fehler('Bitte alle Kosten-Grundwerte als Zahlen ausfüllen.');
     const mail = fMail.value.trim();
     if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return fehler('Die E-Mail-Adresse sieht nicht richtig aus.');
+    if (fWa.value.trim() && !waNummer(fWa.value)) return fehler('Die WhatsApp-Nummer sieht nicht richtig aus, z. B. +49 170 1234567.');
+    if (!S.intern.geladen) return fehler('Die Kosten-Werte sind noch nicht geladen. Lade die Seite neu und versuch es nochmal.');
     speichernBtn.disabled = true; speichernBtn.textContent = 'Speichert …';
     try {
       await S.db.doc('shop/info').set({
         name, tagline: fTag.value.trim(), kategorien: sauber, angebote: angSauber, logo: logo || null,
         kontakt: { whatsapp: fWa.value.trim(), email: mail, hinweis: fHinweis.value.trim() }
       });
-      await S.db.doc('intern/einstellungen').set({ spulePreisCent: spule.wert, spuleGramm: gramm, stromCentKwh: strom, watt, verschleissCentStunde: versch.wert });
+      // Logo ist jetzt live: alte und verworfene Logos aufräumen, das neue nicht mehr anfassen
       for (const id of logoNeu) if (id !== logo) S.assets?.delete(id).catch(() => {});
       if (logoAlt && logoAlt !== logo) S.assets?.delete(logoAlt).catch(() => {});
-      logoNeu.clear(); gespeichert = true;
+      logoNeu.clear();
+      await S.db.doc('intern/einstellungen').set({ spulePreisCent: spule.wert, spuleGramm: gramm, stromCentKwh: strom, watt, verschleissCentStunde: versch.wert });
+      gespeichert = true;
       schliesseBlattSofort(); toast('Gespeichert');
-    } catch {
+    } catch (err) {
       speichernBtn.disabled = false; speichernBtn.textContent = 'Speichern';
-      fehler('Speichern hat nicht geklappt. Versuch es nochmal.');
+      fehler(speicherFehlerText(err));
     }
   });
   let gespeichert = false;
@@ -2401,16 +2544,28 @@ $('#suche').addEventListener('input', e => { S.suche = e.target.value; renderAng
 const sortSel = $('#sortierung'); sortSel.value = S.sort;
 if (sortSel.selectedIndex < 0) { S.sort = 'empfohlen'; sortSel.value = 'empfohlen'; }
 sortSel.addEventListener('change', () => { S.sort = sortSel.value; lsSet('shop-sort', S.sort); render(); });
-const hash = decodeURIComponent((location.hash || '').slice(1));
+let hash = '';
+try { hash = decodeURIComponent((location.hash || '').slice(1)); } catch {}
 if (hash) S.kat = hash;
 render();
 
 /* ============ Supabase: Datenbank, Speicher, Anmeldung ============ */
 function alsFehler(e) {
   const text = String((e && (e.message || e.error || e.code)) || 'Fehler');
+  const status = Number(e && (e.statusCode || e.status)) || 0;
   const err = new Error(text);
-  if (/quota|exceed|too large|payload|limit/i.test(text)) err.code = 'quota_exceeded';
+  if (status === 413 || /maximum allowed size|too large|payload/i.test(text)) err.code = 'too_large';
+  else if (status === 429 || /rate limit|too many/i.test(text)) err.code = 'rate_limited';
+  else if (/mime type/i.test(text)) err.code = 'unsupported_type';
+  else if (/quota|storage limit|read-only|disk/i.test(text)) err.code = 'quota_or_state';
+  else if (status === 401 || status === 403 || /jwt|row-level security|permission denied|not authorized/i.test(text)) err.code = 'nicht_angemeldet';
   return err;
+}
+function speicherFehlerText(err) {
+  const c = err && err.code;
+  if (c === 'nicht_angemeldet') return 'Du bist nicht mehr angemeldet. Lade die Seite neu und melde dich wieder an.';
+  if (c === 'quota_or_state') return 'Der Speicher des Shops ist voll. Lösche alte Produkte, Fotos oder Videos.';
+  return 'Speichern hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.';
 }
 
 function machDb(sb) {
@@ -2418,7 +2573,7 @@ function machDb(sb) {
   const sammlungVon = pfad => pfad.split('/').slice(0, -1).join('/');
   const letzte = pfad => pfad.split('/').pop();
   let zeitgeber = null;
-  const neuLaden = () => { clearTimeout(zeitgeber); zeitgeber = setTimeout(() => { for (const f of hoerer) f(); }, 150); };
+  const neuLaden = () => { clearTimeout(zeitgeber); zeitgeber = setTimeout(() => { for (const f of hoerer) f(); }, 400); };
 
   function docRef(pfad) {
     return {
@@ -2444,8 +2599,11 @@ function machDb(sb) {
         neuLaden();
       },
       onSnapshot(cb, fehlerCb) {
+        let nr = 0;
         const laden = async () => {
+          const meins = ++nr;
           const { data, error } = await sb.from('dokumente').select('daten').eq('pfad', pfad).maybeSingle();
+          if (meins !== nr) return;
           if (error) { if (fehlerCb) fehlerCb(error); return; }
           cb({ exists: !!data, id: letzte(pfad), data: () => (data ? data.daten : undefined) });
         };
@@ -2461,8 +2619,11 @@ function machDb(sb) {
       return {
         doc: id => docRef(pfad + '/' + (id || neueId())),
         onSnapshot(cb, fehlerCb) {
+          let nr = 0;
           const laden = async () => {
+            const meins = ++nr;
             const { data, error } = await sb.from('dokumente').select('pfad,daten').eq('sammlung', pfad);
+            if (meins !== nr) return;
             if (error) { if (fehlerCb) fehlerCb(error); return; }
             cb({ docs: data.map(r => ({ id: letzte(r.pfad), data: () => r.daten })) });
           };
@@ -2498,7 +2659,8 @@ function renderKonto() {
   ort.replaceChildren();
   if (!S.sb) return;
   if (S.konto) {
-    if (!S.darfVerwalten) ort.append(h('span', { text: 'Dieses Konto darf den Shop nicht verwalten. ' }));
+    if (S.verwalterUnklar) ort.append(h('span', { text: 'Verbindung gestört, lade die Seite neu. ' }));
+    else if (!S.darfVerwalten) ort.append(h('span', { text: 'Dieses Konto darf den Shop nicht verwalten. ' }));
     ort.append(h('button', { class: 'konto-link', onclick: abmelden, text: 'Abmelden' }));
   } else {
     ort.append(h('button', { class: 'konto-link', onclick: oeffneAnmelden, text: 'Verwalten' }));
@@ -2520,7 +2682,7 @@ function oeffneAnmelden() {
       if (error) {
         knopf.disabled = false; knopf.textContent = 'Anmelden';
         fehlerBox.textContent = /not confirmed/i.test(error.message)
-          ? 'Dein Konto ist noch nicht bestätigt. Leg es in Supabase neu an und setz den Haken bei „Auto Confirm User“.'
+          ? 'Dein Konto ist noch nicht bestätigt. Öffne in Supabase „Authentication“ → „Users“, klick auf dein Konto und bestätige es.'
           : /invalid/i.test(error.message)
           ? 'E-Mail oder Passwort stimmt nicht.'
           : 'Anmelden hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.';
@@ -2555,15 +2717,15 @@ function oeffneUmzug() {
         await ladeSkript(JSZIP_URL);
         const zip = await window.JSZip.loadAsync(datei);
         const inhalt = zip.file(/(^|\/)daten\.json$/).find(f => !f.name.startsWith('__MACOSX'));
-        if (!inhalt) throw new Error('In der Datei fehlt daten.json. Ist das die richtige Datei?');
+        if (!inhalt) throw new Hinweis('In der Datei fehlt daten.json. Ist das die richtige Datei?');
         const vorne = inhalt.name.slice(0, -'daten.json'.length);
         const daten = JSON.parse(await inhalt.async('string'));
         const medien = daten.medien || [], dokumente = daten.dokumente || [];
-        let n = 0;
+        let n = 0, fehlen = 0;
         for (const m of medien) {
           n++; status.textContent = `Fotos und Modelle hochladen: ${n} von ${medien.length} …`;
           const f = zip.file(vorne + 'medien/' + m.datei);
-          if (!f) continue;
+          if (!f) { fehlen++; continue; }
           const blob = await f.async('blob');
           const { error } = await S.sb.storage.from(BUCKET).upload(m.id, blob, { contentType: m.typ, cacheControl: '31536000', upsert: true });
           if (error) throw alsFehler(error);
@@ -2573,7 +2735,7 @@ function oeffneUmzug() {
           n++; status.textContent = `Produkte und Einstellungen speichern: ${n} von ${dokumente.length} …`;
           await S.db.doc(d.pfad).set(d.daten);
         }
-        status.textContent = 'Fertig! Alles ist übernommen.';
+        status.textContent = fehlen ? `Fertig, aber ${fehlen} ${fehlen === 1 ? 'Datei fehlte' : 'Dateien fehlten'} in der ZIP.` : 'Fertig! Alles ist übernommen.';
         fertig = true; laeuft = false;
         knopf.disabled = false; knopf.textContent = 'Schließen'; knopf.type = 'button';
         knopf.onclick = () => schliesseBlattSofort();
@@ -2581,8 +2743,7 @@ function oeffneUmzug() {
       } catch (err) {
         laeuft = false; knopf.disabled = false;
         status.textContent = '';
-        fehlerBox.textContent = (err && err.message && !/fetch|network/i.test(err.message))
-          ? err.message : 'Das hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.';
+        fehlerBox.textContent = fehlerText(err, 'Das hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.');
       }
     }
   },
@@ -2598,7 +2759,7 @@ function oeffneUmzug() {
 }
 
 async function abmelden() {
-  try { await S.sb.auth.signOut(); } catch {}
+  try { await S.sb.auth.signOut({ scope: 'local' }); } catch {}
   try { localStorage.removeItem('shop-modus'); } catch {}
   location.reload();
 }
@@ -2614,16 +2775,20 @@ async function abmelden() {
     const { data } = await sb.auth.getSession();
     S.konto = data && data.session ? data.session.user : null;
     if (S.konto) {
-      const { data: ok } = await sb.rpc('ist_verwalter');
+      const { data: ok, error } = await sb.rpc('ist_verwalter');
+      S.verwalterUnklar = !!error;
       S.darfVerwalten = ok === true;
       if (S.darfVerwalten) { S.modus = lsGet('shop-modus') || 'verwalten'; S.assets = machAssets(sb); }
     }
   } catch {}
+  // Abgemeldet (z. B. Sitzung abgelaufen): Seite neu laden, damit nichts mehr nach Verwaltung aussieht
+  try { sb.auth.onAuthStateChange(ereignis => { if (ereignis === 'SIGNED_OUT' && S.konto) location.reload(); }); } catch {}
 
   S.status = 'bereit'; render();
 
   db.doc('shop/info').onSnapshot(snap => {
     if (snap.exists) S.shop = normShop(snap.data());
+    S.shopGeladen = true;
     render();
   }, () => { S.status = 'offline'; render(); });
 
@@ -2641,6 +2806,7 @@ async function abmelden() {
   if (S.darfVerwalten) {
     db.doc('intern/einstellungen').onSnapshot(snap => {
       S.intern.einstellungen = Object.assign({ ...KOSTEN_STANDARD }, snap.exists ? snap.data() : {});
+      S.intern.geladen = true;
       if (verwalten()) renderRaster();
     }, () => {});
     db.collection('intern/kosten/produkte').onSnapshot(q => {
@@ -2657,6 +2823,8 @@ async function abmelden() {
       .subscribe();
   } catch {}
   document.addEventListener('visibilitychange', () => { if (!document.hidden) db.neuLaden(); });
+  // Besucher bekommen ausgeblendete Produkte nicht live gemeldet: alle 2 Minuten nachsehen
+  setInterval(() => { if (!document.hidden) db.neuLaden(); }, 120000);
 })();
 })();
 </script>
