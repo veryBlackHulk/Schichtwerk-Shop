@@ -56,7 +56,7 @@ button{cursor:pointer}
 .titel-zeile{display:flex;align-items:center;gap:16px;flex-wrap:wrap;min-width:0}
 .logo{height:clamp(56px,11vw,96px);width:auto;max-width:min(200px,40vw);object-fit:contain;border-radius:12px;flex:none}
 h1{font-family:var(--f-display);font-stretch:72%;font-weight:850;font-size:clamp(44px,10vw,96px);line-height:.88;letter-spacing:-.01em;margin:0;text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere;min-width:0}
-.tagline{margin:0;color:var(--muted);font-size:16px;max-width:60ch}
+.tagline{margin:0;color:var(--muted);font-size:16px;max-width:60ch;line-height:1.35}
 .zahlen{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 
 .modus{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
@@ -165,7 +165,43 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .konto-link{border:0;background:none;padding:0;color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:13px}
 .fuss .sel{user-select:all;color:var(--ink);font-weight:600}
 
-/* Anfrage-Knopf */
+/* Bestellen */
+.bedingungen{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--muted);display:grid;gap:6px}
+.bedingungen b{color:var(--ink);font-size:14px}
+.bedingungen ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.zustimmen{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:600;cursor:pointer}
+.zustimmen input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
+.abhol-box{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
+.abhol-box svg{width:20px;height:20px;flex:none;color:var(--accent);margin-top:1px}
+.honig{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.erfolg{display:grid;gap:12px;justify-items:center;text-align:center;padding:24px 8px}
+.erfolg .kreis{width:64px;height:64px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center}
+.erfolg .kreis svg{width:30px;height:30px}
+.erfolg strong{font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:26px;text-transform:uppercase}
+.erfolg .nr{font-family:var(--f-mono);font-size:15px;background:var(--surface-2);border-radius:8px;padding:4px 10px}
+details.selbst summary{cursor:pointer;color:var(--muted);font-size:13px}
+details.selbst > div{display:grid;gap:8px;margin-top:10px}
+/* Bestellungen (Verwaltung) */
+.best-liste{display:grid;gap:12px}
+.best-karte{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px;background:var(--bg)}
+.best-karte.neu{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.best-kopf{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+.best-kopf .nr{font-family:var(--f-mono);font-weight:600}
+.best-kopf .wann{font-size:12.5px;color:var(--muted)}
+.best-karte select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 8px;min-height:36px}
+.best-karte .kontakt{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px}
+.best-karte .kontakt a{color:var(--ink)}
+.best-karte pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:12px;margin:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-height:240px;overflow:auto}
+.best-karte .knoepfe{display:flex;flex-wrap:wrap;gap:8px}
+.tabs-klein{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
+.tabs-klein button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted)}
+.tabs-klein button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.zahl-punkt{background:var(--accent);color:var(--accent-ink);border-radius:999px;min-width:20px;height:20px;padding:0 6px;display:inline-grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums}
+.groesse-zeile{display:flex;gap:12px;align-items:center}
+.groesse-zeile input[type=range]{flex:1;accent-color:var(--accent)}
+.groesse-zeile output{font-family:var(--f-mono);font-size:13px;min-width:44px;text-align:right}
+.groesse-probe{color:var(--muted);line-height:1.35;overflow-wrap:anywhere}
+/* Warenkorb-Knopf */
 .korb-knopf{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 12px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 18px 12px 14px;font-weight:700;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
 .korb-knopf svg{width:20px;height:20px}
 .korb-knopf .zahl{background:var(--accent);color:var(--accent-ink);border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;font-size:13px;padding:0 6px;font-variant-numeric:tabular-nums}
@@ -391,12 +427,12 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 </main>
 
 <footer class="wrap fuss" id="fuss">
-  <span><b>So bestellst du:</b> Produkte in die Anfrage legen und abschicken. Wir melden uns zu Bezahlung und Übergabe.</span>
+  <span><b>So bestellst du:</b> Produkte in den Warenkorb legen und unverbindlich bestellen. Wir melden uns per E-Mail mit einem Abholtermin. Bezahlt wird bei der Abholung. <button type="button" class="konto-link" id="bedingungen-link">Bestellbedingungen</button></span>
   <span id="fuss-kontakt"></span>
   <span id="fuss-konto"></span>
 </footer>
 
-<button class="korb-knopf" id="korb-knopf" hidden aria-label="Anfrage ansehen"></button>
+<button class="korb-knopf" id="korb-knopf" hidden aria-label="Warenkorb ansehen"></button>
 <div id="blatt-ort"></div>
 
 <script>
@@ -430,6 +466,9 @@ function h(tag, props, ...kids) {
 }
 const ICON = {
   stift: '<path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/>',
+  haken: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  ort: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  post: '<path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/>',
   wunsch: '<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>',
   zu: '<path d="M6 6l12 12M18 6 6 18"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
@@ -549,7 +588,7 @@ const KOSTEN_STANDARD = { spulePreisCent: 2000, spuleGramm: 1000, stromCentKwh: 
 
 /* ============ Zustand ============ */
 const S = {
-  db: null, user: null, assets: null,
+  db: null, user: null, assets: null, best: { status: 'laedt', liste: [] },
   darfVerwalten: false, modus: 'kunde', status: 'laedt',
   shop: normShop({}), produkte: [], produkteGeladen: false,
   intern: { einstellungen: { ...KOSTEN_STANDARD }, kosten: {} },
@@ -564,7 +603,8 @@ function normShop(d) {
     kategorien: Array.isArray(d.kategorien) ? d.kategorien : [],
     angebote: Array.isArray(d.angebote) ? d.angebote : [],
     kontakt: Object.assign({ whatsapp: '', email: '', hinweis: '' }, d.kontakt || {}),
-    logo: d.logo || null
+    logo: d.logo || null,
+    taglineGroesse: Number.isFinite(d.taglineGroesse) ? Math.min(40, Math.max(12, d.taglineGroesse)) : 16
   };
 }
 
@@ -717,6 +757,7 @@ function renderKopf() {
   $('#shop-name').textContent = S.shop.name || 'Mein Shop';
   $('#shop-tagline').textContent = S.shop.tagline || '';
   $('#shop-tagline').hidden = !S.shop.tagline;
+  $('#shop-tagline').style.fontSize = S.shop.taglineGroesse + 'px';
   const logo = $('#shop-logo');
   if (S.shop.logo) { logo.src = blobUrl(S.shop.logo); logo.alt = `Logo ${S.shop.name}`; logo.hidden = false; logo.onerror = () => { logo.hidden = true; }; }
   else logo.hidden = true;
@@ -738,6 +779,8 @@ function renderKopf() {
     const entwuerfe = S.produkte.filter(p => p.sichtbar === false).length;
     leiste.append(...[
       h('button', { class: 'btn primaer', onclick: () => oeffneEditor(null) }, icon('plus'), 'Neues Produkt'),
+      h('button', { class: 'btn', onclick: oeffneBestellungen }, icon('liste'), 'Bestellungen',
+        S.best.liste.filter(b => b.status === 'neu').length ? h('span', { class: 'zahl-punkt', text: String(S.best.liste.filter(b => b.status === 'neu').length) }) : null),
       h('button', { class: 'btn', onclick: oeffneShopEinstellungen }, icon('zahnrad'), 'Shop, Angebote & Kosten'),
       (S.produkteGeladen && !S.produkte.length) ? h('button', { class: 'btn', onclick: oeffneUmzug }, icon('zurueck'), 'Daten aus altem Shop holen') : null,
       entwuerfe ? h('span', { class: 'hinweis-admin', text: `${entwuerfe} ${entwuerfe === 1 ? 'Entwurf' : 'Entwürfe'} (für Kunden unsichtbar)` }) : null,
@@ -901,8 +944,8 @@ function renderKorbKnopf(huepfen) {
   const k = $('#korb-knopf');
   const n = S.produkteGeladen ? korbRechnen().zeilen.reduce((s, r) => s + r.z.menge, 0) : S.korb.reduce((s, z) => s + z.menge, 0);
   k.hidden = n === 0;
-  k.replaceChildren(icon('liste'), 'Anfrage', h('span', { class: 'zahl', text: String(n) }));
-  k.setAttribute('aria-label', `Anfrage ansehen, ${n} ${n === 1 ? 'Teil' : 'Teile'}`);
+  k.replaceChildren(icon('liste'), 'Warenkorb', h('span', { class: 'zahl', text: String(n) }));
+  k.setAttribute('aria-label', `Warenkorb ansehen, ${n} ${n === 1 ? 'Teil' : 'Teile'}`);
   if (huepfen) { k.classList.remove('huepf'); void k.offsetWidth; k.classList.add('huepf'); }
 }
 
@@ -1071,7 +1114,7 @@ function oeffneDetail(id) {
     mengeSpan.textContent = String(wahl.menge);
     minus.disabled = wahl.menge <= 1; plus.disabled = wahl.menge >= max;
     addBtn.disabled = st === 'ausverkauft' || max <= 0;
-    addBtn.textContent = st === 'ausverkauft' ? 'Zurzeit ausverkauft' : max <= 0 ? 'Alles schon in der Anfrage' : 'Zur Anfrage hinzufügen';
+    addBtn.textContent = st === 'ausverkauft' ? 'Zurzeit ausverkauft' : max <= 0 ? 'Alles schon im Warenkorb' : 'In den Warenkorb';
   }
   addBtn.addEventListener('click', () => {
     const zaehle = () => S.korb.reduce((s, z) => s + (z.id === p.id ? z.menge : 0), 0);
@@ -1080,7 +1123,7 @@ function oeffneDetail(id) {
     const dazu = zaehle() - vorher;
     if (!dazu) { toast('Mehr ist gerade nicht auf Lager.', true); return; }
     schliesseBlattSofort();
-    toast(`${dazu}× ${p.name} zur Anfrage hinzugefügt`);
+    toast(`${dazu}× ${p.name} im Warenkorb`);
   });
 
   const kat = katVon(p.kategorie);
@@ -1096,7 +1139,7 @@ function oeffneDetail(id) {
     (p.farben && p.farben.length) ? h('div', { class: 'wahl' }, h('span', { class: 'feld-titel', text: 'Farbe' }), farbBox) : null,
     h('div', { class: 'kaufen' }, h('div', { class: 'stepper', role: 'group', 'aria-label': 'Anzahl' }, minus, mengeSpan, plus), addBtn),
     specs.length ? h('dl', { class: 'specs' }, specs.map(([k, v]) => [h('dt', { text: k }), h('dd', { text: v })])) : null,
-    h('div', { class: 'so-gehts' }, h('b', { text: 'So bestellst du' }), h('span', { text: 'Leg alles, was du möchtest, in die Anfrage und schick sie ab. Wir melden uns zu Bezahlung und Übergabe. Online bezahlen kommt später.' }))
+    h('div', { class: 'so-gehts' }, h('b', { text: 'So bestellst du' }), h('span', { text: 'Leg alles in den Warenkorb und bestell unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Bezahlt wird bei der Abholung. Kein Versand.' }))
   );
   aktualisieren();
   const kopfExtra = verwalten() ? h('button', { class: 'btn', onclick: () => { schliesseBlattSofort(); oeffneEditor(p.id); } }, icon('stift'), 'Bearbeiten') : null;
@@ -1569,7 +1612,7 @@ async function modellLesen(file, status) {
   return aufbereiten(gruppen);
 }
 
-/* ============ Anfrage (Korb) ============ */
+/* ============ Warenkorb und Bestellung ============ */
 function ladeKorb() { try { const k = JSON.parse(lsGet('shop-korb') || '[]'); return Array.isArray(k) ? k.filter(z => z && z.id && z.menge > 0) : []; } catch { return []; } }
 function speichereKorb(huepfen) { lsSet('shop-korb', JSON.stringify(S.korb)); renderKorbKnopf(huepfen); }
 const imKorb = (id, ohneKey) => S.korb.reduce((s, z) => s + (z.id === id && z.key !== ohneKey ? z.menge : 0), 0);
@@ -1619,7 +1662,7 @@ function korbRechnen() {
 }
 function optionText(z) { return [z.variante, z.farbe].filter(Boolean).join(', '); }
 function anfrageText(rech, name, nachricht) {
-  const L = ['Hallo, ich möchte gerne bestellen:', ''];
+  const L = ['Hallo, ich möchte gerne bestellen (Abholung):', ''];
   for (const r of rech.zeilen) {
     const opt = optionText(r.z);
     const titel = `${r.z.menge}× ${r.p.name}${opt ? ` (${opt})` : ''}`;
@@ -1645,7 +1688,7 @@ function waNummer(s) {
 function sendeAktionen(text, vorschau, art) {
   const k = S.shop.kontakt, aus = [];
   const wa = waNummer(k.whatsapp);
-  const betreff = art === 'Wunsch' ? 'Mein Wunsch für ' + S.shop.name : 'Anfrage für ' + S.shop.name;
+  const betreff = art === 'Wunsch' ? 'Mein Wunsch für ' + S.shop.name : 'Bestellung für ' + S.shop.name;
   if (wa) aus.push(h('a', { class: 'btn primaer voll', href: `https://wa.me/${wa}?text=${encodeURIComponent(text)}`, target: '_blank', rel: 'noopener', text: 'In WhatsApp senden' }));
   if (k.email) {
     let href = `mailto:${k.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`;
@@ -1658,11 +1701,116 @@ function sendeAktionen(text, vorschau, art) {
   const kb = h('div', { class: 'kontakt-box' });
   if (k.whatsapp) kb.append(h('div', { class: 'z' }, 'WhatsApp:', h('span', { class: 'wert', text: k.whatsapp }), h('button', { type: 'button', onclick: () => kopieren(k.whatsapp, null, 'Nummer kopiert'), text: 'Kopieren' })));
   if (k.email) kb.append(h('div', { class: 'z' }, 'E-Mail:', h('span', { class: 'wert', text: k.email }), h('button', { type: 'button', onclick: () => kopieren(k.email, null, 'Adresse kopiert'), text: 'Kopieren' })));
-  if (k.hinweis) kb.append(h('div', { text: k.hinweis }));
   if (!k.whatsapp && !k.email) kb.append(h('div', { text: verwalten() ? 'Trag unter „Shop, Angebote & Kosten“ deine WhatsApp-Nummer oder E-Mail ein, dann sehen Kunden hier, wohin sie schreiben können.' : `Kopier den Text und schick ihn an den Shop.` }));
   if (wa || k.email) kb.append(h('small', { style: 'color:var(--muted)', text: 'Falls nichts aufgeht: Text kopieren und selbst schicken.' }));
   aus.push(kb);
   return aus;
+}
+
+/* ---------- Bestellbedingungen ---------- */
+const BEDINGUNGEN_STAND = '23.10.2026';
+function bedingungenPunkte() {
+  const n = S.shop.name || 'der Shop';
+  return [
+    `Die Bestellung ist unverbindlich. Ein Kauf kommt erst zustande, wenn ${n} die Bestellung per E-Mail bestätigt.`,
+    'Die Ware wird ausschließlich persönlich übergeben (Abholung). Ein Versand findet nicht statt. Bezahlt wird bei der Abholung.',
+    'Bitte prüfe die Ware bei der Übergabe. Mit der Übergabe geht die Ware in deine Verantwortung über. Für Schäden, die danach entstehen, etwa durch Herunterfallen, Hitze oder unsachgemäßen Gebrauch, wird keine Haftung übernommen.',
+    'Umtausch und Rückgabe sind ausgeschlossen.',
+    'Jedes Teil ist ein individueller 3D-Druck. Feine Schichtlinien, kleine Druckspuren und leichte Farbabweichungen sind typisch und kein Mangel.',
+    'Es handelt sich um einen Privatverkauf. Die Haftung für Sachmängel ist ausgeschlossen. Davon unberührt bleibt die Haftung bei Vorsatz, grober Fahrlässigkeit sowie bei Verletzung von Leben, Körper oder Gesundheit.',
+    'Deine Angaben (Name, E-Mail, Telefon) werden nur für die Bearbeitung deiner Bestellung verwendet.'
+  ];
+}
+const bedingungenText = () => `Bestellbedingungen (Stand ${BEDINGUNGEN_STAND}):\n` + bedingungenPunkte().map(x => '• ' + x).join('\n');
+const bedingungenBox = () => h('div', { class: 'bedingungen' }, h('b', { text: 'Bestellbedingungen' }), h('ul', null, bedingungenPunkte().map(x => h('li', { text: x }))));
+function oeffneBedingungen() {
+  oeffneBlatt('Bestellbedingungen', h('div', { class: 'form' }, bedingungenBox(),
+    h('small', { class: 'klein-hinweis', text: `Stand ${BEDINGUNGEN_STAND}` })));
+}
+$('#bedingungen-link').addEventListener('click', oeffneBedingungen);
+const abholText = () => S.shop.kontakt.hinweis || 'Abholung nach Absprache. Wir melden uns per E-Mail mit Ort und Termin.';
+
+/* Gemeinsames Formular für Bestellung und Wunsch.
+   art: 'bestellung' | 'wunsch'; daten(): { text, positionen, summe_cent } oder null, wenn noch etwas fehlt */
+function bestellFormular({ art, daten, nachrichtFeld = true, beiErfolg }) {
+  const merk = k => lsGet('shop-kunde-' + k) || '';
+  const fName = h('input', { type: 'text', class: 'eingabe', autocomplete: 'name', maxlength: '80', required: true, value: merk('name') || lsGet('shop-name-kunde') || '' });
+  const fMail = h('input', { type: 'email', class: 'eingabe', autocomplete: 'email', inputmode: 'email', maxlength: '120', required: true, value: merk('email') });
+  const fTel = h('input', { type: 'tel', class: 'eingabe', autocomplete: 'tel', inputmode: 'tel', maxlength: '40', value: merk('tel') });
+  const fNachricht = h('textarea', { class: 'eingabe', maxlength: '1000', style: 'min-height:70px', placeholder: 'z. B. wann du gut abholen kannst' });
+  const fHonig = h('input', { type: 'text', name: 'website', tabindex: '-1', autocomplete: 'off' });
+  const fJa = h('input', { type: 'checkbox', required: true });
+  const fehlerBox = h('div', { class: 'fehler', role: 'alert' });
+  const knopf = h('button', { type: 'submit', class: 'btn primaer voll', text: art === 'wunsch' ? 'Wunsch unverbindlich absenden' : 'Unverbindlich bestellen' });
+  const selbstOrt = h('div');
+  const kontaktText = () => {
+    const L = ['', '', `Name: ${fName.value.trim()}`];
+    if (fMail.value.trim()) L.push(`E-Mail: ${fMail.value.trim()}`);
+    if (fTel.value.trim()) L.push(`Telefon: ${fTel.value.trim()}`);
+    if (nachrichtFeld && fNachricht.value.trim()) L.push(`Nachricht: ${fNachricht.value.trim()}`);
+    return L.join('\n');
+  };
+  const komplett = () => { const d = daten(); return d ? d.text + kontaktText() : null; };
+  function selbstAktualisieren() {
+    const k = S.shop.kontakt;
+    if (!k.email && !k.whatsapp) { selbstOrt.replaceChildren(); return; }
+    const text = komplett();
+    const vorschau = h('pre', { class: 'vorschau', text: text || 'Fülle zuerst die Angaben oben aus.' });
+    selbstOrt.replaceChildren(h('details', { class: 'selbst' }, h('summary', { text: 'Lieber selbst per E-Mail oder WhatsApp schicken?' }),
+      h('div', null, vorschau, text ? sendeAktionen(text, vorschau, art === 'wunsch' ? 'Wunsch' : 'Bestellung') : null)));
+  }
+  for (const f of [fName, fMail, fTel, fNachricht]) f.addEventListener('change', selbstAktualisieren);
+  const form = h('form', { class: 'form', novalidate: true, onsubmit: async ev => {
+    ev.preventDefault(); fehlerBox.textContent = '';
+    const fehler = (t, f) => { fehlerBox.textContent = t; if (f) f.focus(); };
+    const name = fName.value.trim(), mail = fMail.value.trim();
+    const d = daten();
+    if (!d) return fehler(art === 'wunsch' ? 'Beschreib bitte zuerst oben, was gedruckt werden soll.' : 'Dein Warenkorb ist leer.');
+    if (!name) return fehler('Bitte gib deinen Namen an.', fName);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return fehler('Bitte gib eine gültige E-Mail-Adresse an. Darüber bekommst du die Bestätigung und den Abholtermin.', fMail);
+    if (!fJa.checked) return fehler('Bitte stimme den Bestellbedingungen zu.', fJa);
+    lsSet('shop-kunde-name', name); lsSet('shop-kunde-email', mail); lsSet('shop-kunde-tel', fTel.value.trim());
+    if (fHonig.value) { beiErfolg(0, name, mail); return; } // Bot
+    knopf.disabled = true; knopf.textContent = 'Wird gesendet …';
+    try {
+      const { data: nr, error } = await S.sb.rpc('bestellung_anlegen', { p: {
+        art, name, email: mail, telefon: fTel.value.trim(), nachricht: nachrichtFeld ? fNachricht.value.trim() : '',
+        positionen: d.positionen || [], summe_cent: d.summe_cent == null ? null : d.summe_cent,
+        text: (d.text + kontaktText()).slice(0, 6000), zugestimmt: true, zustimmung: bedingungenText()
+      } });
+      if (error) throw error;
+      beiErfolg(nr, name, mail);
+    } catch (err) {
+      knopf.disabled = false; knopf.textContent = art === 'wunsch' ? 'Wunsch unverbindlich absenden' : 'Unverbindlich bestellen';
+      const m = String((err && (err.message || err.code)) || '');
+      if (/zu_viele/.test(m)) fehler('Du hast gerade schon mehrere Bestellungen geschickt. Bitte warte ein paar Minuten.');
+      else if (/bestellung_anlegen|PGRST202|does not exist|404/i.test(m + ' ' + (err && err.code))) { fehler('Online-Bestellen ist gerade nicht verfügbar. Schick deine Bestellung bitte per E-Mail oder WhatsApp (unten).'); selbstAktualisieren(); }
+      else { fehler('Das Senden hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.'); selbstAktualisieren(); }
+    }
+  } },
+    h('div', { class: 'abhol-box' }, icon('ort'), h('div', null, h('b', { text: 'Nur Abholung' }), h('div', { text: abholText() }), h('div', { style: 'color:var(--muted);font-size:13px', text: 'Bezahlt wird bei der Abholung.' }))),
+    h('div', { class: 'zwei' },
+      h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
+      h('label', { class: 'feld' }, h('span', { text: 'E-Mail' }), fMail)),
+    h('div', { class: nachrichtFeld ? 'zwei' : '' },
+      h('label', { class: 'feld' }, h('span', { text: 'Telefon oder WhatsApp (optional)' }), fTel),
+      nachrichtFeld ? h('label', { class: 'feld' }, h('span', { text: 'Nachricht (optional)' }), fNachricht) : null),
+    h('label', { class: 'honig', 'aria-hidden': 'true' }, 'Website', fHonig),
+    bedingungenBox(),
+    h('label', { class: 'zustimmen' }, fJa, h('span', { text: 'Ich habe die Bestellbedingungen gelesen und stimme ihnen zu. Mir ist bewusst, dass Umtausch und Rückgabe ausgeschlossen sind.' })),
+    fehlerBox, knopf, selbstOrt);
+  selbstAktualisieren();
+  return { form, selbstAktualisieren };
+}
+function erfolgAnsicht(art, nr, name, mail, schliessen) {
+  return h('div', { class: 'erfolg' },
+    h('span', { class: 'kreis' }, icon('haken')),
+    h('strong', { text: 'Danke' + (name ? ', ' + name.split(' ')[0] : '') + '!' }),
+    nr ? h('span', { class: 'nr', text: (art === 'wunsch' ? 'Wunsch' : 'Bestellung') + ' #' + nr }) : null,
+    h('span', { text: art === 'wunsch'
+      ? `Dein Wunsch ist angekommen. Wir melden uns per E-Mail an ${mail} mit Preis und Dauer.`
+      : `Deine Bestellung ist angekommen. Wir melden uns per E-Mail an ${mail} mit einem Abholtermin. Bezahlt wird bei der Abholung.` }),
+    h('button', { class: 'btn', onclick: schliessen, text: 'Weiter stöbern' }));
 }
 
 function oeffneWunsch(vorschlag) {
@@ -1673,33 +1821,21 @@ function oeffneWunsch(vorschlag) {
   const fGroesse = h('input', { type: 'text', class: 'eingabe', maxlength: '80', placeholder: 'z. B. ca. 10 cm' });
   const fVorlage = h('input', { type: 'text', class: 'eingabe', maxlength: '300', inputmode: 'url', placeholder: 'Link zu Bild oder Modell, z. B. von MakerWorld' });
   const fBis = h('input', { type: 'text', class: 'eingabe', maxlength: '60', placeholder: 'z. B. bis Weihnachten' });
-  const fName = h('input', { type: 'text', class: 'eingabe', autocomplete: 'name', maxlength: '60', value: lsGet('shop-name-kunde') || '' });
-  const vorschau = h('pre', { class: 'vorschau', 'aria-label': 'Text des Wunsches' });
-  const aktionen = h('div', { style: 'display:grid;gap:8px' });
-  function wunschText() {
+  function daten() {
+    if (!fWas.value.trim()) return null;
     const L = ['Hallo, ich habe einen Wunsch:', '', fWas.value.trim(), ''];
-    const n = Math.min(99, Math.max(1, parseInt(fAnzahl.value, 10) || 1));
-    L.push(`Anzahl: ${n}`);
+    L.push(`Anzahl: ${Math.min(99, Math.max(1, parseInt(fAnzahl.value, 10) || 1))}`);
     if (fFarbe.value.trim()) L.push(`Farbe: ${fFarbe.value.trim()}`);
     if (fGroesse.value.trim()) L.push(`Größe: ${fGroesse.value.trim()}`);
     if (fVorlage.value.trim()) L.push(`Vorlage: ${fVorlage.value.trim()}`);
     if (fBis.value.trim()) L.push(`Bis wann: ${fBis.value.trim()}`);
-    if (fName.value.trim()) { L.push(''); L.push(`Name: ${fName.value.trim()}`); }
-    return L.join('\n');
+    return { text: L.join('\n'), positionen: [], summe_cent: null };
   }
-  function aktualisiere() {
-    lsSet('shop-name-kunde', fName.value);
-    if (!fWas.value.trim()) {
-      vorschau.textContent = 'Schreib zuerst oben, was du dir wünschst.';
-      aktionen.replaceChildren();
-      return;
-    }
-    const text = wunschText();
-    vorschau.textContent = text;
-    aktionen.replaceChildren(...sendeAktionen(text, vorschau, 'Wunsch'));
-  }
-  for (const f of [fWas, fAnzahl, fFarbe, fGroesse, fVorlage, fBis, fName]) f.addEventListener('input', aktualisiere);
-  const inhalt = h('div', { class: 'form' },
+  const inhalt = h('div', { style: 'display:grid;gap:16px' });
+  const { form, selbstAktualisieren } = bestellFormular({ art: 'wunsch', daten, nachrichtFeld: false,
+    beiErfolg: (nr, name, mail) => inhalt.replaceChildren(erfolgAnsicht('wunsch', nr, name, mail, () => blatt.schliessen())) });
+  for (const f of [fWas, fAnzahl, fFarbe, fGroesse, fVorlage, fBis]) f.addEventListener('change', selbstAktualisieren);
+  inhalt.append(
     h('p', { style: 'margin:0;color:var(--muted)', text: 'Beschreib, was wir für dich drucken sollen. Wir melden uns mit Preis und Dauer.' }),
     h('label', { class: 'feld' }, h('span', { text: 'Was soll gedruckt werden?' }), fWas),
     h('div', { class: 'zwei' },
@@ -1709,45 +1845,44 @@ function oeffneWunsch(vorschlag) {
       h('label', { class: 'feld' }, h('span', { text: 'Ungefähre Größe (optional)' }), fGroesse),
       h('label', { class: 'feld' }, h('span', { text: 'Bis wann? (optional)' }), fBis)),
     h('label', { class: 'feld' }, h('span', { text: 'Vorlage (optional)' }), fVorlage),
-    h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
-    h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Das wird gesendet' }), vorschau),
-    aktionen);
-  oeffneBlatt('Dein Wunsch', inhalt);
-  aktualisiere();
+    form);
+  const blatt = oeffneBlatt('Dein Wunsch', inhalt);
   setTimeout(() => fWas.focus(), 60);
 }
 
 function oeffneKorb() {
   const inhalt = h('div', { style: 'display:grid;gap:16px' });
-  const fName = h('input', { type: 'text', id: 'k-name', class: 'eingabe', autocomplete: 'name', maxlength: '60', value: lsGet('shop-name-kunde') || '' });
-  const fNachricht = h('textarea', { id: 'k-nachricht', class: 'eingabe', maxlength: '500', style: 'min-height:70px' });
-  fName.addEventListener('input', () => { lsSet('shop-name-kunde', fName.value); aktualisiereVorschau(); });
-  fNachricht.addEventListener('input', aktualisiereVorschau);
-  const vorschau = h('pre', { class: 'vorschau', 'aria-label': 'Text der Anfrage' });
-  const aktionen = h('div', { style: 'display:grid;gap:8px' });
-  let rech;
-
-  function aktualisiereVorschau() {
-    if (!rech) return;
-    const text = anfrageText(rech, fName.value.trim(), fNachricht.value.trim());
-    vorschau.textContent = text;
-    aktionen.replaceChildren(...sendeAktionen(text, vorschau, 'Anfrage'));
-  }
+  let rech, fertig = false;
+  const bestellDaten = () => {
+    if (!rech || !rech.zeilen.length) return null;
+    return {
+      text: anfrageText(rech, '', ''),
+      positionen: rech.zeilen.map(r => ({ id: r.p.id, name: r.p.name, variante: r.z.variante, farbe: r.z.farbe, menge: r.z.menge, einzelCent: r.preis })),
+      summe_cent: rech.nurOhnePreis ? null : rech.summe
+    };
+  };
+  // Formular einmal bauen, damit Eingaben beim Ändern der Mengen erhalten bleiben
+  const { form, selbstAktualisieren } = bestellFormular({ art: 'bestellung', daten: bestellDaten,
+    beiErfolg: (nr, name, mail) => {
+      fertig = true; S.korb = []; speichereKorb();
+      inhalt.replaceChildren(erfolgAnsicht('bestellung', nr, name, mail, () => blatt.schliessen()));
+    } });
 
   function zeichnen() {
+    if (fertig) return;
     inhalt.replaceChildren();
     if (!S.produkteGeladen) {
-      inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Anfrage wird geladen …' })));
+      inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Warenkorb wird geladen …' })));
       return;
     }
     rech = korbRechnen();
     // Gelöschte Produkte und nicht mehr vorhandene Größen/Farben entfernen, gekürzte Mengen speichern
-    const hinweis = rech.weg.length ? h('div', { class: 'fortschritt', text: 'Ein Teil in deiner Anfrage hat sich im Shop geändert und wurde entfernt. Bitte wähl es neu aus.' }) : null;
+    const hinweis = rech.weg.length ? h('div', { class: 'fortschritt', text: 'Ein Teil in deinem Warenkorb hat sich im Shop geändert und wurde entfernt. Bitte wähl es neu aus.' }) : null;
     if (rech.weg.length) S.korb = S.korb.filter(z => !rech.weg.includes(z));
     speichereKorb();
     if (hinweis) inhalt.append(hinweis);
     if (!rech.zeilen.length) {
-      inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Deine Anfrage ist leer' }), h('span', { text: 'Öffne ein Produkt und tippe auf „Zur Anfrage hinzufügen“.' }),
+      inhalt.append(h('div', { class: 'leer' }, h('strong', { text: 'Dein Warenkorb ist leer' }), h('span', { text: 'Öffne ein Produkt und tippe auf „In den Warenkorb“.' }),
         h('button', { class: 'btn', onclick: () => blatt.schliessen(), text: 'Weiter stöbern' })));
       return;
     }
@@ -1783,18 +1918,15 @@ function oeffneKorb() {
     summe.append(h('div', { class: 'z gross' }, h('span', { text: 'Summe' }), h('span', { text: rech.nurOhnePreis ? 'Preis auf Anfrage' : euro(rech.summe) })));
     if (rech.ohnePreis && !rech.nurOhnePreis) summe.append(h('small', { class: 'klein-hinweis', text: 'Dazu kommen Teile mit Preis auf Anfrage.' }));
     inhalt.append(summe,
-      h('div', { class: 'zwei' },
-        h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
-        h('label', { class: 'feld' }, h('span', { text: 'Nachricht (optional)' }), fNachricht)),
-      h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Das wird gesendet' }), vorschau),
-      aktionen,
-      h('div', null, h('button', { type: 'button', class: 'link-btn', onclick: () => { schliesseBlattSofort(); oeffneWunsch(); }, text: 'Noch etwas anderes? Eigenen Wunsch äußern' })),
-      h('div', null, h('button', { type: 'button', class: 'link-btn', onclick: async () => {
-        if (await bestaetigen('Anfrage leeren?', 'Alle Teile werden aus der Anfrage entfernt.', 'Leeren')) { S.korb = []; speichereKorb(); zeichnen(); }
-      }, text: 'Anfrage leeren' })));
-    aktualisiereVorschau();
+      h('div', { style: 'display:flex;flex-wrap:wrap;gap:4px 16px' },
+        h('button', { type: 'button', class: 'link-btn', onclick: () => { schliesseBlattSofort(); oeffneWunsch(); }, text: 'Noch etwas anderes? Eigenen Wunsch äußern' }),
+        h('button', { type: 'button', class: 'link-btn', onclick: async () => {
+          if (await bestaetigen('Warenkorb leeren?', 'Alle Teile werden aus dem Warenkorb entfernt.', 'Leeren')) { S.korb = []; speichereKorb(); zeichnen(); }
+        }, text: 'Warenkorb leeren' })),
+      form);
+    selbstAktualisieren();
   }
-  const blatt = oeffneBlatt('Deine Anfrage', inhalt);
+  const blatt = oeffneBlatt('Dein Warenkorb', inhalt);
   zeichnen();
 }
 $('#korb-knopf').addEventListener('click', oeffneKorb);
@@ -2354,6 +2486,93 @@ function oeffneEditor(id) {
   if (!alt) setTimeout(() => fName.focus(), 60);
 }
 
+/* ============ Bestellungen (Verwaltung) ============ */
+const BEST_STATUS = { neu: 'Neu', bestaetigt: 'Bestätigt', abholbereit: 'Abholbereit', abgeholt: 'Abgeholt', storniert: 'Storniert' };
+const istOffen = b => ['neu', 'bestaetigt', 'abholbereit'].includes(b.status);
+let bestellungenNeuZeichnen = null;
+async function ladeBestellungen() {
+  if (!S.darfVerwalten || !S.sb) return;
+  let data = null, error = null;
+  try { ({ data, error } = await S.sb.from('bestellungen').select('*').order('id', { ascending: false }).limit(300)); }
+  catch (e) { error = e || { message: 'Fehler' }; }
+  if (error) S.best = { status: /bestellungen|does not exist|42P01|PGRST205/i.test(String(error.message) + ' ' + error.code) ? 'fehlt' : 'fehler', liste: S.best.liste };
+  else S.best = { status: 'bereit', liste: data || [] };
+  renderKopf();
+  if (bestellungenNeuZeichnen) bestellungenNeuZeichnen();
+}
+function antwortLink(b) {
+  const vor = (b.name || '').trim().split(/\s+/)[0] || '';
+  const was = b.art === 'wunsch' ? 'deinen Wunsch' : 'deine Bestellung';
+  const L = [`Hallo ${vor},`, '', `vielen Dank für ${was} #${b.id}.`, ''];
+  if (b.art === 'wunsch') L.push('Preis: ', 'Fertig in ca.: ', '');
+  else {
+    L.push('Du kannst sie abholen am: ', `Abholort: ${S.shop.kontakt.hinweis || ''}`);
+    if (typeof b.summe_cent === 'number') L.push(`Betrag (zahlbar bei Abholung): ${euro(b.summe_cent)}`);
+    L.push('');
+  }
+  L.push('Viele Grüße', S.shop.name || '');
+  const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Bestellung'} #${b.id} bei ${S.shop.name || 'uns'}`;
+  return `mailto:${b.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(L.join('\n'))}`;
+}
+function oeffneBestellungen() {
+  let filter = 'offen';
+  const inhalt = h('div', { style: 'display:grid;gap:14px' });
+  function zeichnen() {
+    const alle = S.best.liste;
+    const tabs = h('div', { class: 'tabs-klein', role: 'group', 'aria-label': 'Filter' },
+      [['offen', `Offen (${alle.filter(istOffen).length})`], ['erledigt', 'Erledigt'], ['alle', 'Alle']].map(([k, t]) =>
+        h('button', { type: 'button', 'aria-pressed': String(filter === k), onclick: () => { filter = k; zeichnen(); }, text: t })));
+    const kopf = h('div', { style: 'display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between' }, tabs,
+      h('button', { type: 'button', class: 'btn', onclick: () => ladeBestellungen(), text: 'Aktualisieren' }));
+    if (S.best.status === 'fehlt') {
+      inhalt.replaceChildren(h('div', { class: 'leer' }, h('strong', { text: 'Bestellungen sind noch nicht eingerichtet' }),
+        h('span', { text: 'Führe in Supabase im SQL Editor die Datei bestellungen-einrichtung.sql aus. Danach landen Bestellungen hier.' })));
+      return;
+    }
+    if (S.best.status === 'laedt') { inhalt.replaceChildren(h('div', { class: 'leer' }, h('strong', { text: 'Bestellungen werden geladen …' }))); return; }
+    const liste = alle.filter(b => filter === 'alle' || (filter === 'offen' ? istOffen(b) : !istOffen(b)));
+    const box = h('div', { class: 'best-liste' });
+    if (S.best.status === 'fehler') box.append(h('div', { class: 'fehler', text: 'Bestellungen konnten nicht geladen werden. Prüf deine Verbindung und tippe auf „Aktualisieren“.' }));
+    if (!liste.length) box.append(h('div', { class: 'leer' }, h('strong', { text: filter === 'offen' ? 'Keine offenen Bestellungen' : 'Hier ist noch nichts' })));
+    for (const b of liste) {
+      const sel = h('select', { 'aria-label': `Status von #${b.id}` }, Object.entries(BEST_STATUS).map(([k, t]) => h('option', { value: k, text: t, selected: b.status === k })));
+      sel.addEventListener('change', async () => {
+        const alt = b.status; b.status = sel.value; sel.disabled = true;
+        const { error } = await S.sb.from('bestellungen').update({ status: sel.value }).eq('id', b.id);
+        sel.disabled = false;
+        if (error) { b.status = alt; sel.value = alt; toast('Status konnte nicht gespeichert werden.', true); return; }
+        toast(`#${b.id}: ${BEST_STATUS[b.status]}`); renderKopf(); zeichnen();
+      });
+      const wann = new Date(b.erstellt).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' });
+      box.append(h('article', { class: 'best-karte' + (b.status === 'neu' ? ' neu' : '') },
+        h('div', { class: 'best-kopf' },
+          h('div', null, h('span', { class: 'nr', text: `#${b.id}` }), ' ', h('span', { class: 'badge ' + (b.art === 'wunsch' ? 'deal' : 'neu'), text: b.art === 'wunsch' ? 'Wunsch' : 'Bestellung' }), ' ',
+            h('span', { class: 'wann', text: wann })),
+          sel),
+        h('div', { class: 'kontakt' },
+          h('b', { text: b.name }),
+          h('a', { href: `mailto:${b.email}`, text: b.email }),
+          b.telefon ? h('a', { href: `tel:${b.telefon.replace(/[^\d+]/g, '')}`, text: b.telefon }) : null,
+          typeof b.summe_cent === 'number' ? h('span', { text: euro(b.summe_cent) }) : null),
+        h('pre', { text: b.text }),
+        h('div', { class: 'knoepfe' },
+          h('a', { class: 'btn primaer', href: antwortLink(b) }, icon('post'), 'Per E-Mail antworten'),
+          h('button', { type: 'button', class: 'btn gefahr', onclick: async () => {
+            if (!(await bestaetigen(`#${b.id} löschen?`, 'Die Bestellung und die Daten des Kunden werden endgültig entfernt.', 'Endgültig löschen'))) return;
+            const { error } = await S.sb.from('bestellungen').delete().eq('id', b.id);
+            if (error) { toast('Löschen hat nicht geklappt.', true); return; }
+            S.best.liste = S.best.liste.filter(x => x.id !== b.id); renderKopf(); zeichnen(); toast(`#${b.id} gelöscht`);
+          } }, icon('muell'), 'Löschen'))));
+    }
+    inhalt.replaceChildren(kopf, box,
+      h('small', { class: 'klein-hinweis', text: 'Tipp: Erledigte Bestellungen nach ein paar Wochen löschen. Dann bleiben keine Kundendaten länger als nötig gespeichert.' }));
+  }
+  bestellungenNeuZeichnen = zeichnen;
+  oeffneBlatt('Bestellungen', inhalt, { beimSchliessen: () => { bestellungenNeuZeichnen = null; return true; } });
+  zeichnen();
+  ladeBestellungen();
+}
+
 /* ============ Shop, Angebote & Kosten ============ */
 function slug(s) { return norm(s).replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'kategorie'; }
 function oeffneShopEinstellungen() {
@@ -2364,7 +2583,13 @@ function oeffneShopEinstellungen() {
   const fTag = h('input', { type: 'text', id: 's-tagline', value: S.shop.tagline || '', maxlength: '120', autocomplete: 'off' });
   const fWa = h('input', { type: 'text', id: 's-wa', value: S.shop.kontakt.whatsapp || '', inputmode: 'tel', placeholder: '+49 170 1234567', autocomplete: 'off' });
   const fMail = h('input', { type: 'text', id: 's-mail', value: S.shop.kontakt.email || '', inputmode: 'email', autocomplete: 'off' });
-  const fHinweis = h('input', { type: 'text', id: 's-hinweis', value: S.shop.kontakt.hinweis || '', maxlength: '160', placeholder: 'z. B. Abholung in Köln oder Versand für 3 €', autocomplete: 'off' });
+  const fHinweis = h('input', { type: 'text', id: 's-hinweis', value: S.shop.kontakt.hinweis || '', maxlength: '160', placeholder: 'z. B. Abholung in Köln-Rodenkirchen, nachmittags nach Absprache', autocomplete: 'off' });
+  const fGroesse = h('input', { type: 'range', id: 's-tag-groesse', min: '12', max: '40', step: '1', value: String(S.shop.taglineGroesse), 'aria-label': 'Schriftgröße des Untertitels' });
+  const groesseWert = h('output', { text: S.shop.taglineGroesse + ' px' });
+  const groesseProbe = h('p', { class: 'groesse-probe', style: `margin:0;font-size:${S.shop.taglineGroesse}px` });
+  const probeText = () => { groesseProbe.textContent = fTag.value.trim() || 'Dein Untertitel'; };
+  fGroesse.addEventListener('input', () => { groesseWert.textContent = fGroesse.value + ' px'; groesseProbe.style.fontSize = fGroesse.value + 'px'; });
+  fTag.addEventListener('input', probeText); probeText();
   const ks = S.intern.einstellungen;
   const kf = {
     spule: h('input', { type: 'text', id: 's-spule', inputmode: 'decimal', value: geldFeld(ks.spulePreisCent), autocomplete: 'off' }),
@@ -2469,16 +2694,19 @@ function oeffneShopEinstellungen() {
     h('div', { class: 'abschnitt', style: 'border-top:0;padding-top:0' }, h('h3', { text: 'Shop' }),
       h('label', { class: 'feld' }, h('span', { text: 'Shop-Name' }), fName),
       h('label', { class: 'feld' }, h('span', { text: 'Untertitel' }), fTag),
+      h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Schriftgröße des Untertitels' }),
+        h('div', { class: 'groesse-zeile' }, h('small', { text: 'A', style: 'font-size:12px' }), fGroesse, h('span', { text: 'A', style: 'font-size:20px;font-weight:700' }), groesseWert),
+        groesseProbe),
       h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Logo' }), logoBox)),
-    h('div', { class: 'abschnitt' }, h('h3', { text: 'Kontakt für Anfragen' }),
+    h('div', { class: 'abschnitt' }, h('h3', { text: 'Kontakt & Abholung' }),
       h('div', { class: 'zwei' },
         h('label', { class: 'feld' }, h('span', { text: 'WhatsApp-Nummer' }), fWa, h('small', { text: 'Mit Ländervorwahl. Kunden sehen die Nummer.' })),
         h('label', { class: 'feld' }, h('span', { text: 'E-Mail' }), fMail)),
-      h('label', { class: 'feld' }, h('span', { text: 'Hinweis zur Übergabe (optional)' }), fHinweis)),
+      h('label', { class: 'feld' }, h('span', { text: 'Abholort und Zeiten (optional)' }), fHinweis, h('small', { text: 'Kunden sehen das beim Bestellen. Ohne Eintrag steht dort „Abholung nach Absprache“.' }))),
     h('div', { class: 'abschnitt' }, h('h3', { text: 'Kategorien' }), liste,
       h('div', null, h('button', { type: 'button', class: 'btn', onclick: () => { kats.push({ id: '', name: '', farbe: KAT_FARBEN[kats.length % KAT_FARBEN.length] }); renderKats(); setTimeout(() => { const ins = liste.querySelectorAll('input[type=text]'); ins[ins.length - 1]?.focus(); }, 20); } }, icon('plus'), 'Kategorie hinzufügen'))),
     h('div', { class: 'abschnitt' }, h('h3', { text: 'Angebote' }),
-      h('small', { class: 'klein-hinweis', text: 'Mengenrabatt: Sobald jemand genug Teile aus dem Bereich in der Anfrage hat, wird der Preis automatisch gesenkt. Teile dürfen gemischt werden.' }),
+      h('small', { class: 'klein-hinweis', text: 'Mengenrabatt: Sobald jemand genug Teile aus dem Bereich im Warenkorb hat, wird der Preis automatisch gesenkt. Teile dürfen gemischt werden.' }),
       angBox),
     h('div', { class: 'abschnitt' }, h('h3', null, 'Kosten-Grundwerte', h('small', { text: 'Nur für dich sichtbar' })),
       h('div', { class: 'zwei' },
@@ -2518,7 +2746,7 @@ function oeffneShopEinstellungen() {
     speichernBtn.disabled = true; speichernBtn.textContent = 'Speichert …';
     try {
       await S.db.doc('shop/info').set({
-        name, tagline: fTag.value.trim(), kategorien: sauber, angebote: angSauber, logo: logo || null,
+        name, tagline: fTag.value.trim(), taglineGroesse: Number(fGroesse.value) || 16, kategorien: sauber, angebote: angSauber, logo: logo || null,
         kontakt: { whatsapp: fWa.value.trim(), email: mail, hinweis: fHinweis.value.trim() }
       });
       // Logo ist jetzt live: alte und verworfene Logos aufräumen, das neue nicht mehr anfassen
@@ -2814,6 +3042,15 @@ async function abmelden() {
       S.intern.kosten = k;
       if (verwalten()) { renderBereiche(); renderRaster(); }
     }, () => {});
+  }
+
+  if (S.darfVerwalten) {
+    ladeBestellungen();
+    try {
+      sb.channel('bestellungen-neu')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'bestellungen' }, () => ladeBestellungen())
+        .subscribe();
+    } catch {}
   }
 
   // Änderungen von anderen Geräten live übernehmen
