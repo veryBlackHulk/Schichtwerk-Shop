@@ -111,7 +111,7 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .karte .oeffnen{position:absolute;inset:0;border:0;background:transparent;z-index:1;border-radius:var(--r)}
 .karte.entwurf{opacity:.62}
 .bild{aspect-ratio:1/1;width:100%;max-width:100%;background:var(--surface-2);overflow:hidden;position:relative}
-.bild img,.bild video{width:100%;height:100%;object-fit:cover;display:block}
+.bild img,.bild video{width:100%;height:100%;object-fit:contain;display:block}
 .video-mark{position:absolute;right:8px;bottom:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;display:grid;place-items:center}
 .video-mark svg{width:14px;height:14px}
 .ph{width:100%;height:100%;display:grid;place-items:center;position:relative;
@@ -144,6 +144,12 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .k-bearbeiten{position:absolute;top:8px;right:8px;z-index:3;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .k-bearbeiten svg{width:16px;height:16px}
 
+.wunsch-karte{border:1.5px dashed var(--accent);border-radius:var(--r);background:color-mix(in oklab,var(--accent) 6%,var(--surface));display:grid;align-content:center;justify-items:center;gap:10px;padding:24px 16px;text-align:center;min-height:240px;color:var(--ink);width:100%}
+.wunsch-karte .kreis{width:52px;height:52px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.wunsch-karte .kreis svg{width:24px;height:24px}
+.wunsch-karte strong{font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:22px;text-transform:uppercase;line-height:1}
+.wunsch-karte span{color:var(--muted);font-size:14px;max-width:26ch}
+.wunsch-karte .btn{pointer-events:none}
 .leer{grid-column:1/-1;border:1.5px dashed var(--line);border-radius:var(--r);padding:44px 20px;text-align:center;display:grid;gap:10px;justify-items:center;color:var(--muted)}
 .leer strong{color:var(--ink);font-size:17px}
 .skelett{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -182,7 +188,7 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .spur{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:var(--r);scrollbar-width:none;background:var(--surface-2)}
 .spur::-webkit-scrollbar{display:none}
 .spur > *{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:1/1;max-width:100%}
-.spur img,.spur video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.spur img,.spur video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
 .spur img{background:var(--surface-2)}
 .daumen{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 .daumen button{flex:none;width:56px;height:56px;border-radius:9px;overflow:hidden;border:2px solid transparent;padding:0;background:var(--surface-2);position:relative}
@@ -221,7 +227,7 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .stepper span{min-width:30px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
 .stepper.klein button{width:32px;height:34px;font-size:17px}
 .specs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:14px;border-top:1px solid var(--line);padding-top:12px}
-.specs dt{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px}
+.specs dt{font-family:var(--f-mono);font-size:12px;color:var(--muted);padding-top:2px}
 .specs dd{margin:0;overflow-wrap:anywhere}
 .so-gehts{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:13.5px;display:grid;gap:2px;color:var(--muted)}
 .so-gehts b{font-size:14px;color:var(--ink)}
@@ -396,6 +402,11 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 'use strict';
 
 /* ============ Hilfen ============ */
+// Leere Werte nie als Text "null" anzeigen
+for (const T of [Element, DocumentFragment]) for (const k of ['append', 'prepend', 'replaceChildren']) {
+  const orig = T.prototype[k];
+  T.prototype[k] = function (...a) { return orig.apply(this, a.filter(x => x != null && x !== false)); };
+}
 const $ = (s, r = document) => r.querySelector(s);
 const PROPS = new Set(['value', 'checked', 'disabled', 'multiple', 'muted', 'autoplay', 'loop', 'playsInline', 'controls', 'selected']);
 function h(tag, props, ...kids) {
@@ -417,6 +428,7 @@ function h(tag, props, ...kids) {
 }
 const ICON = {
   stift: '<path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/>',
+  wunsch: '<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>',
   zu: '<path d="M6 6l12 12M18 6 6 18"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
   links: '<path d="m15 6-6 6 6 6"/>',
@@ -570,7 +582,7 @@ function lieferText(p) {
   if (effStatus(p) === 'ausverkauft') return 'Zurzeit nicht lieferbar';
   if (typeof p.lager === 'number' && p.lager > 0) return p.lager <= 5 ? `Sofort lieferbar, noch ${p.lager} Stück da` : 'Sofort lieferbar';
   const t = p.druckTage || 3;
-  return `Wird für dich gedruckt, ca. ${t} ${t === 1 ? 'Tag' : 'Tage'}`;
+  return `Dauert ca. ${t} ${t === 1 ? 'Tag' : 'Tage'}`;
 }
 const sofortDa = p => typeof p.lager === 'number' && p.lager > 0;
 const maxMenge = p => (typeof p.lager === 'number' && p.nachdrucken === false) ? Math.max(0, p.lager) : 99;
@@ -710,11 +722,13 @@ function renderKopf() {
   leiste.hidden = !verwalten(); leiste.replaceChildren();
   if (verwalten()) {
     const entwuerfe = S.produkte.filter(p => p.sichtbar === false).length;
-    leiste.append(
+    leiste.append(...[
       h('button', { class: 'btn primaer', onclick: () => oeffneEditor(null) }, icon('plus'), 'Neues Produkt'),
       h('button', { class: 'btn', onclick: oeffneShopEinstellungen }, icon('zahnrad'), 'Shop, Angebote & Kosten'),
+      (S.produkteGeladen && !S.produkte.length) ? h('button', { class: 'btn', onclick: oeffneUmzug }, icon('zurueck'), 'Daten aus altem Shop holen') : null,
       entwuerfe ? h('span', { class: 'hinweis-admin', text: `${entwuerfe} ${entwuerfe === 1 ? 'Entwurf' : 'Entwürfe'} (für Kunden unsichtbar)` }) : null,
-      S.sort === 'empfohlen' ? h('span', { class: 'hinweis-admin', text: 'Reihenfolge: mit den Pfeilen auf den Karten verschieben.' }) : null);
+      S.sort === 'empfohlen' && S.produkte.length > 1 ? h('span', { class: 'hinweis-admin', text: 'Reihenfolge: mit den Pfeilen auf den Karten verschieben.' }) : null
+    ].filter(Boolean));
   }
   const k2 = S.shop.kontakt, fk = $('#fuss-kontakt'); fk.replaceChildren();
   if (k2.whatsapp) fk.append('WhatsApp: ', h('span', { class: 'sel', text: k2.whatsapp }));
@@ -829,12 +843,15 @@ function renderRaster() {
         h('span', { text: 'Leg dein erstes Produkt an: Foto machen, Name, Preis und Kategorie eintragen, fertig.' }),
         h('button', { class: 'btn primaer', onclick: () => oeffneEditor(null) }, icon('plus'), 'Erstes Produkt anlegen')));
     } else if (nichtsDa) {
-      r.append(h('div', { class: 'leer' }, h('strong', { text: 'Hier kommen bald die ersten Produkte.' }), h('span', { text: 'Schau in ein paar Tagen wieder vorbei.' })));
+      r.append(h('div', { class: 'leer' }, h('strong', { text: 'Hier kommen bald die ersten Produkte.' }), h('span', { text: 'Schau in ein paar Tagen wieder vorbei oder sag uns, was wir für dich drucken sollen.' }),
+        h('button', { class: 'btn primaer', onclick: () => oeffneWunsch() }, icon('wunsch'), 'Eigenen Wunsch äußern')));
     } else {
       const katName = S.kat !== 'alle' ? (katVon(S.kat) || {}).name : null;
       r.append(h('div', { class: 'leer' },
         h('strong', { text: S.suche.trim() ? `Nichts gefunden für „${S.suche.trim()}“` : `In ${katName || 'dieser Kategorie'} gibt es noch nichts.` }),
-        h('button', { class: 'btn', onclick: () => { S.suche = ''; $('#suche').value = ''; S.kat = 'alle'; render(); }, text: 'Alle Produkte zeigen' })));
+        h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;justify-content:center' },
+          h('button', { class: 'btn', onclick: () => { S.suche = ''; $('#suche').value = ''; S.kat = 'alle'; render(); }, text: 'Alle Produkte zeigen' }),
+          h('button', { class: 'btn primaer', onclick: () => oeffneWunsch(S.suche.trim()) }, icon('wunsch'), 'Eigenen Wunsch äußern'))));
     }
     return;
   }
@@ -847,6 +864,11 @@ function renderRaster() {
     }
     r.append(karte(p, { reihenfolge: rf }));
   });
+  if (!verwalten()) r.append(h('button', { type: 'button', class: 'wunsch-karte', onclick: () => oeffneWunsch() },
+    h('span', { class: 'kreis' }, icon('wunsch')),
+    h('strong', { text: 'Dein Wunsch' }),
+    h('span', { text: 'Nicht das Richtige dabei? Beschreib, was wir für dich drucken sollen.' }),
+    h('span', { class: 'btn primaer' }, 'Wunsch äußern')));
 }
 
 function renderKorbKnopf(huepfen) {
@@ -988,7 +1010,7 @@ function oeffneDetail(id) {
       let best = unit, bestA = null;
       for (const a of angs) if (wahl.menge >= a.abMenge) { const x = angebotsPreis(a, unit); if (x < best) { best = x; bestA = a; } }
       if (bestA) preisBox.append(h('span', { class: 'alt', text: euro(unit) }));
-      preisBox.append(h('span', { text: euro(best) }), wahl.menge > 1 ? h('span', { style: 'font-size:15px;color:var(--muted);font-family:var(--f-body);font-weight:600;font-stretch:100%', text: `je Stück, zusammen ${euro(best * wahl.menge)}` }) : null);
+      preisBox.append(...[h('span', { text: euro(best) }), wahl.menge > 1 ? h('span', { style: 'font-size:15px;color:var(--muted);font-family:var(--f-body);font-weight:600;font-stretch:100%', text: `je Stück, zusammen ${euro(best * wahl.menge)}` }) : null].filter(Boolean));
     }
     preisBox.append(h('span', { class: 'status ' + st, text: STATUS[st] }));
     dealBox.replaceChildren(...angs.map(a => h('div', { class: 'deal-hinweis' }, h('b', { text: 'Angebot: ' }), angebotTitel(a),
@@ -1536,6 +1558,75 @@ function waNummer(s) {
   if (d.startsWith('+')) d = d.slice(1); else if (d.startsWith('00')) d = d.slice(2); else if (d.startsWith('0')) d = '49' + d.slice(1);
   return d.replace(/\D/g, '');
 }
+function sendeAktionen(text, vorschau, art) {
+  const k = S.shop.kontakt, aus = [];
+  const wa = waNummer(k.whatsapp);
+  const betreff = art === 'Wunsch' ? 'Mein Wunsch für ' + S.shop.name : 'Anfrage für ' + S.shop.name;
+  if (wa) aus.push(h('a', { class: 'btn primaer voll', href: `https://wa.me/${wa}?text=${encodeURIComponent(text)}`, target: '_blank', rel: 'noopener', text: 'In WhatsApp senden' }));
+  if (k.email) aus.push(h('a', { class: 'btn voll' + (wa ? '' : ' primaer'), href: `mailto:${k.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(text)}`, text: 'Per E-Mail senden' }));
+  aus.push(h('button', { type: 'button', class: 'btn voll' + (wa || k.email ? '' : ' primaer'), onclick: () => kopieren(text, vorschau, art + ' kopiert') }, art + ' kopieren'));
+  const kb = h('div', { class: 'kontakt-box' });
+  if (k.whatsapp) kb.append(h('div', { class: 'z' }, 'WhatsApp:', h('span', { class: 'wert', text: k.whatsapp }), h('button', { type: 'button', onclick: () => kopieren(k.whatsapp, null, 'Nummer kopiert'), text: 'Kopieren' })));
+  if (k.email) kb.append(h('div', { class: 'z' }, 'E-Mail:', h('span', { class: 'wert', text: k.email }), h('button', { type: 'button', onclick: () => kopieren(k.email, null, 'Adresse kopiert'), text: 'Kopieren' })));
+  if (k.hinweis) kb.append(h('div', { text: k.hinweis }));
+  if (!k.whatsapp && !k.email) kb.append(h('div', { text: verwalten() ? 'Trag unter „Shop, Angebote & Kosten“ deine WhatsApp-Nummer oder E-Mail ein, dann sehen Kunden hier, wohin sie schreiben können.' : `Kopier den Text und schick ihn an den Shop.` }));
+  if (wa || k.email) kb.append(h('small', { style: 'color:var(--muted)', text: 'Falls nichts aufgeht: Text kopieren und selbst schicken.' }));
+  aus.push(kb);
+  return aus;
+}
+
+function oeffneWunsch(vorschlag) {
+  const fWas = h('textarea', { class: 'eingabe', maxlength: '800', style: 'min-height:96px', placeholder: 'z. B. ein Schlüsselanhänger mit meinem Namen, eine Halterung für meinen Controller …' });
+  if (vorschlag) fWas.value = vorschlag;
+  const fAnzahl = h('input', { type: 'number', class: 'eingabe', min: '1', max: '99', value: '1', inputmode: 'numeric' });
+  const fFarbe = h('input', { type: 'text', class: 'eingabe', maxlength: '60', placeholder: 'z. B. Blau oder egal' });
+  const fGroesse = h('input', { type: 'text', class: 'eingabe', maxlength: '80', placeholder: 'z. B. ca. 10 cm' });
+  const fVorlage = h('input', { type: 'text', class: 'eingabe', maxlength: '300', inputmode: 'url', placeholder: 'Link zu Bild oder Modell, z. B. von MakerWorld' });
+  const fBis = h('input', { type: 'text', class: 'eingabe', maxlength: '60', placeholder: 'z. B. bis Weihnachten' });
+  const fName = h('input', { type: 'text', class: 'eingabe', autocomplete: 'name', maxlength: '60', value: lsGet('shop-name-kunde') || '' });
+  const vorschau = h('pre', { class: 'vorschau', 'aria-label': 'Text des Wunsches' });
+  const aktionen = h('div', { style: 'display:grid;gap:8px' });
+  function wunschText() {
+    const L = ['Hallo, ich habe einen Wunsch:', '', fWas.value.trim(), ''];
+    const n = Math.max(1, parseInt(fAnzahl.value, 10) || 1);
+    L.push(`Anzahl: ${n}`);
+    if (fFarbe.value.trim()) L.push(`Farbe: ${fFarbe.value.trim()}`);
+    if (fGroesse.value.trim()) L.push(`Größe: ${fGroesse.value.trim()}`);
+    if (fVorlage.value.trim()) L.push(`Vorlage: ${fVorlage.value.trim()}`);
+    if (fBis.value.trim()) L.push(`Bis wann: ${fBis.value.trim()}`);
+    if (fName.value.trim()) { L.push(''); L.push(`Name: ${fName.value.trim()}`); }
+    return L.join('\n');
+  }
+  function aktualisiere() {
+    lsSet('shop-name-kunde', fName.value);
+    if (!fWas.value.trim()) {
+      vorschau.textContent = 'Schreib zuerst oben, was du dir wünschst.';
+      aktionen.replaceChildren();
+      return;
+    }
+    const text = wunschText();
+    vorschau.textContent = text;
+    aktionen.replaceChildren(...sendeAktionen(text, vorschau, 'Wunsch'));
+  }
+  for (const f of [fWas, fAnzahl, fFarbe, fGroesse, fVorlage, fBis, fName]) f.addEventListener('input', aktualisiere);
+  const inhalt = h('div', { class: 'form' },
+    h('p', { style: 'margin:0;color:var(--muted)', text: 'Beschreib, was wir für dich drucken sollen. Wir melden uns mit Preis und Dauer.' }),
+    h('label', { class: 'feld' }, h('span', { text: 'Was soll gedruckt werden?' }), fWas),
+    h('div', { class: 'zwei' },
+      h('label', { class: 'feld' }, h('span', { text: 'Anzahl' }), fAnzahl),
+      h('label', { class: 'feld' }, h('span', { text: 'Farbe (optional)' }), fFarbe)),
+    h('div', { class: 'zwei' },
+      h('label', { class: 'feld' }, h('span', { text: 'Ungefähre Größe (optional)' }), fGroesse),
+      h('label', { class: 'feld' }, h('span', { text: 'Bis wann? (optional)' }), fBis)),
+    h('label', { class: 'feld' }, h('span', { text: 'Vorlage (optional)' }), fVorlage),
+    h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
+    h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Das wird gesendet' }), vorschau),
+    aktionen);
+  oeffneBlatt('Dein Wunsch', inhalt);
+  aktualisiere();
+  setTimeout(() => fWas.focus(), 60);
+}
+
 function oeffneKorb() {
   const inhalt = h('div', { style: 'display:grid;gap:16px' });
   const fName = h('input', { type: 'text', id: 'k-name', class: 'eingabe', autocomplete: 'name', maxlength: '60', value: lsGet('shop-name-kunde') || '' });
@@ -1550,18 +1641,7 @@ function oeffneKorb() {
     if (!rech) return;
     const text = anfrageText(rech, fName.value.trim(), fNachricht.value.trim());
     vorschau.textContent = text;
-    aktionen.replaceChildren();
-    const k = S.shop.kontakt;
-    const wa = waNummer(k.whatsapp);
-    if (wa) aktionen.append(h('a', { class: 'btn primaer voll', href: `https://wa.me/${wa}?text=${encodeURIComponent(text)}`, target: '_blank', rel: 'noopener', text: 'In WhatsApp senden' }));
-    aktionen.append(h('button', { type: 'button', class: 'btn voll' + (wa ? '' : ' primaer'), onclick: () => kopieren(text, vorschau, 'Anfrage kopiert') }, 'Anfrage kopieren'));
-    const kb = h('div', { class: 'kontakt-box' });
-    if (k.whatsapp) kb.append(h('div', { class: 'z' }, 'WhatsApp:', h('span', { class: 'wert', text: k.whatsapp }), h('button', { type: 'button', onclick: () => kopieren(k.whatsapp, null, 'Nummer kopiert'), text: 'Kopieren' })));
-    if (k.email) kb.append(h('div', { class: 'z' }, 'E-Mail:', h('span', { class: 'wert', text: k.email }), h('button', { type: 'button', onclick: () => kopieren(k.email, null, 'Adresse kopiert'), text: 'Kopieren' })));
-    if (k.hinweis) kb.append(h('div', { text: k.hinweis }));
-    if (!k.whatsapp && !k.email) kb.append(h('div', { text: verwalten() ? 'Trag unter „Shop, Angebote & Kosten“ deine WhatsApp-Nummer oder E-Mail ein, dann sehen Kunden hier, wohin sie die Anfrage schicken.' : 'Kopier die Anfrage und schick sie an den Shop.' }));
-    if (wa) kb.append(h('small', { style: 'color:var(--muted)', text: 'Falls WhatsApp nicht aufgeht: Anfrage kopieren und selbst an die Nummer schicken.' }));
-    aktionen.append(kb);
+    aktionen.replaceChildren(...sendeAktionen(text, vorschau, 'Anfrage'));
   }
 
   function zeichnen() {
@@ -1612,6 +1692,7 @@ function oeffneKorb() {
         h('label', { class: 'feld' }, h('span', { text: 'Nachricht (optional)' }), fNachricht)),
       h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Das wird gesendet' }), vorschau),
       aktionen,
+      h('div', null, h('button', { type: 'button', class: 'link-btn', onclick: () => { schliesseBlattSofort(); oeffneWunsch(); }, text: 'Noch etwas anderes? Eigenen Wunsch äußern' })),
       h('div', null, h('button', { type: 'button', class: 'link-btn', onclick: async () => {
         if (await bestaetigen('Anfrage leeren?', 'Alle Teile werden aus der Anfrage entfernt.', 'Leeren')) { S.korb = []; speichereKorb(); zeichnen(); }
       }, text: 'Anfrage leeren' })));
@@ -2438,7 +2519,9 @@ function oeffneAnmelden() {
       const { error } = await S.sb.auth.signInWithPassword({ email: fMail.value.trim(), password: fPass.value });
       if (error) {
         knopf.disabled = false; knopf.textContent = 'Anmelden';
-        fehlerBox.textContent = /invalid/i.test(error.message)
+        fehlerBox.textContent = /not confirmed/i.test(error.message)
+          ? 'Dein Konto ist noch nicht bestätigt. Leg es in Supabase neu an und setz den Haken bei „Auto Confirm User“.'
+          : /invalid/i.test(error.message)
           ? 'E-Mail oder Passwort stimmt nicht.'
           : 'Anmelden hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.';
         return;
@@ -2452,6 +2535,66 @@ function oeffneAnmelden() {
     fehlerBox, knopf);
   oeffneBlatt('Anmelden', form);
   setTimeout(() => fMail.focus(), 60);
+}
+
+function oeffneUmzug() {
+  const fDatei = h('input', { type: 'file' });
+  const status = h('div', { class: 'klein-hinweis', role: 'status' });
+  const fehlerBox = h('div', { class: 'fehler', role: 'alert' });
+  const knopf = h('button', { class: 'btn primaer voll', type: 'submit', text: 'Übernehmen' });
+  let fertig = false, laeuft = false;
+  const form = h('form', {
+    class: 'form',
+    onsubmit: async e => {
+      e.preventDefault();
+      const datei = fDatei.files && fDatei.files[0];
+      if (!datei) { fehlerBox.textContent = 'Wähl zuerst die Datei umzug.zip aus.'; return; }
+      fehlerBox.textContent = ''; knopf.disabled = true; laeuft = true;
+      try {
+        status.textContent = 'Datei wird geöffnet …';
+        await ladeSkript(JSZIP_URL);
+        const zip = await window.JSZip.loadAsync(datei);
+        const inhalt = zip.file(/(^|\/)daten\.json$/).find(f => !f.name.startsWith('__MACOSX'));
+        if (!inhalt) throw new Error('In der Datei fehlt daten.json. Ist das die richtige Datei?');
+        const vorne = inhalt.name.slice(0, -'daten.json'.length);
+        const daten = JSON.parse(await inhalt.async('string'));
+        const medien = daten.medien || [], dokumente = daten.dokumente || [];
+        let n = 0;
+        for (const m of medien) {
+          n++; status.textContent = `Fotos und Modelle hochladen: ${n} von ${medien.length} …`;
+          const f = zip.file(vorne + 'medien/' + m.datei);
+          if (!f) continue;
+          const blob = await f.async('blob');
+          const { error } = await S.sb.storage.from(BUCKET).upload(m.id, blob, { contentType: m.typ, cacheControl: '31536000', upsert: true });
+          if (error) throw alsFehler(error);
+        }
+        n = 0;
+        for (const d of dokumente) {
+          n++; status.textContent = `Produkte und Einstellungen speichern: ${n} von ${dokumente.length} …`;
+          await S.db.doc(d.pfad).set(d.daten);
+        }
+        status.textContent = 'Fertig! Alles ist übernommen.';
+        fertig = true; laeuft = false;
+        knopf.disabled = false; knopf.textContent = 'Schließen'; knopf.type = 'button';
+        knopf.onclick = () => schliesseBlattSofort();
+        toast('Umzug fertig');
+      } catch (err) {
+        laeuft = false; knopf.disabled = false;
+        status.textContent = '';
+        fehlerBox.textContent = (err && err.message && !/fetch|network/i.test(err.message))
+          ? err.message : 'Das hat nicht geklappt. Prüf deine Verbindung und versuch es nochmal.';
+      }
+    }
+  },
+    h('p', { style: 'margin:0', text: 'Wähl die Datei umzug.zip aus, die du von Claude bekommen hast. Dann werden Produkte, Fotos, 3D-Modelle, Kategorien, Angebote und Kosten-Einstellungen übernommen.' }),
+    h('label', { class: 'feld' }, h('span', { text: 'Datei umzug.zip' }), fDatei),
+    status, fehlerBox, knopf);
+  oeffneBlatt('Daten aus altem Shop holen', form, {
+    beimSchliessen: async () => {
+      if (laeuft) { toast('Bitte warten, bis der Umzug fertig ist.', true); return false; }
+      return true;
+    }
+  });
 }
 
 async function abmelden() {
