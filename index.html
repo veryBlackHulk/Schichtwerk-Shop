@@ -2525,8 +2525,15 @@ function vorschlagFarben(v) {
 }
 const sichererLink = u => (typeof u === 'string' && /^https:\/\/(makerworld\.com|creativecommons\.org)\//.test(u)) ? u : null;
 const vorschlagKat = v => katPassend(v.kategorie) || katPassend('Praktisch') || katPassend('Haushalt') || S.shop.kategorien[0] || null;
-const vorschlagBilder = v => (Array.isArray(v.bilder) ? v.bilder : [])
-  .map(b => typeof b === 'string' ? b : b && b.datei).filter(d => typeof d === 'string' && /^vorschlaege\/bilder\/[\w.-]+\.(webp|jpe?g|png)$/i.test(d)).slice(0, 3);
+/* Bilder eines Vorschlags: Datei im Speicher (vorschlaege/bilder/…) oder Galerie-Bild von MakerWorld,
+   das über die Netlify-Funktion /.netlify/functions/bild geholt wird (direkt verbietet es der Browser). */
+const vorschlagBilder = v => (Array.isArray(v.bilder) ? v.bilder : []).map(b => {
+  const d = typeof b === 'string' ? b : b && b.datei;
+  if (typeof d === 'string' && /^vorschlaege\/bilder\/[\w.-]+\.(webp|jpe?g|png)$/i.test(d)) return d;
+  const u = b && typeof b === 'object' ? b.url : null;
+  if (typeof u === 'string' && /^https:\/\/makerworld\.bblmw\.com\/makerworld\/model\/[^?#]*\/design\//.test(u)) return '/.netlify/functions/bild?u=' + encodeURIComponent(u);
+  return null;
+}).filter(Boolean).slice(0, 3);
 async function vorschlagUebernehmen(v, btn) {
   const kat = vorschlagKat(v);
   const medien = [];

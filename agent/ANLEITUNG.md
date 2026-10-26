@@ -93,15 +93,9 @@ Deshalb darfst du sie mit Namensnennung verwenden, aber nur so:
 1. Mit WebFetch auf der Modellseite die vollen Adressen der Bilder **aus der Galerie des Designers** holen (Adresse enthält `/design/`).
    Nie Bilder aus Druckprofilen, „Makes“, Bewertungen oder Kommentaren: die gehören anderen Leuten.
 2. 2–3 Bilder wählen, die das Produkt klar zeigen. Keine Bilder mit erkennbaren Personen, fremden Marken oder Logos, Text-Grafiken oder Wasserzeichen anderer Shops.
-3. Herunterladen in kleiner Größe (1000 px, WebP):
-   ```
-   mkdir -p vorschlaege/bilder
-   curl -sSfL -m 30 -o vorschlaege/bilder/<id>-1.webp "<Bildadresse ohne ?…>?x-oss-process=image/resize,w_1000/format,webp"
-   ```
-   Danach prüfen, dass jede Datei ein Bild ist und größer als 5 KB (`file vorschlaege/bilder/<id>-1.webp`). Kaputte Dateien löschen.
-4. Klappt das Herunterladen nicht (z. B. „CONNECT tunnel failed“ oder 403), ohne Bilder weitermachen und Theo in der
-   Abschlussnachricht sagen: „Bilder konnten nicht geladen werden. Dafür muss in claude.ai unter Einstellungen → Fähigkeiten
-   die Adresse makerworld.bblmw.com erlaubt werden.“ Nicht auf anderen Wegen versuchen.
+3. Nichts herunterladen: Trag nur die Bildadressen in den Eintrag ein (Schritt 6, Feld `bilder` mit `url`).
+   Der Shop holt die Bilder beim „Übernehmen“ selbst über seine Funktion `/.netlify/functions/bild` und speichert sie.
+   Die Adresse muss mit `https://makerworld.bblmw.com/makerworld/model/` beginnen und `/design/` enthalten, sonst nimmt der Shop sie nicht.
 
 ## Schritt 6: Eintrag anlegen
 Am Ende der Liste `vorschlaege` in `vorschlaege/liste.json` anhängen:
@@ -122,7 +116,7 @@ Am Ende der Liste `vorschlaege` in `vorschlaege/liste.json` anhängen:
   "minuten": 95,
   "geschaetzt": false,
   "preisInfo": "<aus preis.mjs>",
-  "bilder": [ { "datei": "vorschlaege/bilder/mw-<Modellnummer>-1.webp", "quelle": "<Original-Bildadresse>" } ],
+  "bilder": [ { "url": "https://makerworld.bblmw.com/makerworld/model/…/design/….jpg" } ],
   "bildNachweis": "Beispielfotos: <Designer> (MakerWorld), Lizenz <Lizenz>",
   "quelle": { "url": "https://makerworld.com/en/models/…", "titel": "<Original-Titel>", "designer": "…", "lizenz": "CC BY 4.0", "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/" }
 }
@@ -131,7 +125,7 @@ Am Ende der Liste `vorschlaege` in `vorschlaege/liste.json` anhängen:
 - `druckTage`: 3, bei mehr als 5 Stunden Druck 4.
 - Datei muss gültiges JSON bleiben (mit `node -e "JSON.parse(require('fs').readFileSync('vorschlaege/liste.json','utf8'))"` prüfen).
 - `bilder` und `bildNachweis` weglassen, wenn es keine Bilder gibt. Höchstens 3 Bilder.
-- Mehr als 100 Einträge: die ältesten löschen, ihre Bilder in `vorschlaege/bilder/` ebenfalls.
+- Mehr als 100 Einträge: die ältesten löschen.
 
 ## Schritt 7: Speichern
 ```
