@@ -323,6 +323,87 @@
         "lizenz": "CC BY-SA 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
       }
+    },
+    {
+      "id": "mw-1036880",
+      "erstellt": "2026-10-26",
+      "name": "Line-Art-Gesicht als Deko-Skulptur",
+      "kategorie": "Deko",
+      "preisCent": 350,
+      "beschreibung": "Abstraktes Gesicht, gezeichnet aus einer einzigen durchgehenden Linie, als kleine Skulptur zum Hinstellen. Der minimalistische Stil passt gut ins Bücherregal, auf die Fensterbank oder auf den Schreibtisch und wirkt je nach Blickwinkel etwas anders. Eine schöne Kleinigkeit zum Verschenken für alle, die moderne, schlichte Deko mögen. Wird in einem Stück gedruckt.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: Nudaim3D auf MakerWorld (https://makerworld.com/en/models/1036880-one-line-art-face), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von Nudaim3D (MakerWorld), Lizenz CC BY 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "",
+      "gewicht": "ca. 81 g",
+      "farben": [
+        "Gold",
+        "Braun",
+        "Grün"
+      ],
+      "druckTage": 3,
+      "gramm": 81,
+      "minuten": 172,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 1,61 € (81 g PLA, 172 min Druck). Kein Marktvergleich gefunden. Preis 3,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US355d77b0366821/design/2025-01-25_1d60c55ce7a06.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US355d77b0366821/design/2025-01-25_66bf2a11fb8ce.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US355d77b0366821/design/2025-01-25_dc8a21922e3ea.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: Nudaim3D (MakerWorld), Lizenz CC BY 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/1036880-one-line-art-face",
+        "titel": "One-Line-Art Face",
+        "designer": "Nudaim3D",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "id": "mw-405671",
+      "erstellt": "2026-10-26",
+      "name": "Haftnotiz-Halter für 7,5-cm-Zettel",
+      "kategorie": "Schreibtisch",
+      "preisCent": 300,
+      "beschreibung": "Halter für quadratische Haftnotizen im Standardformat 75 bis 76 mm, wie die bekannten gelben Klebezettel. Er fasst bis zu 480 Blatt, und du ziehst die Zettel seitlich ab, so lösen sie sich sauber und einzeln. Damit liegt der Block immer griffbereit an derselben Stelle auf dem Schreibtisch, neben Tastatur oder Telefon.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel. Haftnotizen sind nicht enthalten.\n\nDesign: Unlimited auf MakerWorld (https://makerworld.com/en/models/405671-sticky-note-holder), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von Unlimited (MakerWorld), Lizenz CC BY 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "für Zettel 75–76 mm",
+      "gewicht": "ca. 58 g",
+      "farben": [
+        "Gelb",
+        "Rot",
+        "Grün",
+        "Braun"
+      ],
+      "druckTage": 3,
+      "gramm": 58,
+      "minuten": 172,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 1,28 € (58 g PLA, 172 min Druck). Kein Marktvergleich gefunden. Preis 3,00 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000000405671/design/2024-03-31_55022b64c7e3d.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000000405671/design/2024-03-31_f0fe860c24c97.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000000405671/design/2024-03-31_179f2f3709267.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: Unlimited (MakerWorld), Lizenz CC BY 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/405671-sticky-note-holder",
+        "titel": "Sticky Note Holder",
+        "designer": "Unlimited",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }
