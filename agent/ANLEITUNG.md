@@ -13,8 +13,8 @@ seriöse Beschreibung und legt den Vorschlag in `vorschlaege/liste.json` ab. The
 
 ## Feste Grenzen (nie brechen)
 - Nie in die Supabase-Datenbank schreiben, nie Passwörter eingeben, nie Konten anlegen. Ins Produkt kommt es nur über Theos „Übernehmen“.
-- Keine Texte und keine Bilder von MakerWorld übernehmen. Beschreibung immer selbst schreiben.
-- Nachrichten an Designer nur abschicken, wenn Theo im Chat ausdrücklich „Ja“ dazu gesagt hat (siehe Schritt 8).
+- Keine Texte von MakerWorld übernehmen, Beschreibung immer selbst schreiben. Bilder nur nach Schritt 5b (nur Galerie-Bilder des Designers, mit Namensnennung).
+- Keine Nachrichten an Designer oder andere verschicken.
 - Lieber 0 Vorschläge als ein unsicherer. Wenn nach gründlicher Suche nichts alle Regeln erfüllt, ehrlich sagen.
 
 ## Schritt 0: Vorbereiten
@@ -79,9 +79,29 @@ Gut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schic
 
 Design: <Designer> auf MakerWorld (<Link zum Modell>), Lizenz <Lizenz> (<Lizenz-Link>). Gedruckt von Schichtwerk.
 ```
+Wenn Bilder dabei sind (Schritt 5b), direkt danach eine Zeile:
+```
+Fotos: Beispielfotos von <Designer> (MakerWorld), Lizenz <Lizenz>. Farbe und Aussehen deines Exemplars können abweichen.
+```
 Lizenz-Links: CC BY 4.0 → https://creativecommons.org/licenses/by/4.0/ · CC BY-SA 4.0 → https://creativecommons.org/licenses/by-sa/4.0/ · CC0 → https://creativecommons.org/publicdomain/zero/1.0/ (andere Versionen entsprechend).
 
 Name: kurz, deutsch, beschreibend (z. B. „Kabelhalter für die Tischkante“), höchstens 60 Zeichen, ohne Designer-Name.
+
+## Schritt 5b: Bilder (2–3 Stück)
+Die Lizenz CC0 / CC BY / CC BY-SA des Modells gilt laut MakerWorld für die hochgeladenen Inhalte des Designers, also auch für seine Galerie-Bilder.
+Deshalb darfst du sie mit Namensnennung verwenden, aber nur so:
+1. Mit WebFetch auf der Modellseite die vollen Adressen der Bilder **aus der Galerie des Designers** holen (Adresse enthält `/design/`).
+   Nie Bilder aus Druckprofilen, „Makes“, Bewertungen oder Kommentaren: die gehören anderen Leuten.
+2. 2–3 Bilder wählen, die das Produkt klar zeigen. Keine Bilder mit erkennbaren Personen, fremden Marken oder Logos, Text-Grafiken oder Wasserzeichen anderer Shops.
+3. Herunterladen in kleiner Größe (1000 px, WebP):
+   ```
+   mkdir -p vorschlaege/bilder
+   curl -sSfL -m 30 -o vorschlaege/bilder/<id>-1.webp "<Bildadresse ohne ?…>?x-oss-process=image/resize,w_1000/format,webp"
+   ```
+   Danach prüfen, dass jede Datei ein Bild ist und größer als 5 KB (`file vorschlaege/bilder/<id>-1.webp`). Kaputte Dateien löschen.
+4. Klappt das Herunterladen nicht (z. B. „CONNECT tunnel failed“ oder 403), ohne Bilder weitermachen und Theo in der
+   Abschlussnachricht sagen: „Bilder konnten nicht geladen werden. Dafür muss in claude.ai unter Einstellungen → Fähigkeiten
+   die Adresse makerworld.bblmw.com erlaubt werden.“ Nicht auf anderen Wegen versuchen.
 
 ## Schritt 6: Eintrag anlegen
 Am Ende der Liste `vorschlaege` in `vorschlaege/liste.json` anhängen:
@@ -102,18 +122,21 @@ Am Ende der Liste `vorschlaege` in `vorschlaege/liste.json` anhängen:
   "minuten": 95,
   "geschaetzt": false,
   "preisInfo": "<aus preis.mjs>",
+  "bilder": [ { "datei": "vorschlaege/bilder/mw-<Modellnummer>-1.webp", "quelle": "<Original-Bildadresse>" } ],
+  "bildNachweis": "Beispielfotos: <Designer> (MakerWorld), Lizenz <Lizenz>",
   "quelle": { "url": "https://makerworld.com/en/models/…", "titel": "<Original-Titel>", "designer": "…", "lizenz": "CC BY 4.0", "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/" }
 }
 ```
 - `farben`: 2–4 Farben aus Braun, Rot, Gold, Gelb, Grün, die zum Produkt passen (genau so geschrieben).
 - `druckTage`: 3, bei mehr als 5 Stunden Druck 4.
 - Datei muss gültiges JSON bleiben (mit `node -e "JSON.parse(require('fs').readFileSync('vorschlaege/liste.json','utf8'))"` prüfen).
-- Mehr als 100 Einträge: die ältesten löschen.
+- `bilder` und `bildNachweis` weglassen, wenn es keine Bilder gibt. Höchstens 3 Bilder.
+- Mehr als 100 Einträge: die ältesten löschen, ihre Bilder in `vorschlaege/bilder/` ebenfalls.
 
 ## Schritt 7: Speichern
 ```
 git fetch origin main && git rebase origin/main
-git add vorschlaege/liste.json && git commit -m "Vorschlag: <Name>"   (bei mehreren: "N neue Vorschläge")
+git add vorschlaege/ && git commit -m "Vorschlag: <Name>"   (bei mehreren: "N neue Vorschläge")
 git push origin HEAD:main
 ```
 Netlify veröffentlicht die Seite danach in 1–2 Minuten. Ist der Push gescheitert, das klar sagen.
@@ -122,13 +145,6 @@ Netlify veröffentlicht die Seite danach in 1–2 Minuten. Ist der Push gescheit
 Kurz, pro Vorschlag:
 - **Name** – Preis – Kategorie, ein Satz warum es gut ist, Link zum Modell
 - Hinweis: „Im Shop unter Verwalten → Vorschläge kannst du ihn übernehmen oder verwerfen.“
-
-Dann die **Foto-Anfrage** an den Designer (Englisch, höflich, ehrlich), z. B.:
-> Hi <Designer>, I really like your <Titel>. I print it under your <Lizenz> license and offer a few copies in my small local 3D printing shop in Germany, with credit to you. Would it be okay for me to use one or two of your photos on the product page until I have my own? Thanks a lot! Theo
-
-Frage danach: „Soll ich die Anfrage an <Designer> abschicken? Antworte mit Ja.“
-- Nur wenn Theo im Chat **Ja** sagt: Über den eingebauten Browser der Claude-App die Modellseite öffnen und die Nachricht über MakerWorld schicken (Theo muss dort angemeldet sein; nie selbst anmelden).
-- Geht das nicht (Browser nicht erreichbar, nicht angemeldet, keine Nachrichtenfunktion): Theo den Text und den Link geben, damit er ihn selbst schickt.
-- Bis eine Erlaubnis da ist, keine MakerWorld-Fotos im Shop verwenden. Eigene Fotos sind immer besser.
+- Ob Bilder dabei sind (und falls nicht, warum).
 
 Wurde nichts Passendes gefunden: Das kurz sagen und welche Modelle aus welchem Grund rausgeflogen sind (1 Zeile je Modell).

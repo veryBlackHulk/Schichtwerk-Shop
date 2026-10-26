@@ -196,7 +196,7 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
 .tabs-klein{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
 .tabs-klein button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted)}
 .tabs-klein button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
-.vs-liste{display:grid;gap:12px}.vs-karte{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;background:var(--surface)}.vs-karte h3{margin:0;font-size:16px;overflow-wrap:anywhere}.vs-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 12px}.vs-meta b{color:var(--ink)}.vs-text{white-space:pre-wrap;font-size:13.5px;margin:0;line-height:1.45}.vs-farben{display:flex;gap:6px;flex-wrap:wrap}.vs-farben span{width:20px;height:20px;border-radius:50%;border:1px solid var(--line)}.vs-knoepfe{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.vs-erledigt{opacity:.7}.vs-karte a{color:inherit}
+.vs-liste{display:grid;gap:12px}.vs-karte{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;background:var(--surface)}.vs-karte h3{margin:0;font-size:16px;overflow-wrap:anywhere}.vs-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 12px}.vs-meta b{color:var(--ink)}.vs-text{white-space:pre-wrap;font-size:13.5px;margin:0;line-height:1.45}.vs-farben{display:flex;gap:6px;flex-wrap:wrap}.vs-farben span{width:20px;height:20px;border-radius:50%;border:1px solid var(--line)}.vs-knoepfe{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.vs-erledigt{opacity:.7}.vs-bilder{display:flex;gap:8px;overflow-x:auto}.vs-bilder img{width:96px;height:96px;object-fit:cover;border-radius:10px;border:1px solid var(--line);flex:none}.vs-karte a{color:inherit}
 .zahl-punkt{background:var(--accent);color:var(--accent-ink);border-radius:999px;min-width:20px;height:20px;padding:0 6px;display:inline-grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums}
 .groesse-zeile{display:flex;gap:12px;align-items:center}
 .groesse-zeile input[type=range]{flex:1;accent-color:var(--accent)}
@@ -2084,6 +2084,7 @@ function oeffneEditor(id, vorlage) {
   }
 
   const neuHochgeladen = new Set();
+  if (vorlage) for (const m of e.medien) neuHochgeladen.add(m.id);
   const entfernt = new Set();
   const laufend = new Map();
   let gespeichert = false, zu = false;
@@ -2524,15 +2525,34 @@ function vorschlagFarben(v) {
 }
 const sichererLink = u => (typeof u === 'string' && /^https:\/\/(makerworld\.com|creativecommons\.org)\//.test(u)) ? u : null;
 const vorschlagKat = v => katPassend(v.kategorie) || katPassend('Haushalt') || S.shop.kategorien[0] || null;
-function vorschlagUebernehmen(v) {
+const vorschlagBilder = v => (Array.isArray(v.bilder) ? v.bilder : [])
+  .map(b => typeof b === 'string' ? b : b && b.datei).filter(d => typeof d === 'string' && /^vorschlaege\/bilder\/[\w.-]+\.(webp|jpe?g|png)$/i.test(d)).slice(0, 3);
+async function vorschlagUebernehmen(v, btn) {
   const kat = vorschlagKat(v);
+  const medien = [];
+  const dateien = vorschlagBilder(v);
+  if (dateien.length && S.assets) {
+    if (btn) { btn.disabled = true; btn.textContent = 'Bilder werden geladen …'; }
+    for (const d of dateien) {
+      try {
+        const r = await fetch(d, { cache: 'no-store' });
+        if (!r.ok) continue;
+        const blob = await r.blob();
+        if (!/^image\/(png|jpeg|gif|webp)$/.test(blob.type)) continue;
+        const up = await S.assets.upload(blob, { type: blob.type });
+        medien.push({ id: up.id, typ: 'bild' });
+      } catch {}
+    }
+    if (medien.length < dateien.length) toast(medien.length ? 'Nicht alle Bilder konnten geladen werden.' : 'Die Bilder konnten nicht geladen werden.', true);
+  }
   schliesseBlattSofort();
   oeffneEditor(null, {
+    medien,
     produkt: {
       name: String(v.name || '').slice(0, 80), kategorie: kat ? kat.id : ((S.shop.kategorien[0] || {}).id || ''),
       preisCent: typeof v.preisCent === 'number' ? v.preisCent : null, beschreibung: String(v.beschreibung || '').slice(0, 2000),
       material: v.material || 'PLA', masse: v.masse || '', gewicht: v.gewicht || '',
-      farben: vorschlagFarben(v), druckTage: Number.isInteger(v.druckTage) ? v.druckTage : 3, sichtbar: true
+      farben: vorschlagFarben(v), druckTage: Number.isInteger(v.druckTage) ? v.druckTage : 3, sichtbar: true, medien
     },
     kosten: { gramm: v.gramm, minuten: v.minuten },
     nachSpeichern: pid => S.db.doc('intern/vorschlaege/' + v.id).set({ status: 'uebernommen', produktId: pid, am: Date.now() })
@@ -2554,6 +2574,8 @@ function oeffneVorschlaege() {
         h('span', { text: v.material || 'PLA' }),
         v.gramm != null || v.minuten != null ? h('span', { text: [v.gramm != null ? `ca. ${String(v.gramm).replace('.', ',')} g` : '', v.minuten != null ? `ca. ${v.minuten} min Druck` : ''].filter(Boolean).join(' · ') + (v.geschaetzt ? ' (geschätzt)' : '') }) : null,
         v.masse ? h('span', { text: v.masse }) : null),
+      vorschlagBilder(v).length ? h('div', { class: 'vs-bilder' }, vorschlagBilder(v).map(d => h('img', { src: d, alt: '', loading: 'lazy' }))) : null,
+      v.bildNachweis ? h('div', { class: 'klein-hinweis', text: v.bildNachweis }) : null,
       farben.length ? h('div', { class: 'vs-farben', 'aria-label': 'Farben: ' + farben.map(f => f.name).join(', ') },
         farben.map(f => h('span', { title: f.name, style: 'background:' + farbFlaeche(f) }))) : null,
       v.preisInfo ? h('p', { class: 'klein-hinweis', style: 'margin:0', text: v.preisInfo }) : null,
@@ -2568,7 +2590,7 @@ function oeffneVorschlaege() {
             try { await S.db.doc('intern/vorschlaege/' + v.id).delete(); } catch (err) { btn.disabled = false; toast(speicherFehlerText(err), true); }
           } }, 'Doch wieder anzeigen') : null)
         : h('div', { class: 'vs-knoepfe' },
-          h('button', { type: 'button', class: 'btn primaer', onclick: () => vorschlagUebernehmen(v) }, icon('haken'), 'Übernehmen'),
+          h('button', { type: 'button', class: 'btn primaer', onclick: ev => vorschlagUebernehmen(v, ev.currentTarget) }, icon('haken'), 'Übernehmen'),
           h('button', { type: 'button', class: 'btn', onclick: async ev => {
             const btn = ev.currentTarget; btn.disabled = true;
             try { await S.db.doc('intern/vorschlaege/' + v.id).set({ status: 'verworfen', am: Date.now() }); }
