@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "hinweis": "Vom Produkt-Agenten gepflegt, Regeln in agent/ANLEITUNG.md. Übernommen/verworfen wird im Shop gespeichert, nicht hier.",
+  "vorschlaege": [
+    {
+      "id": "mw-173741",
+      "erstellt": "2026-10-26",
+      "name": "Low-Poly-Übertopf für Sukkulenten",
+      "kategorie": "Deko",
+      "preisCent": 500,
+      "beschreibung": "Kleiner Übertopf mit facettierter Low-Poly-Oberfläche. Die vielen schrägen Flächen fangen das Licht unterschiedlich ein, dadurch wirkt der Topf trotz seiner schlichten Form lebendig. Mit etwa 9,5 cm Höhe und 8 cm Durchmesser oben passt er gut zu Sukkulenten, kleinen Kakteen oder einem Ableger. Auf der Fensterbank, im Regal oder auf dem Schreibtisch macht er sich genauso gut wie als kleines Mitbringsel. Setz die Pflanze am besten in ihrem Kunststoff-Anzuchttopf hinein, dann bleibt es beim Gießen sauber.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: ATP auf MakerWorld (https://makerworld.com/en/models/173741-low-poly-planter), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.",
+      "material": "PLA",
+      "masse": "ca. 9,5 cm hoch, oben 8 cm Ø",
+      "gewicht": "ca. 38 g",
+      "farben": [
+        "Grün",
+        "Gold",
+        "Braun"
+      ],
+      "druckTage": 3,
+      "gramm": 38,
+      "minuten": 125,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 0,87 € (38 g PLA geschätzt, 125 min Druck). Vergleichbare Angebote 9,79 €–12,99 € (Mitte 11,39 €). Preis 5,00 €.",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/173741-low-poly-planter",
+        "titel": "Low Poly Planter",
+        "designer": "ATP",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    }
+  ]
+}

@@ -196,6 +196,7 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
 .tabs-klein{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
 .tabs-klein button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted)}
 .tabs-klein button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.vs-liste{display:grid;gap:12px}.vs-karte{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;background:var(--surface)}.vs-karte h3{margin:0;font-size:16px;overflow-wrap:anywhere}.vs-meta{color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:4px 12px}.vs-meta b{color:var(--ink)}.vs-text{white-space:pre-wrap;font-size:13.5px;margin:0;line-height:1.45}.vs-farben{display:flex;gap:6px;flex-wrap:wrap}.vs-farben span{width:20px;height:20px;border-radius:50%;border:1px solid var(--line)}.vs-knoepfe{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.vs-erledigt{opacity:.7}.vs-karte a{color:inherit}
 .zahl-punkt{background:var(--accent);color:var(--accent-ink);border-radius:999px;min-width:20px;height:20px;padding:0 6px;display:inline-grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums}
 .groesse-zeile{display:flex;gap:12px;align-items:center}
 .groesse-zeile input[type=range]{flex:1;accent-color:var(--accent)}
@@ -592,6 +593,7 @@ const S = {
   darfVerwalten: false, modus: 'kunde', status: 'laedt',
   shop: normShop({}), produkte: [], produkteGeladen: false,
   intern: { einstellungen: { ...KOSTEN_STANDARD }, kosten: {} },
+  vorschlaege: { liste: [], status: {}, geladen: false },
   kat: 'alle', suche: '', sort: lsGet('shop-sort') || 'empfohlen',
   korb: ladeKorb()
 };
@@ -779,6 +781,8 @@ function renderKopf() {
     const entwuerfe = S.produkte.filter(p => p.sichtbar === false).length;
     leiste.append(...[
       h('button', { class: 'btn primaer', onclick: () => oeffneEditor(null) }, icon('plus'), 'Neues Produkt'),
+      S.vorschlaege.liste.length ? h('button', { class: 'btn', onclick: oeffneVorschlaege }, icon('wunsch'), 'Vorschläge',
+        offeneVorschlaege().length ? h('span', { class: 'zahl-punkt', text: String(offeneVorschlaege().length) }) : null) : null,
       h('button', { class: 'btn', onclick: oeffneBestellungen }, icon('liste'), 'Bestellungen',
         S.best.liste.filter(b => b.status === 'neu').length ? h('span', { class: 'zahl-punkt', text: String(S.best.liste.filter(b => b.status === 'neu').length) }) : null),
       h('button', { class: 'btn', onclick: oeffneShopEinstellungen }, icon('zahnrad'), 'Shop, Angebote & Kosten'),
@@ -2057,13 +2061,15 @@ function uploadFehlerText(e) {
 const istVideoDatei = f => /^video\//.test(f.type) || /\.(mov|mp4|m4v|webm)$/i.test(f.name || '');
 
 /* ============ Produkt-Editor ============ */
-function oeffneEditor(id) {
+/* vorlage (optional, nur für neue Produkte): { produkt: {…Felder…}, kosten: { gramm, minuten }, nachSpeichern(produktId) } */
+function oeffneEditor(id, vorlage) {
   const alt = id ? S.produkte.find(x => x.id === id) : null;
-  const e = alt ? klon(alt) : {
+  if (alt) vorlage = null;
+  const e = alt ? klon(alt) : Object.assign({
     name: '', kategorie: S.kat !== 'alle' ? S.kat : ((S.shop.kategorien[0] || {}).id || ''),
     preisCent: null, beschreibung: '', material: 'PLA', masse: '', gewicht: '', farben: [], varianten: [],
     status: 'verfuegbar', sichtbar: true, lager: null, nachdrucken: true, druckTage: 3, beliebt: false, angepinnt: false
-  };
+  }, vorlage ? klon(vorlage.produkt || {}) : {});
   delete e.id;
   e.medien = medienVon(e).map(m => ({ ...m })); delete e.bilder;
   e.modell = e.modell && e.modell.id ? { ...e.modell } : null;
@@ -2072,6 +2078,10 @@ function oeffneEditor(id) {
   const kAlt = alt ? (S.intern.kosten[alt.id] || {}) : {};
   const kost = { zeilen: {}, extraRoh: geldFeld(kAlt.extraCent) };
   for (const [n, z] of Object.entries(kAlt.zeilen || {})) kost.zeilen[n] = { g: z.gramm != null ? String(z.gramm).replace('.', ',') : '', t: z.minuten != null ? String(z.minuten) : '' };
+  if (vorlage && vorlage.kosten) {
+    const vk = vorlage.kosten;
+    kost.zeilen['_'] = { g: vk.gramm != null ? String(vk.gramm).replace('.', ',') : '', t: vk.minuten != null ? String(vk.minuten) : '' };
+  }
 
   const neuHochgeladen = new Set();
   const entfernt = new Set();
@@ -2436,6 +2446,7 @@ function oeffneEditor(id) {
       const ref = alt ? S.db.doc('produkte/' + alt.id) : neuRef;
       await ref.set(daten);
       gespeichert = true; zu = true;
+      if (vorlage && vorlage.nachSpeichern) { try { await vorlage.nachSpeichern(ref.id); } catch {} }
       let kostenFehler = false;
       const hatKosten = Object.keys(zeilen).length || extra.wert;
       if (hatKosten || S.intern.kosten[ref.id]) {
@@ -2473,7 +2484,7 @@ function oeffneEditor(id) {
     [fSichtbar, fBeliebt, fPin].map(f => f.checked),
     e.medien, e.modell, e.varianten, e.farben, e.status, e.nachdrucken, kost]);
   const startZustand = zustand();
-  const blatt = oeffneBlatt(alt ? 'Produkt bearbeiten' : 'Neues Produkt', form, {
+  const blatt = oeffneBlatt(alt ? 'Produkt bearbeiten' : (vorlage ? 'Vorschlag übernehmen' : 'Neues Produkt'), form, {
     beimSchliessen: async () => {
       if (gespeichert) return true;
       const geaendert = neuHochgeladen.size || entfernt.size || laufend.size || zustand() !== startZustand;
@@ -2484,6 +2495,98 @@ function oeffneEditor(id) {
     }
   });
   if (!alt) setTimeout(() => fName.focus(), 60);
+}
+
+/* ============ Vorschläge vom Produkt-Agenten (Verwaltung) ============
+   Der Agent legt Vorschläge in vorschlaege/liste.json im GitHub-Speicher ab.
+   Übernommen/verworfen wird unter intern/vorschlaege/<id> in der Datenbank gemerkt. */
+let vorschlaegeNeuZeichnen = null;
+async function ladeVorschlaege() {
+  try {
+    const r = await fetch('vorschlaege/liste.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error(String(r.status));
+    const d = await r.json();
+    S.vorschlaege.liste = (Array.isArray(d && d.vorschlaege) ? d.vorschlaege : []).filter(v => v && v.id && v.name);
+  } catch { S.vorschlaege.liste = []; }
+  S.vorschlaege.geladen = true;
+  if (verwalten()) renderKopf();
+  if (vorschlaegeNeuZeichnen) vorschlaegeNeuZeichnen();
+}
+const offeneVorschlaege = () => S.vorschlaege.liste.filter(v => !S.vorschlaege.status[v.id]);
+function katPassend(name) {
+  const n = norm(name || ''); if (!n) return null;
+  const ks = S.shop.kategorien;
+  return ks.find(k => norm(k.name) === n) || ks.find(k => norm(k.name).includes(n) || n.includes(norm(k.name))) || null;
+}
+function vorschlagFarben(v) {
+  return (v.farben || []).map(n => FILAMENT.find(f => f.name === n) || FILAMENT.find(f => f.linie === 'PLA Basic' && norm(f.kurz) === norm(n)))
+    .filter(Boolean).map(farbObjekt);
+}
+const sichererLink = u => (typeof u === 'string' && /^https:\/\/(makerworld\.com|creativecommons\.org)\//.test(u)) ? u : null;
+const vorschlagKat = v => katPassend(v.kategorie) || katPassend('Haushalt') || S.shop.kategorien[0] || null;
+function vorschlagUebernehmen(v) {
+  const kat = vorschlagKat(v);
+  schliesseBlattSofort();
+  oeffneEditor(null, {
+    produkt: {
+      name: String(v.name || '').slice(0, 80), kategorie: kat ? kat.id : ((S.shop.kategorien[0] || {}).id || ''),
+      preisCent: typeof v.preisCent === 'number' ? v.preisCent : null, beschreibung: String(v.beschreibung || '').slice(0, 2000),
+      material: v.material || 'PLA', masse: v.masse || '', gewicht: v.gewicht || '',
+      farben: vorschlagFarben(v), druckTage: Number.isInteger(v.druckTage) ? v.druckTage : 3, sichtbar: true
+    },
+    kosten: { gramm: v.gramm, minuten: v.minuten },
+    nachSpeichern: pid => S.db.doc('intern/vorschlaege/' + v.id).set({ status: 'uebernommen', produktId: pid, am: Date.now() })
+  });
+}
+function oeffneVorschlaege() {
+  const liste = h('div', { class: 'vs-liste' });
+  const karte = v => {
+    const st = S.vorschlaege.status[v.id];
+    const kat = katPassend(v.kategorie), ersatz = kat ? null : vorschlagKat(v);
+    const q = v.quelle || {};
+    const link = sichererLink(q.url), lizLink = sichererLink(q.lizenzUrl);
+    const farben = vorschlagFarben(v);
+    return h('article', { class: 'vs-karte' + (st ? ' vs-erledigt' : '') },
+      h('h3', { text: v.name }),
+      h('div', { class: 'vs-meta' },
+        h('b', { text: typeof v.preisCent === 'number' ? euro(v.preisCent) : 'ohne Preis' }),
+        h('span', { text: kat ? kat.name : `Kategorie „${v.kategorie || '?'}“ fehlt im Shop` + (ersatz ? `, kommt erst mal zu „${ersatz.name}“` : '') }),
+        h('span', { text: v.material || 'PLA' }),
+        v.gramm != null || v.minuten != null ? h('span', { text: [v.gramm != null ? `ca. ${String(v.gramm).replace('.', ',')} g` : '', v.minuten != null ? `ca. ${v.minuten} min Druck` : ''].filter(Boolean).join(' · ') + (v.geschaetzt ? ' (geschätzt)' : '') }) : null,
+        v.masse ? h('span', { text: v.masse }) : null),
+      farben.length ? h('div', { class: 'vs-farben', 'aria-label': 'Farben: ' + farben.map(f => f.name).join(', ') },
+        farben.map(f => h('span', { title: f.name, style: 'background:' + farbFlaeche(f) }))) : null,
+      v.preisInfo ? h('p', { class: 'klein-hinweis', style: 'margin:0', text: v.preisInfo }) : null,
+      h('p', { class: 'vs-text', text: v.beschreibung || '' }),
+      h('div', { class: 'klein-hinweis' },
+        'Design: ', q.designer || '?', ' · Lizenz: ', lizLink ? h('a', { href: lizLink, target: '_blank', rel: 'noopener', text: q.lizenz || 'Lizenz' }) : (q.lizenz || '?'),
+        link ? [' · ', h('a', { href: link, target: '_blank', rel: 'noopener', text: 'Auf MakerWorld ansehen' })] : null),
+      st ? h('div', { class: 'vs-knoepfe' },
+          h('span', { class: 'hinweis-admin', text: st.status === 'uebernommen' ? 'Übernommen' : 'Verworfen' }),
+          st.status === 'verworfen' ? h('button', { type: 'button', class: 'btn', onclick: async ev => {
+            const btn = ev.currentTarget; btn.disabled = true;
+            try { await S.db.doc('intern/vorschlaege/' + v.id).delete(); } catch (err) { btn.disabled = false; toast(speicherFehlerText(err), true); }
+          } }, 'Doch wieder anzeigen') : null)
+        : h('div', { class: 'vs-knoepfe' },
+          h('button', { type: 'button', class: 'btn primaer', onclick: () => vorschlagUebernehmen(v) }, icon('haken'), 'Übernehmen'),
+          h('button', { type: 'button', class: 'btn', onclick: async ev => {
+            const btn = ev.currentTarget; btn.disabled = true;
+            try { await S.db.doc('intern/vorschlaege/' + v.id).set({ status: 'verworfen', am: Date.now() }); }
+            catch (err) { btn.disabled = false; toast(speicherFehlerText(err), true); }
+          } }, 'Verwerfen')));
+  };
+  const zeichnen = () => {
+    const offen = offeneVorschlaege().slice().reverse();
+    const erledigt = S.vorschlaege.liste.filter(v => S.vorschlaege.status[v.id]).slice().reverse();
+    liste.replaceChildren(
+      h('p', { class: 'klein-hinweis', style: 'margin:0', text: 'Übernehmen öffnet das Produkt fertig ausgefüllt. Schau kurz drüber, lade gern ein Foto hoch und speichere.' }),
+      ...(offen.length ? offen.map(karte) : [h('div', { class: 'leer' }, h('strong', { text: 'Keine neuen Vorschläge' }), h('span', { text: 'Der nächste kommt mit dem täglichen Lauf.' }))]),
+      erledigt.length ? h('details', null, h('summary', { text: `Erledigt (${erledigt.length})` }), h('div', { class: 'vs-liste', style: 'margin-top:12px' }, erledigt.map(karte))) : null);
+  };
+  vorschlaegeNeuZeichnen = zeichnen;
+  zeichnen();
+  ladeVorschlaege();
+  oeffneBlatt('Vorschläge', h('div', { class: 'form' }, liste), { beimSchliessen: () => { vorschlaegeNeuZeichnen = null; return true; } });
 }
 
 /* ============ Bestellungen (Verwaltung) ============ */
@@ -3041,6 +3144,16 @@ async function abmelden() {
       const k = {}; q.docs.forEach(d => { k[d.id] = d.data(); });
       S.intern.kosten = k;
       if (verwalten()) { renderBereiche(); renderRaster(); }
+    }, () => {});
+  }
+
+  if (S.darfVerwalten) {
+    ladeVorschlaege();
+    db.collection('intern/vorschlaege').onSnapshot(q => {
+      const st = {}; q.docs.forEach(d => { st[d.id] = d.data(); });
+      S.vorschlaege.status = st;
+      if (verwalten()) renderKopf();
+      if (vorschlaegeNeuZeichnen) vorschlaegeNeuZeichnen();
     }, () => {});
   }
 
