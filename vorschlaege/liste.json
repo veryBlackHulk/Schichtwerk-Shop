@@ -58,6 +58,34 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-430844",
+      "erstellt": "2026-10-26",
+      "name": "Batterie-Ordnungsbox für AA, AAA, 9 V und Knopfzellen",
+      "kategorie": "Haushalt",
+      "preisCent": 400,
+      "beschreibung": "Ordnungsbox für Batterien, damit nichts mehr lose in der Schublade herumfliegt. Sie hat feste Fächer für 20 AA- und 20 AAA-Batterien, Platz für 4 Blockbatterien (9 V) und ein Fach für Knopfzellen. So siehst du auf einen Blick, was noch da ist, und greifst direkt zur richtigen Größe. Die Box wird in einem Stück gedruckt und passt in Schublade, Schrank oder Werkstattregal.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel. Batterien sind nicht enthalten.\n\nDesign: Ondra Hladík auf MakerWorld (https://makerworld.com/en/models/430844-battery-organizer), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.",
+      "material": "PLA",
+      "masse": "",
+      "gewicht": "ca. 79 g",
+      "farben": [
+        "Gelb",
+        "Grün",
+        "Rot"
+      ],
+      "druckTage": 3,
+      "gramm": 79,
+      "minuten": 264,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 1,82 € (79 g PLA geschätzt, 264 min Druck). Kein passender Marktvergleich gefunden. Preis 4,00 €.",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/430844-battery-organizer",
+        "titel": "Battery organizer",
+        "designer": "Ondra Hladík",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }

@@ -2524,7 +2524,7 @@ function vorschlagFarben(v) {
     .filter(Boolean).map(farbObjekt);
 }
 const sichererLink = u => (typeof u === 'string' && /^https:\/\/(makerworld\.com|creativecommons\.org)\//.test(u)) ? u : null;
-const vorschlagKat = v => katPassend(v.kategorie) || katPassend('Haushalt') || S.shop.kategorien[0] || null;
+const vorschlagKat = v => katPassend(v.kategorie) || katPassend('Praktisch') || katPassend('Haushalt') || S.shop.kategorien[0] || null;
 const vorschlagBilder = v => (Array.isArray(v.bilder) ? v.bilder : [])
   .map(b => typeof b === 'string' ? b : b && b.datei).filter(d => typeof d === 'string' && /^vorschlaege\/bilder\/[\w.-]+\.(webp|jpe?g|png)$/i.test(d)).slice(0, 3);
 async function vorschlagUebernehmen(v, btn) {
