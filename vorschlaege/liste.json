@@ -29,6 +29,35 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-13849",
+      "erstellt": "2026-10-26",
+      "name": "Kabelaufwickler-Dose mit Drehknopf",
+      "kategorie": "Schreibtisch",
+      "preisCent": 250,
+      "beschreibung": "Runde Dose zum Aufwickeln von Kabeln, zum Beispiel für Ladekabel oder kabelgebundene Kopfhörer. Das Kabel wird über einen Drehknopf an der Seite ordentlich ins Innere gewickelt, danach schließt du den Deckel, der bewusst fest sitzt. So verknotet nichts in Tasche, Rucksack oder Schublade. Die Dose wird in einem Stück gedruckt und ist sofort fertig, ohne Zusammenbauen. Angeboten wird die mittlere Größe, die sich für die meisten gängigen Kabel eignet.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: squinn auf MakerWorld (https://makerworld.com/en/models/13849-portable-cable-organizer-winder), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.",
+      "material": "PLA",
+      "masse": "mittlere Größe (von drei Größen des Modells)",
+      "gewicht": "ca. 34 g",
+      "farben": [
+        "Rot",
+        "Grün",
+        "Gelb",
+        "Braun"
+      ],
+      "druckTage": 3,
+      "gramm": 34,
+      "minuten": 112,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 0,78 € (34 g PLA geschätzt, 112 min Druck). Kein Marktvergleich gefunden. Preis 2,50 €.",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/13849-portable-cable-organizer-winder",
+        "titel": "Portable Cable Organizer / Winder",
+        "designer": "squinn",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }
