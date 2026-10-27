@@ -1172,7 +1172,7 @@ function oeffneDetail(id) {
   });
 
   const kat = katVon(p.kategorie);
-  const specs = [['Material', p.material], ['Maße', p.masse], ['Gewicht', p.gewicht], ['Hersteller', herstellerText()]].filter(([, v]) => v);
+  const specs = [['Material', p.material], ['Maße', p.masse], ['Gewicht', p.gewicht]].filter(([, v]) => v);
   const teile = teileBeschreibung(p.beschreibung);
   let textBox = null;
   if (teile.haupt.length) {
@@ -1197,10 +1197,12 @@ function oeffneDetail(id) {
     h('div', { class: 'kaufen' }, h('div', { class: 'stepper', role: 'group', 'aria-label': 'Anzahl' }, minus, mengeSpan, plus), addBtn),
     textBox,
     h('div', { class: 'd-abschnitte' },
-      specs.length ? aufklapp('Produktdetails', h('dl', { class: 'specs' }, specs.map(([k, v]) => [h('dt', { text: k }), h('dd', { text: v })])), true) : null,
+      specs.length ? aufklapp('Produktdetails', h('dl', { class: 'specs' }, specs.map(([k, v]) => [h('dt', { text: k }), h('dd', { text: v })]))) : null,
       teile.pflege.length ? aufklapp('Material & Pflege', teile.pflege.map(x => h('p', { text: x }))) : null,
       teile.nachweis.length ? aufklapp('Design & Lizenz', teile.nachweis.map(x => h('p', null, mitLinks(x)))) : null,
-      aufklapp('So bestellst du', h('p', { text: 'Leg alles in den Warenkorb und reservier unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Gekauft und bezahlt wird erst bei der Abholung. Kein Versand.' })))
+      aufklapp('So bestellst du', h('p', { text: 'Leg alles in den Warenkorb und reservier unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Gekauft und bezahlt wird erst bei der Abholung. Kein Versand.' }))),
+    // Pflichtangabe nach EU-Produktsicherheitsverordnung (Art. 19 GPSR), bewusst klein und außerhalb der Produktdetails
+    herstellerText() ? h('small', { class: 'klein-hinweis', style: 'display:block;margin-top:14px', text: 'Hersteller: ' + herstellerText() }) : null
   );
   aktualisieren();
   const kopfExtra = verwalten() ? h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap' },
