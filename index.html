@@ -2820,7 +2820,9 @@ function oeffneShopEinstellungen() {
   const fWa = h('input', { type: 'text', id: 's-wa', value: S.shop.kontakt.whatsapp || '', inputmode: 'tel', placeholder: '+49 170 1234567', autocomplete: 'off' });
   const fMail = h('input', { type: 'text', id: 's-mail', value: S.shop.kontakt.email || '', inputmode: 'email', autocomplete: 'off' });
   const fHinweis = h('input', { type: 'text', id: 's-hinweis', value: S.shop.kontakt.hinweis || '', maxlength: '160', placeholder: 'z. B. Abholung in Köln-Rodenkirchen, nachmittags nach Absprache', autocomplete: 'off' });
-  const R = S.shop.recht;
+  // Vorschlag aus dem vlowr-Impressum von Oliver Tesch (Impressum-Service), solange noch nichts gespeichert ist
+  const leer = !S.shop.recht.betreiber && !S.shop.recht.strasse && !S.shop.recht.ort;
+  const R = leer ? { ...S.shop.recht, betreiber: 'Oliver Tesch', strasse: 'c/o Online-Impressum #7955, Europaring 90', ort: '53757 St. Augustin' } : S.shop.recht;
   const fBetreiber = h('input', { type: 'text', id: 's-betreiber', value: R.betreiber || '', maxlength: '80', autocomplete: 'off', placeholder: 'Vor- und Nachname' });
   const fStrasse = h('input', { type: 'text', id: 's-strasse', value: R.strasse || '', maxlength: '100', autocomplete: 'off', placeholder: 'Straße und Hausnummer' });
   const fOrt = h('input', { type: 'text', id: 's-ort', value: R.ort || '', maxlength: '80', autocomplete: 'off', placeholder: 'PLZ und Ort' });
