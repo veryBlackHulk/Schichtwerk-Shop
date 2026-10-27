@@ -142,7 +142,7 @@ select.feld-klein{border:1px solid var(--line);background:var(--surface);border-
 .badge.beispiel{background:var(--surface);color:var(--muted);border:1px dashed var(--muted)}
 .badge.pin{background:var(--ink);color:var(--bg)}
 .k-bearbeiten{position:absolute;top:8px;right:8px;z-index:3;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.k-bearbeiten svg{width:16px;height:16px}
+.k-bearbeiten svg{width:16px;height:16px}.k-mw{right:52px;color:inherit}
 
 .wunsch-karte{border:1.5px dashed var(--accent);border-radius:var(--r);background:color-mix(in oklab,var(--accent) 6%,var(--surface));display:grid;align-content:center;justify-items:center;gap:10px;padding:24px 16px;text-align:center;min-height:240px;color:var(--ink);width:100%}
 .wunsch-karte .kreis{width:52px;height:52px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
@@ -484,6 +484,7 @@ const ICON = {
   lkw: '<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
   drucker: '<path d="M5 20h14M7 20V9h10v11M9 9V5h6v4M10 13h4"/>',
   pin: '<path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/>',
+  extern: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   wuerfel: '<path d="M12 3 4 7.5v9L12 21l8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/>',
   zurueck: '<path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/>'
 };
@@ -611,6 +612,13 @@ function normShop(d) {
 }
 
 /* ============ Produkt-Logik ============ */
+/* MakerWorld-Link eines Produkts (für die Verwaltung): eigenes Feld oder erster Link aus der Beschreibung */
+const istMwLink = u => typeof u === 'string' && /^https:\/\/(www\.)?makerworld\.com\/[^\s"'<>]*$/.test(u);
+function mwLink(p) {
+  if (istMwLink(p.quelleUrl)) return p.quelleUrl;
+  const m = String(p.beschreibung || '').match(/https:\/\/(www\.)?makerworld\.com\/[^\s()"'<>]+/);
+  return m ? m[0].replace(/[.,;:]+$/, '') : null;
+}
 const katVon = id => S.shop.kategorien.find(k => k.id === id);
 const katFarbe = id => (katVon(id) || {}).farbe || '#8A8D8F';
 const verwalten = () => S.darfVerwalten && S.modus === 'verwalten';
@@ -871,6 +879,7 @@ function karte(p, { reihenfolge = null } = {}) {
     h('div', { class: 'bild' }, titelMedium(p), hatVideo(p) && titelBildId(p) ? h('span', { class: 'video-mark', 'aria-hidden': 'true' }, icon('play')) : null),
     badges.length ? h('div', { class: 'badges' }, badges) : null,
     verwalten() ? h('button', { class: 'k-bearbeiten', 'aria-label': `${p.name || 'Produkt'} bearbeiten`, onclick: e => { e.stopPropagation(); oeffneEditor(p.id); } }, icon('stift')) : null,
+    verwalten() && mwLink(p) ? h('a', { class: 'k-bearbeiten k-mw', href: mwLink(p), target: '_blank', rel: 'noopener', title: 'Auf MakerWorld öffnen', 'aria-label': `${p.name || 'Produkt'} auf MakerWorld öffnen`, onclick: e => e.stopPropagation() }, icon('extern')) : null,
     h('div', { class: 'k-text' },
       h('div', { class: 'k-kat', vars: { '--c': katFarbe(p.kategorie) } }, h('i'), kat ? kat.name : 'Ohne Kategorie'),
       h('div', { class: 'k-name', text: p.name || 'Ohne Namen' }),
@@ -1194,7 +1203,9 @@ function oeffneDetail(id) {
       aufklapp('So bestellst du', h('p', { text: 'Leg alles in den Warenkorb und reservier unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Gekauft und bezahlt wird erst bei der Abholung. Kein Versand.' })))
   );
   aktualisieren();
-  const kopfExtra = verwalten() ? h('button', { class: 'btn', onclick: () => { schliesseBlattSofort(); oeffneEditor(p.id); } }, icon('stift'), 'Bearbeiten') : null;
+  const kopfExtra = verwalten() ? h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap' },
+    mwLink(p) ? h('a', { class: 'btn', href: mwLink(p), target: '_blank', rel: 'noopener' }, icon('extern'), 'MakerWorld') : null,
+    h('button', { class: 'btn', onclick: () => { schliesseBlattSofort(); oeffneEditor(p.id); } }, icon('stift'), 'Bearbeiten')) : null;
   const dreiBtn = (p.modell && p.modell.id) ? h('button', { type: 'button', class: 'btn voll', onclick: () => { schliesseBlattSofort(); oeffne3D(p.id, wahl.farbe); } }, icon('wuerfel'), 'In 3D ansehen') : null;
   oeffneBlatt(p.name || 'Produkt', h('div', { class: 'detail' }, h('div', { class: 'galerie' }, spur, daumen, dreiBtn), info), { kopfExtra });
 }
@@ -2291,6 +2302,10 @@ function oeffneEditor(id, vorlage) {
   fMat.value = e.material || 'PLA';
   const fMasse = h('input', { type: 'text', id: 'f-masse', value: e.masse || '', maxlength: '60', autocomplete: 'off' });
   const fGewicht = h('input', { type: 'text', id: 'f-gewicht', value: e.gewicht || '', maxlength: '30', autocomplete: 'off' });
+  const fQuelle = h('input', { type: 'url', id: 'f-quelle', value: mwLink(e) || '', maxlength: '300', autocomplete: 'off', placeholder: 'https://makerworld.com/…' });
+  const quelleOeffnen = h('a', { class: 'btn', target: '_blank', rel: 'noopener' }, icon('extern'), 'Öffnen');
+  const quelleAktualisieren = () => { const u = fQuelle.value.trim(); quelleOeffnen.hidden = !istMwLink(u); if (istMwLink(u)) quelleOeffnen.href = u; };
+  fQuelle.addEventListener('input', quelleAktualisieren); quelleAktualisieren();
   const fSichtbar = h('input', { type: 'checkbox', id: 'f-sichtbar', checked: e.sichtbar !== false });
   const fBeliebt = h('input', { type: 'checkbox', id: 'f-beliebt', checked: !!e.beliebt });
   const fPin = h('input', { type: 'checkbox', id: 'f-pin', checked: !!e.angepinnt });
@@ -2459,7 +2474,10 @@ function oeffneEditor(id, vorlage) {
       h('div', { class: 'zwei' },
         h('label', { class: 'feld' }, h('span', { text: 'Material' }), fMat),
         h('label', { class: 'feld' }, h('span', { text: 'Maße' }), fMasse, h('small', { text: 'z. B. 9 × 4 × 2 cm' }))),
-      h('label', { class: 'feld' }, h('span', { text: 'Gewicht (optional, für Kunden)' }), fGewicht)),
+      h('label', { class: 'feld' }, h('span', { text: 'Gewicht (optional, für Kunden)' }), fGewicht),
+      h('div', { class: 'feld' }, h('label', { for: 'f-quelle', class: 'feld-titel', text: 'MakerWorld-Link (für die Verwaltung)' }),
+        h('div', { style: 'display:flex;gap:8px' }, h('div', { style: 'flex:1;min-width:0;display:grid' }, fQuelle), quelleOeffnen),
+        h('small', { text: 'Wird automatisch aus der Beschreibung übernommen. Damit findest du das Modell zum Drucken schnell wieder.' }))),
     h('div', { class: 'abschnitt' }, h('h3', null, 'Kosten & Gewinn', h('small', { text: 'Nur für dich sichtbar' })),
       h('small', { class: 'klein-hinweis', text: `Gerechnet mit Spule ${euro(ks.spulePreisCent)}/${ks.spuleGramm} g, Strom ${ks.stromCentKwh} ct/kWh, ${ks.watt} W, Verschleiß ${euro(ks.verschleissCentStunde)}/h. Ändern unter „Shop, Angebote & Kosten“.` }),
       kostenZeilenBox,
@@ -2528,7 +2546,7 @@ function oeffneEditor(id, vorlage) {
     const jetzt = Date.now();
     const daten = {
       name, kategorie: fKat.value, preisCent, varianten, beschreibung: fText.value.trim(),
-      material: fMat.value, masse: fMasse.value.trim(), gewicht: fGewicht.value.trim(),
+      material: fMat.value, masse: fMasse.value.trim(), gewicht: fGewicht.value.trim(), quelleUrl: istMwLink(fQuelle.value.trim()) ? fQuelle.value.trim() : null,
       farben, medien: e.medien.map(m => m.typ === 'video' ? { id: m.id, typ: 'video', poster: m.poster || null } : { id: m.id, typ: 'bild' }),
       status: e.status || 'verfuegbar', sichtbar: fSichtbar.checked, beliebt: fBeliebt.checked, angepinnt: fPin.checked,
       lager, nachdrucken: e.nachdrucken !== false, druckTage: tage, modell: e.modell || null,
@@ -2579,7 +2597,7 @@ function oeffneEditor(id, vorlage) {
   }
 
   const zustand = () => JSON.stringify([
-    [fName, fKat, fPreis, fText, fMat, fMasse, fGewicht, fLager, fTage, fExtra].map(f => f.value),
+    [fName, fKat, fPreis, fText, fMat, fMasse, fGewicht, fQuelle, fLager, fTage, fExtra].map(f => f.value),
     [fSichtbar, fBeliebt, fPin].map(f => f.checked),
     e.medien, e.modell, e.varianten, e.farben, e.status, e.nachdrucken, kost]);
   const startZustand = zustand();
@@ -2657,7 +2675,8 @@ async function vorschlagUebernehmen(v, btn) {
       name: String(v.name || '').slice(0, 80), kategorie: kat ? kat.id : ((S.shop.kategorien[0] || {}).id || ''),
       preisCent: typeof v.preisCent === 'number' ? v.preisCent : null, beschreibung: String(v.beschreibung || '').slice(0, 2000),
       material: v.material || 'PLA', masse: v.masse || '', gewicht: v.gewicht || '',
-      farben: vorschlagFarben(v), druckTage: Number.isInteger(v.druckTage) ? v.druckTage : 3, sichtbar: true, medien
+      farben: vorschlagFarben(v), druckTage: Number.isInteger(v.druckTage) ? v.druckTage : 3, sichtbar: true, medien,
+      quelleUrl: v.quelle && istMwLink(v.quelle.url) ? v.quelle.url : null
     },
     kosten: { gramm: v.gramm, minuten: v.minuten },
     nachSpeichern: pid => S.db.doc('intern/vorschlaege/' + v.id).set({ status: 'uebernommen', produktId: pid, am: Date.now() })
