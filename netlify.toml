@@ -1,0 +1,5 @@
+# Netlify-Free hat 300 Credits im Monat, jedes Veröffentlichen kostet 15.
+# Änderungen nur an Vorschlägen, Agent-Regeln oder README lösen deshalb kein Veröffentlichen aus.
+# (Der Shop liest die Vorschläge direkt aus GitHub.)
+[build]
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)vorschlaege' ':(exclude)agent' ':(exclude)README.md'"

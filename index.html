@@ -2615,14 +2615,23 @@ function oeffneEditor(id, vorlage) {
 }
 
 /* ============ Vorschläge vom Produkt-Agenten (Verwaltung) ============
-   Der Agent legt Vorschläge in vorschlaege/liste.json im GitHub-Speicher ab.
+   Der Agent legt Vorschläge in vorschlaege/liste.json im GitHub-Speicher ab (gelesen über die GitHub-API, nur in der Verwaltung).
    Übernommen/verworfen wird unter intern/vorschlaege/<id> in der Datenbank gemerkt. */
 let vorschlaegeNeuZeichnen = null;
 async function ladeVorschlaege() {
   try {
-    const r = await fetch('vorschlaege/liste.json?t=' + Date.now(), { cache: 'no-store' });
-    if (!r.ok) throw new Error(String(r.status));
-    const d = await r.json();
+    // Direkt aus GitHub lesen: neue Vorschläge brauchen so kein neues Veröffentlichen bei Netlify (spart Credits).
+    let d = null;
+    try {
+      const g = await fetch('https://api.github.com/repos/veryBlackHulk/Schichtwerk-Shop/contents/vorschlaege/liste.json?ref=main&t=' + Date.now(),
+        { cache: 'no-store', headers: { Accept: 'application/vnd.github.raw+json' } });
+      if (g.ok) d = await g.json();
+    } catch {}
+    if (!d) {
+      const r = await fetch('vorschlaege/liste.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) throw new Error(String(r.status));
+      d = await r.json();
+    }
     S.vorschlaege.liste = (Array.isArray(d && d.vorschlaege) ? d.vorschlaege : []).filter(v => v && v.id && v.name);
   } catch { S.vorschlaege.liste = []; }
   S.vorschlaege.geladen = true;
