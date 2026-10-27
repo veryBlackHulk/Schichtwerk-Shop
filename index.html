@@ -2690,6 +2690,12 @@ function antwortLink(b) {
   }
   L.push('Viele Grüße', S.shop.name || '');
   const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Bestellung'} #${b.id} bei ${S.shop.name || 'uns'}`;
+  const absender = (S.shop.kontakt.email || '').trim();
+  // Ist die Shop-Adresse ein Gmail-Konto, direkt Gmail mit genau diesem Konto öffnen (unabhängig vom Mail-Programm des PCs)
+  if (/^[^@\s]+@(gmail|googlemail)\.com$/i.test(absender)) {
+    const q = { view: 'cm', fs: '1', authuser: absender, to: b.email || '', su: betreff, body: L.join('\n') };
+    return 'https://mail.google.com/mail/?' + Object.entries(q).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+  }
   return `mailto:${b.email}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(L.join('\n'))}`;
 }
 function oeffneBestellungen() {
@@ -2734,7 +2740,7 @@ function oeffneBestellungen() {
           typeof b.summe_cent === 'number' ? h('span', { text: euro(b.summe_cent) }) : null),
         h('pre', { text: b.text }),
         h('div', { class: 'knoepfe' },
-          h('a', { class: 'btn primaer', href: antwortLink(b) }, icon('post'), 'Per E-Mail antworten'),
+          h('a', { class: 'btn primaer', href: antwortLink(b), target: antwortLink(b).startsWith('https:') ? '_blank' : null, rel: 'noopener' }, icon('post'), 'Per E-Mail antworten'),
           h('button', { type: 'button', class: 'btn gefahr', onclick: async () => {
             if (!(await bestaetigen(`#${b.id} löschen?`, 'Die Bestellung und die Daten des Kunden werden endgültig entfernt.', 'Endgültig löschen'))) return;
             const { error } = await S.sb.from('bestellungen').delete().eq('id', b.id);
