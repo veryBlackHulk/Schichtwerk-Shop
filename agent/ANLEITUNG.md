@@ -133,7 +133,8 @@ git fetch origin main && git rebase origin/main
 git add vorschlaege/ && git commit -m "Vorschlag: <Name>"   (bei mehreren: "N neue Vorschläge")
 git push origin HEAD:main
 ```
-Netlify veröffentlicht die Seite danach in 1–2 Minuten. Ist der Push gescheitert, das klar sagen.
+Der Shop liest die Vorschläge direkt aus GitHub, sie sind also sofort da. Netlify veröffentlicht dafür nichts neu (spart Credits, siehe `netlify.toml`).
+Deshalb in diesem Lauf nur Dateien in `vorschlaege/` ändern, nie `index.html` oder andere Shop-Dateien. Ist der Push gescheitert, das klar sagen.
 
 ## Schritt 8: Nachricht an Theo
 Kurz, pro Vorschlag:
