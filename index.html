@@ -248,7 +248,7 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
 .status.ausverkauft{color:var(--bad);background:color-mix(in oklab,var(--bad) 14%,transparent)}
 .liefer{font-size:14px;display:flex;align-items:center;gap:8px;color:var(--ink)}
 .liefer svg{width:18px;height:18px;color:var(--muted);flex:none}
-.d-text{white-space:pre-line;margin:0;max-width:62ch;overflow-wrap:anywhere}
+.d-text{white-space:pre-line;margin:0;max-width:62ch;overflow-wrap:anywhere;line-height:1.55;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}.d-text.offen{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}.d-beschreibung{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:14px}.mehr-lesen{justify-self:start;background:none;border:0;padding:4px 0;font:inherit;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}.d-abschnitte{display:grid;border-top:1px solid var(--line)}.d-abschnitt{border-bottom:1px solid var(--line)}.d-abschnitt summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 0;font-weight:600;font-size:15px}.d-abschnitt summary::-webkit-details-marker{display:none}.d-abschnitt summary svg{width:18px;height:18px;flex:none;color:var(--muted);transition:transform .2s}.d-abschnitt[open] summary svg{transform:rotate(180deg)}.d-abschnitt-inhalt{padding:0 0 14px;display:grid;gap:8px;font-size:14px;color:var(--muted);line-height:1.5}.d-abschnitt-inhalt p{margin:0;overflow-wrap:anywhere}.d-abschnitt-inhalt a{color:var(--ink)}.d-abschnitt-inhalt .specs{border-top:0;padding-top:0}
 .wahl{display:grid;gap:8px}
 .wahl-chips{display:flex;flex-wrap:wrap;gap:6px}
 .wahl-chips button{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 13px;font-size:14px;font-weight:600}
@@ -1053,6 +1053,36 @@ function kopieren(text, ersatzEl, okText = 'Kopiert') {
 }
 
 /* ============ Detail ============ */
+/* Beschreibung in Abschnitte teilen: Fließtext, „Gut zu wissen“ und Design-/Foto-Nachweis */
+function teileBeschreibung(text) {
+  const t = { haupt: [], pflege: [], nachweis: [] };
+  for (const absatz of String(text || '').split(/\n\s*\n/)) {
+    const zeilen = absatz.split('\n').map(z => z.trim()).filter(Boolean);
+    const rest = [];
+    for (const z of zeilen) {
+      if (/^(Design|Fotos)\s*:/i.test(z)) t.nachweis.push(z);
+      else if (/^Gut zu wissen\s*:/i.test(z)) t.pflege.push(z.replace(/^Gut zu wissen\s*:\s*/i, ''));
+      else rest.push(z);
+    }
+    if (rest.length) t.haupt.push(rest.join('\n'));
+  }
+  return t;
+}
+/* Text mit klickbaren https-Links (nur Text-Knoten, kein HTML) */
+function mitLinks(text) {
+  const teile = []; let pos = 0; const re = /https:\/\/[^\s()<>]+/g; let m;
+  while ((m = re.exec(text))) {
+    if (m.index > pos) teile.push(text.slice(pos, m.index));
+    const url = m[0].replace(/[.,;:]+$/, '');
+    teile.push(h('a', { href: url, target: '_blank', rel: 'noopener', text: url.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '') }));
+    pos = m.index + url.length;
+  }
+  if (pos < text.length) teile.push(text.slice(pos));
+  return teile;
+}
+function aufklapp(titel, inhalt, offen = false) {
+  return h('details', { class: 'd-abschnitt', open: offen || null }, h('summary', null, h('span', { text: titel }), icon('runter')), h('div', { class: 'd-abschnitt-inhalt' }, inhalt));
+}
 function oeffneDetail(id) {
   const p = S.produkte.find(x => x.id === id); if (!p) return;
   const medien = medienVon(p);
@@ -1132,18 +1162,34 @@ function oeffneDetail(id) {
 
   const kat = katVon(p.kategorie);
   const specs = [['Material', p.material], ['Maße', p.masse], ['Gewicht', p.gewicht]].filter(([, v]) => v);
+  const teile = teileBeschreibung(p.beschreibung);
+  let textBox = null;
+  if (teile.haupt.length) {
+    const txt = h('p', { class: 'd-text', text: teile.haupt.join('\n\n') });
+    const mehr = h('button', { type: 'button', class: 'mehr-lesen', 'aria-expanded': 'false', text: 'Mehr lesen' });
+    textBox = h('div', { class: 'd-beschreibung' }, h('span', { class: 'feld-titel', text: 'Beschreibung' }), txt, mehr);
+    mehr.addEventListener('click', () => {
+      const auf = txt.classList.toggle('offen');
+      mehr.textContent = auf ? 'Weniger anzeigen' : 'Mehr lesen'; mehr.setAttribute('aria-expanded', String(auf));
+    });
+    // „Mehr lesen“ nur zeigen, wenn der Text wirklich gekürzt ist
+    requestAnimationFrame(() => requestAnimationFrame(() => { mehr.hidden = txt.scrollHeight <= txt.clientHeight + 2; }));
+  }
   const info = h('div', { class: 'd-info' },
     h('div', { class: 'k-kat', vars: { '--c': katFarbe(p.kategorie) } }, h('i'), kat ? kat.name : 'Ohne Kategorie'),
     h('h3', { class: 'd-name', text: p.name || 'Ohne Namen' }),
     preisBox,
     h('div', { class: 'liefer' }, icon(sofortDa(p) ? 'lkw' : 'drucker'), lieferText(p)),
     dealBox,
-    p.beschreibung ? h('p', { class: 'd-text', text: p.beschreibung }) : null,
     (p.varianten && p.varianten.length) ? h('div', { class: 'wahl' }, h('span', { class: 'feld-titel', text: 'Größe / Ausführung' }), varBox) : null,
     (p.farben && p.farben.length) ? h('div', { class: 'wahl' }, h('span', { class: 'feld-titel', text: 'Farbe' }), farbBox) : null,
     h('div', { class: 'kaufen' }, h('div', { class: 'stepper', role: 'group', 'aria-label': 'Anzahl' }, minus, mengeSpan, plus), addBtn),
-    specs.length ? h('dl', { class: 'specs' }, specs.map(([k, v]) => [h('dt', { text: k }), h('dd', { text: v })])) : null,
-    h('div', { class: 'so-gehts' }, h('b', { text: 'So bestellst du' }), h('span', { text: 'Leg alles in den Warenkorb und bestell unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Bezahlt wird bei der Abholung. Kein Versand.' }))
+    textBox,
+    h('div', { class: 'd-abschnitte' },
+      specs.length ? aufklapp('Produktdetails', h('dl', { class: 'specs' }, specs.map(([k, v]) => [h('dt', { text: k }), h('dd', { text: v })]))) : null,
+      teile.pflege.length ? aufklapp('Material & Pflege', teile.pflege.map(x => h('p', { text: x }))) : null,
+      teile.nachweis.length ? aufklapp('Design & Lizenz', teile.nachweis.map(x => h('p', null, mitLinks(x)))) : null,
+      aufklapp('So bestellst du', h('p', { text: 'Leg alles in den Warenkorb und bestell unverbindlich. Wir melden uns per E-Mail mit einem Abholtermin. Bezahlt wird bei der Abholung. Kein Versand.' })))
   );
   aktualisieren();
   const kopfExtra = verwalten() ? h('button', { class: 'btn', onclick: () => { schliesseBlattSofort(); oeffneEditor(p.id); } }, icon('stift'), 'Bearbeiten') : null;
