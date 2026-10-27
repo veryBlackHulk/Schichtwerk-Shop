@@ -1918,7 +1918,6 @@ function erfolgAnsicht(art, nr, name, mail, schliessen) {
   return h('div', { class: 'erfolg' },
     h('span', { class: 'kreis' }, icon('haken')),
     h('strong', { text: 'Danke' + (name ? ', ' + name.split(' ')[0] : '') + '!' }),
-    nr ? h('span', { class: 'nr', text: (art === 'wunsch' ? 'Wunsch' : 'Reservierung') + ' #' + nr }) : null,
     h('span', { text: art === 'wunsch'
       ? `Dein Wunsch ist angekommen. Wir melden uns per E-Mail an ${mail} mit Preis und Dauer.`
       : `Deine Reservierung ist angekommen. Wir melden uns per E-Mail an ${mail} mit einem Abholtermin. Gekauft und bezahlt wird erst bei der Abholung.` }),
@@ -2761,7 +2760,7 @@ async function ladeBestellungen() {
 function antwortLink(b) {
   const vor = (b.name || '').trim().split(/\s+/)[0] || '';
   const was = b.art === 'wunsch' ? 'deinen Wunsch' : 'deine Reservierung';
-  const L = [`Hallo ${vor},`, '', `vielen Dank für ${was} #${b.id}.`, ''];
+  const L = [`Hallo ${vor},`, '', `vielen Dank für ${was}.`, ''];
   if (b.art === 'wunsch') L.push('Preis: ', 'Fertig in ca.: ', '');
   else {
     L.push('Du kannst sie abholen am: ', `Abholort: ${S.shop.kontakt.hinweis || ''}`);
@@ -2769,7 +2768,7 @@ function antwortLink(b) {
     L.push('', 'Gekauft wird erst bei der Abholung. Du kannst dir die Ware vor Ort ansehen.', '');
   }
   L.push('Viele Grüße', S.shop.name || '');
-  const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Reservierung'} #${b.id} bei ${S.shop.name || 'uns'}`;
+  const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Reservierung'} bei ${S.shop.name || 'uns'}`;
   const absender = (S.shop.kontakt.email || '').trim();
   // Ist die Shop-Adresse ein Gmail-Konto, direkt Gmail mit genau diesem Konto öffnen (unabhängig vom Mail-Programm des PCs)
   if (/^[^@\s]+@(gmail|googlemail)\.com$/i.test(absender)) {
