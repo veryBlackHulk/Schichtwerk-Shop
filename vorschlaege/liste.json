@@ -404,6 +404,47 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-65718",
+      "erstellt": "2026-10-27",
+      "name": "Flache Sortierschale mit Fächern für Kleinteile",
+      "kategorie": "Haushalt",
+      "preisCent": 450,
+      "beschreibung": "Diese flache Sortierschale mit mehreren Fächern bringt Ordnung in Schubladen, auf die Werkbank oder ins Regal. Sie misst etwa 20 × 18 cm und ist nur 2,5 cm hoch, passt also auch in flache Schubladen. In den Fächern kannst du Kleinteile wie Schrauben, Nägel, Dübel, Bits, Büroklammern, Gummis oder Haargummis getrennt aufbewahren, damit du nicht mehr suchen musst. Die Schale ist aus einem Stück gedruckt, ohne Kleber oder Schrauben. Weil sie so niedrig ist, siehst du alles auf einen Blick und kommst leicht an jedes Teil.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: Shortfin3D auf MakerWorld (https://makerworld.com/en/models/65718-divider-tray), Lizenz CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von Shortfin3D (MakerWorld), Lizenz CC BY-SA 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "ca. 20 × 18 × 2,5 cm",
+      "gewicht": "ca. 114 g",
+      "farben": [
+        "Braun",
+        "Grün",
+        "Rot",
+        "Gelb"
+      ],
+      "druckTage": 3,
+      "gramm": 114,
+      "minuten": 165,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 2,06 € (114 g PLA, 165 min Druck). Kein Marktvergleich gefunden. Preis 4,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USeb7deec59c2c23/design/2023-11-16_69a2c4e210318.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USeb7deec59c2c23/design/2023-11-16_8ec26fb21fa31.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USeb7deec59c2c23/design/2023-11-16_d4e4fb0128d7a.png"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: Shortfin3D (MakerWorld), Lizenz CC BY-SA 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/65718-divider-tray",
+        "titel": "Divider Tray",
+        "designer": "Shortfin3D",
+        "lizenz": "CC BY-SA 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     }
   ]
 }
