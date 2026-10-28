@@ -387,6 +387,61 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
 .toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:90;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}
 .toast.fehler{background:var(--bad);color:var(--bad-ink)}
 
+/* Weihnachts-Design (Verwalten → Weihnachten & Spendenglas) */
+:root[data-weihnachten]{--accent:#C8322E;--accent-ink:#FFFFFF}
+@media (prefers-color-scheme: light){:root[data-weihnachten]:not([data-theme="dark"]){--bg:#FBF6EC;--surface-2:#F3EBDC;--line:#E4D9C6}}
+:root[data-weihnachten][data-theme="light"]{--bg:#FBF6EC;--surface-2:#F3EBDC;--line:#E4D9C6}
+@media (prefers-color-scheme: dark){:root[data-weihnachten]:not([data-theme="light"]){--accent:#FF6B5E;--accent-ink:#2A0705}}
+:root[data-weihnachten][data-theme="dark"]{--accent:#FF6B5E;--accent-ink:#2A0705}
+:root[data-weihnachten] body{overflow-x:clip}
+:root[data-weihnachten] body::before{background:#17402C}
+:root[data-weihnachten] .kopf{position:relative;isolation:isolate;padding-block:58px 64px;color:#fff}
+#w-deko{position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;pointer-events:none;overflow:hidden;
+  background:radial-gradient(ellipse at 70% 0%,#2A6847 0%,#1F5139 40%,#17402C 100%)}
+#w-deko svg{position:absolute;left:0;width:100%}
+#w-deko .w-lichter{top:0;height:46px}
+#w-deko .w-schnee{top:0;height:100%}
+#w-deko .w-boden{bottom:-1px;height:44px}
+@media (max-width:899px){#w-deko .w-flocke{display:none}}
+:root[data-weihnachten] .kopf h1{color:#fff}
+:root[data-weihnachten] .marke{color:#F2D27A}
+:root[data-weihnachten] .marke i{background:repeating-linear-gradient(180deg,#D9A93B 0 2px,transparent 2px 3px)}
+:root[data-weihnachten] .tagline{color:#DCE7DF}
+:root[data-weihnachten] .zahlen,:root[data-weihnachten] .kopf .hinweis-admin{color:#C9D8CE}
+#w-box{display:grid;gap:4px;min-width:0}
+.w-karte{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px 18px;max-width:540px;color:#fff}
+.w-karte-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.w-karte-kopf b{font-family:var(--f-display);font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.w-karte-kopf b small{font-family:var(--f-body);font-size:16px;font-weight:600;color:#C9D8CE}
+.w-karte-kopf span{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#F2D27A}
+.w-minis{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.w-minis svg{width:28px;height:35px;flex:none}
+.w-minis span{font-size:14px;color:#E9F0EB;font-weight:600;margin-left:4px}
+.w-karte p{font-size:14.5px;color:#D3E0D7;margin:10px 0 0;line-height:1.45}
+.w-figur{position:relative;height:330px;margin-top:6px}
+.w-figur .w-junge{position:absolute;bottom:4px;left:64%;transform:translateX(-50%);width:230px;height:auto}
+.w-figur .w-voll{position:absolute;bottom:14px;left:0;width:105px;height:auto}
+.w-blase{position:absolute;top:70px;left:0;background:#fff;color:#181B19;font-weight:700;font-size:13.5px;padding:10px 14px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:2;max-width:140px;line-height:1.3}
+.w-blase::after{content:"";position:absolute;right:-9px;top:14px;border:10px solid transparent;border-left-color:#fff;border-right:0}
+@media (min-width:900px){
+  :root[data-wglas] .kopf{padding-right:470px;min-height:560px;align-content:start}
+  .w-figur{position:absolute;right:16px;bottom:30px;width:440px;height:480px;margin:0}
+  .w-figur .w-junge{width:310px;left:62%}
+  .w-figur .w-voll{width:150px;left:30px;bottom:16px}
+  .w-blase{top:110px;left:-40px;font-size:15px;max-width:200px}
+  .w-blase::after{top:16px}
+}
+.badge.glas{background:#D9A93B;color:#17402C;text-transform:none;letter-spacing:0}
+.w-wahl{display:grid;gap:8px}
+.w-wahl label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:600;font-size:14.5px}
+.w-wahl label:has(input:checked){border-color:var(--accent);background:color-mix(in oklab,var(--accent) 7%,var(--surface))}
+.w-wahl input{width:18px;height:18px;margin:2px 0 0;flex:none;accent-color:var(--accent)}
+.w-wahl small{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+.w-stand{background:var(--surface-2);border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:14px}
+.w-stand b{font-family:var(--f-display);font-size:24px;font-weight:800}
+.w-stand .zeile-w{display:flex;justify-content:space-between;gap:10px;color:var(--muted)}
+.w-warn{background:color-mix(in oklab,var(--warn) 14%,var(--surface));color:var(--ink);border-radius:10px;padding:8px 10px;font-size:13px}
+
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 
@@ -486,7 +541,8 @@ const ICON = {
   pin: '<path d="M9 4h6l-1 6 3 3H7l3-3zM12 13v7"/>',
   extern: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   wuerfel: '<path d="M12 3 4 7.5v9L12 21l8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/>',
-  zurueck: '<path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/>'
+  zurueck: '<path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/>',
+  geschenk: '<path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13"/><path d="M12 7c-1.5-3.5-6-4-6-1.5S9.5 7 12 7zm0 0c1.5-3.5 6-4 6-1.5S14.5 7 12 7z"/>'
 };
 function icon(name) {
   const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -586,6 +642,25 @@ const STATUS = { verfuegbar: 'Verfügbar', anfrage: 'Auf Anfrage', ausverkauft: 
 const MATERIALIEN = ['PLA', 'PETG', 'TPU (flexibel)', 'ABS/ASA', 'PLA Silk', 'PLA Matt', 'Anderes'];
 const NEU_TAGE = 21;
 const KOSTEN_STANDARD = { spulePreisCent: 2000, spuleGramm: 1000, stromCentKwh: 37, watt: 125, verschleissCentStunde: 11 };
+/* Weihnachts-Design mit Spendenglas: liegt in shop/info unter "weihnachten" (für Kunden lesbar).
+   betragCent und karten (Gewinn je Produkt) rechnet die Verwaltung aus Bestellungen und Kosten und speichert sie dort. */
+const WEIH_STANDARD = { aktiv: false, glas: true, zweck: 'das WDR 2 Weihnachtswunder', zusatz: 'gemeinsam gegen den Hunger in der Welt',
+  proGlasCent: 5000, modus: 'gewinn', festCent: 100, extraCent: 0, seit: null, betragCent: 0, karten: {}, danke: false, gespendetCent: null };
+function normWeih(d) {
+  const w = Object.assign({}, WEIH_STANDARD, d && typeof d === 'object' ? d : {});
+  if (!['gewinn', 'fest', 'hand'].includes(w.modus)) w.modus = 'gewinn';
+  const cent = (x, min, std) => Number.isFinite(x) && x >= min ? Math.round(x) : std;
+  w.proGlasCent = cent(w.proGlasCent, 100, 5000);
+  w.festCent = cent(w.festCent, 0, 100);
+  w.extraCent = cent(w.extraCent, 0, 0);
+  w.betragCent = cent(w.betragCent, 0, 0);
+  w.gespendetCent = Number.isFinite(w.gespendetCent) && w.gespendetCent >= 0 ? Math.round(w.gespendetCent) : null;
+  w.seit = Number.isFinite(w.seit) ? w.seit : null;
+  if (!w.karten || typeof w.karten !== 'object' || Array.isArray(w.karten)) w.karten = {};
+  w.aktiv = w.aktiv === true; w.glas = w.glas !== false; w.danke = w.danke === true;
+  w.zweck = String(w.zweck || '').slice(0, 80); w.zusatz = String(w.zusatz || '').slice(0, 120);
+  return w;
+}
 
 /* ============ Zustand ============ */
 const S = {
@@ -607,7 +682,8 @@ function normShop(d) {
     kontakt: Object.assign({ whatsapp: '', email: '', hinweis: '' }, d.kontakt || {}),
     logo: d.logo || null,
     taglineGroesse: Number.isFinite(d.taglineGroesse) ? Math.min(40, Math.max(12, d.taglineGroesse)) : 16,
-    recht: Object.assign({ betreiber: '', strasse: '', ort: '', telefon: '', kleinunternehmer: false, dbRegion: '' }, d.recht || {})
+    recht: Object.assign({ betreiber: '', strasse: '', ort: '', telefon: '', kleinunternehmer: false, dbRegion: '' }, d.recht || {}),
+    weihnachten: normWeih(d.weihnachten)
   };
 }
 
@@ -795,6 +871,8 @@ function renderKopf() {
       h('button', { class: 'btn', onclick: oeffneBestellungen }, icon('liste'), 'Bestellungen',
         S.best.liste.filter(b => b.status === 'neu').length ? h('span', { class: 'zahl-punkt', text: String(S.best.liste.filter(b => b.status === 'neu').length) }) : null),
       h('button', { class: 'btn', onclick: oeffneShopEinstellungen }, icon('zahnrad'), 'Shop, Angebote & Kosten'),
+      h('button', { class: 'btn', onclick: oeffneWeihnachten }, icon('geschenk'), 'Weihnachten & Spendenglas',
+        S.shop.weihnachten.aktiv ? h('span', { class: 'zahl-punkt', text: 'an' }) : null),
       (S.produkteGeladen && !S.produkte.length) ? h('button', { class: 'btn', onclick: oeffneUmzug }, icon('zurueck'), 'Daten aus altem Shop holen') : null,
       entwuerfe ? h('span', { class: 'hinweis-admin', text: `${entwuerfe} ${entwuerfe === 1 ? 'Entwurf' : 'Entwürfe'} (für Kunden unsichtbar)` }) : null,
       S.sort === 'empfohlen' && S.produkte.length > 1 ? h('span', { class: 'hinweis-admin', text: 'Reihenfolge: mit den Pfeilen auf den Karten verschieben.' }) : null
@@ -806,6 +884,7 @@ function renderKopf() {
   if (k2.email) fk.append('E-Mail: ', h('span', { class: 'sel', text: k2.email }));
   if (!k2.whatsapp && !k2.email) fk.append('Jedes Teil wird mit Sorgfalt gedruckt.');
   renderKonto();
+  renderWeihnachten();
 }
 
 function merkeKat() {
@@ -860,6 +939,8 @@ function karte(p, { reihenfolge = null } = {}) {
     if (p.nachdrucken === false && typeof p.lager === 'number' && p.lager > 0 && p.lager <= 3) badges.push(h('span', { class: 'badge knapp', text: `Nur noch ${p.lager}` }));
   }
   if (p.modell && p.modell.id) badges.push(h('span', { class: 'badge drei', text: '3D' }));
+  const glasCent = glasProStueck(p);
+  if (glasCent) badges.push(h('span', { class: 'badge glas', text: `+${euro(glasCent)} ins Glas` }));
   let adminZeile = null;
   if (verwalten()) {
     const g = gewinnKurz(p), teile = [];
@@ -2755,7 +2836,7 @@ async function ladeBestellungen() {
   try { ({ data, error } = await S.sb.from('bestellungen').select('*').order('id', { ascending: false }).limit(300)); }
   catch (e) { error = e || { message: 'Fehler' }; }
   if (error) S.best = { status: /bestellungen|does not exist|42P01|PGRST205/i.test(String(error.message) + ' ' + error.code) ? 'fehlt' : 'fehler', liste: S.best.liste };
-  else S.best = { status: 'bereit', liste: data || [] };
+  else { S.best = { status: 'bereit', liste: data || [] }; weihSync(); }
   renderKopf();
   if (bestellungenNeuZeichnen) bestellungenNeuZeichnen();
 }
@@ -2806,7 +2887,7 @@ function oeffneBestellungen() {
         const { error } = await S.sb.from('bestellungen').update({ status: sel.value }).eq('id', b.id);
         sel.disabled = false;
         if (error) { b.status = alt; sel.value = alt; toast('Status konnte nicht gespeichert werden.', true); return; }
-        toast(`#${b.id}: ${BEST_STATUS[b.status]}`); renderKopf(); zeichnen();
+        toast(`#${b.id}: ${BEST_STATUS[b.status]}`); renderKopf(); zeichnen(); weihSync();
       });
       const wann = new Date(b.erstellt).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' });
       box.append(h('article', { class: 'best-karte' + (b.status === 'neu' ? ' neu' : '') },
@@ -2826,7 +2907,7 @@ function oeffneBestellungen() {
             if (!(await bestaetigen(`#${b.id} löschen?`, 'Die Bestellung und die Daten des Kunden werden endgültig entfernt.', 'Endgültig löschen'))) return;
             const { error } = await S.sb.from('bestellungen').delete().eq('id', b.id);
             if (error) { toast('Löschen hat nicht geklappt.', true); return; }
-            S.best.liste = S.best.liste.filter(x => x.id !== b.id); renderKopf(); zeichnen(); toast(`#${b.id} gelöscht`);
+            S.best.liste = S.best.liste.filter(x => x.id !== b.id); renderKopf(); zeichnen(); weihSync(); toast(`#${b.id} gelöscht`);
           } }, icon('muell'), 'Löschen'))));
     }
     inhalt.replaceChildren(kopf, box,
@@ -2836,6 +2917,309 @@ function oeffneBestellungen() {
   oeffneBlatt('Bestellungen', inhalt, { beimSchliessen: () => { bestellungenNeuZeichnen = null; return true; } });
   zeichnen();
   ladeBestellungen();
+}
+
+/* ============ Weihnachts-Design & Spendenglas ============ */
+const weihAn = () => S.shopGeladen && S.shop.weihnachten.aktiv;
+const euroGanz = c => Math.round((c || 0) / 100).toLocaleString('de-DE') + ' €';
+const ORDNUNG = ['erste', 'zweite', 'dritte', 'vierte', 'fünfte', 'sechste', 'siebte', 'achte', 'neunte', 'zehnte', 'elfte', 'zwölfte'];
+const ordnung = n => ORDNUNG[n - 1] || `${n}.`;
+let glasNr = 0;
+/* Ein Glas als SVG-Inhalt (Raum 120 × 150), fill 0 … 1 */
+function glasSvg(fill) {
+  const id = 'wg' + (++glasNr);
+  let seed = 7; const r = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  const W = 120, top = 34, bot = 142, left = 14, right = 106;
+  const innerH = bot - top - 6, level = bot - 4 - innerH * Math.max(0, Math.min(1, fill));
+  let inhalt = `<rect x="0" y="${level}" width="${W}" height="200" fill="#B98A2A" opacity=".45"/>`;
+  for (let row = 0; ; row++) {
+    const y = bot - 6 - row * 6.5;
+    if (y < level - 2) break;
+    const off = row % 2 ? 7 : 0;
+    for (let x = left + 2 + off; x < right + 4; x += 13) {
+      const t = r();
+      if (t < .09) {
+        inhalt += `<g transform="rotate(${(r() * 40 - 20).toFixed(1)} ${x + 8} ${y})"><rect x="${x - 4}" y="${y - 5}" width="24" height="11" rx="1.5" fill="#6FAE73" stroke="#3F7A48"/><circle cx="${x + 8}" cy="${y + .5}" r="3" fill="none" stroke="#3F7A48"/></g>`;
+      } else {
+        const c = t < .6 ? ['#E3B341', '#B9851F'] : t < .85 ? ['#F0CB62', '#C79A2E'] : ['#C9CDD1', '#8E949A'];
+        inhalt += `<ellipse cx="${(x + r() * 3).toFixed(1)}" cy="${y}" rx="7.5" ry="4.2" fill="${c[0]}" stroke="${c[1]}" stroke-width="1.2"/>`;
+      }
+    }
+  }
+  const form = `M${left + 4} ${top} H${right - 4} Q${right} ${top} ${right} ${top + 10} V${bot - 14} Q${right} ${bot} ${right - 16} ${bot} H${left + 16} Q${left} ${bot} ${left} ${bot - 14} V${top + 10} Q${left} ${top} ${left + 4} ${top} Z`;
+  return `<defs><clipPath id="${id}"><path d="${form}"/></clipPath><clipPath id="${id}l"><rect x="0" y="${level - 6}" width="${W}" height="200"/></clipPath></defs>
+  <path d="${form}" fill="#E8F3F7" opacity=".55"/>
+  ${fill > 0 ? `<g clip-path="url(#${id})"><g clip-path="url(#${id}l)">${inhalt}</g></g>` : ''}
+  <path d="${form}" fill="none" stroke="#A8C4D2" stroke-width="3"/>
+  <path d="M${left + 9} ${top + 16} V${bot - 26}" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+  <rect x="${left + 6}" y="${top - 8}" width="${right - left - 12}" height="12" rx="3" fill="#A8C4D2"/>
+  <rect x="${left + 2}" y="${top - 24}" width="${right - left - 4}" height="18" rx="5" fill="#D9A93B"/>
+  <rect x="${left + 2}" y="${top - 24}" width="${right - left - 4}" height="6" rx="3" fill="#F2D27A"/>
+  <path d="M${left + 6} ${top - 2} Q${W / 2} ${top + 6} ${right - 6} ${top - 2}" stroke="#C8322E" stroke-width="5" fill="none"/>
+  <path d="M${W / 2} ${top + 2} l-12 -7 v14 z M${W / 2} ${top + 2} l12 -7 v14 z" fill="#C8322E"/><circle cx="${W / 2}" cy="${top + 2}" r="3.5" fill="#9E2421"/>`;
+}
+/* Der Junge mit Mütze, Pulli, Baggy-Jeans und Glas (Raum 300 × 434) */
+function jungeSvg(fill) {
+  return `<ellipse cx="150" cy="410" rx="92" ry="9" fill="#000" opacity=".18"/>
+  <path d="M98 290 H150 L147 386 Q116 394 80 386 Q84 336 98 290 Z" fill="#3B6FB6"/>
+  <path d="M150 290 H202 Q216 336 220 386 Q184 394 153 386 Z" fill="#3769AE"/>
+  <path d="M150 296 V384" stroke="#2A5590" stroke-width="2.5"/>
+  <path d="M110 330 Q110 360 102 380 M190 330 Q190 360 198 380" stroke="#2E5C9C" stroke-width="2" fill="none" opacity=".6"/>
+  <path d="M80 372 Q115 382 147 374 L147 388 Q115 396 80 388 Z M153 374 Q185 382 220 372 L220 388 Q185 396 153 388 Z" fill="#6A9BDB"/>
+  <path d="M78 390 Q78 378 102 380 Q130 380 142 392 Q144 406 110 407 Q78 408 78 390 Z M158 392 Q170 380 198 380 Q222 378 222 390 Q222 408 190 407 Q156 406 158 392 Z" fill="#F4F1EA" stroke="#CFC6B6" stroke-width="2"/>
+  <path d="M86 400 H136 M164 400 H214" stroke="#C8322E" stroke-width="4" stroke-linecap="round"/>
+  <path d="M92 204 Q150 188 208 204 Q224 246 224 302 Q150 314 76 302 Q76 246 92 204 Z" fill="#C8322E"/>
+  <path d="M76 284 Q150 296 224 284 L224 304 Q150 316 76 304 Z" fill="#2E7D4A"/>
+  <path d="M80 294 l7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+  <path d="M120 198 Q150 216 180 198 Q170 192 150 192 Q130 192 120 198 Z" fill="#2E7D4A"/>
+  <path d="M94 206 Q62 236 76 282 Q88 302 110 296 L114 276 Q98 268 104 232 Z M206 206 Q238 236 224 282 Q212 302 190 296 L186 276 Q202 268 196 232 Z" fill="#B42D29"/>
+  <path d="M78 282 Q92 300 112 294 M222 282 Q208 300 188 294" stroke="#2E7D4A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M84 250 l5 -4 5 4 5 -4 M201 246 l5 4 5 -4 5 4" stroke="#fff" stroke-width="2" fill="none"/>
+  <g transform="translate(92 194) scale(.97)">${glasSvg(fill)}</g>
+  <ellipse cx="108" cy="290" rx="12" ry="11" fill="#FFD3AE" stroke="#E8B48C" stroke-width="1.5"/>
+  <ellipse cx="192" cy="290" rx="12" ry="11" fill="#FFD3AE" stroke="#E8B48C" stroke-width="1.5"/>
+  <g transform="translate(0 -10)">
+  <circle cx="62" cy="128" r="15" fill="#FFD3AE"/><circle cx="238" cy="128" r="15" fill="#FFD3AE"/>
+  <circle cx="64" cy="128" r="7" fill="#F2B994"/><circle cx="236" cy="128" r="7" fill="#F2B994"/>
+  <ellipse cx="150" cy="120" rx="88" ry="84" fill="#FFDBBB"/>
+  <path d="M60 128 Q50 40 140 30 Q236 22 244 120 Q236 96 222 86 Q214 104 196 92 Q180 108 160 90 Q140 110 120 92 Q100 108 86 92 Q70 104 60 128 Z" fill="#6B3F22"/>
+  <path d="M66 86 Q74 22 150 12 Q208 6 244 34 Q268 54 266 86 L254 88 Q250 60 230 48 Q236 66 234 86 Q150 46 66 86 Z" fill="#C8322E"/>
+  <path d="M150 14 Q120 30 108 62" stroke="#9E2421" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/>
+  <path d="M58 84 Q150 30 242 84 Q246 98 236 104 Q150 56 64 104 Q54 98 58 84 Z" fill="#FBF6EC"/>
+  <path d="M70 96 Q150 52 230 96" stroke="#E2D8C6" stroke-width="3" fill="none"/>
+  <circle cx="262" cy="92" r="15" fill="#FBF6EC"/><circle cx="257" cy="87" r="5" fill="#fff"/>
+  <ellipse cx="117" cy="136" rx="10" ry="13" fill="#2A1E17"/><ellipse cx="183" cy="136" rx="10" ry="13" fill="#2A1E17"/>
+  <circle cx="120" cy="130" r="4" fill="#fff"/><circle cx="186" cy="130" r="4" fill="#fff"/>
+  <circle cx="114" cy="141" r="2" fill="#fff" opacity=".8"/><circle cx="180" cy="141" r="2" fill="#fff" opacity=".8"/>
+  <path d="M102 114 Q116 106 128 112 M172 112 Q184 106 198 114" stroke="#5A341C" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="98" cy="160" rx="13" ry="8" fill="#FF8F8F" opacity=".45"/><ellipse cx="202" cy="160" rx="13" ry="8" fill="#FF8F8F" opacity=".45"/>
+  <path d="M136 160 Q150 176 164 160 Q150 166 136 160 Z" fill="#8E2F2A"/>
+  <path d="M143 166 Q150 170 157 166" stroke="#FF9C9C" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="150" cy="150" rx="4" ry="3" fill="#F2B994"/>
+  </g>`;
+}
+function svgEl(viewBox, inhalt, cls) {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', viewBox); s.setAttribute('aria-hidden', 'true');
+  if (cls) s.setAttribute('class', cls);
+  s.innerHTML = inhalt; return s;
+}
+function weihDeko() {
+  const farben = ['#E04B45', '#F2D27A', '#6FCF8E', '#E04B45', '#F2D27A', '#7CC0F0'];
+  let draht = 'M0 8 ', birnen = '';
+  for (let i = 0; i <= 16; i++) {
+    const x = i * 80; draht += `Q${x + 40} 30 ${x + 80} 8 `;
+    birnen += `<rect x="${x + 37}" y="17" width="6" height="5" fill="#3A3A3A"/><ellipse cx="${x + 40}" cy="28" rx="6" ry="9" fill="${farben[i % 6]}"/><ellipse cx="${x + 40}" cy="28" rx="14" ry="16" fill="${farben[i % 6]}" opacity=".18"/>`;
+  }
+  const lichter = svgEl('0 0 1280 46', `<path d="${draht}" stroke="#0E2A1C" stroke-width="2.5" fill="none"/>${birnen}`, 'w-lichter');
+  lichter.setAttribute('preserveAspectRatio', 'xMidYMin slice');
+  let seed = 3; const r = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  let schnee = '';
+  for (let i = 0; i < 110; i++) schnee += `<circle cx="${(r() * 1600).toFixed(0)}" cy="${(r() * 700).toFixed(0)}" r="${(1 + r() * 2.6).toFixed(1)}" fill="#fff" opacity="${(.25 + r() * .4).toFixed(2)}"/>`;
+  for (let i = 0; i < 12; i++) {
+    const x = 900 + r() * 650, y = 50 + r() * 600, z = 8 + r() * 10;
+    schnee += `<g class="w-flocke" transform="translate(${x.toFixed(0)} ${y.toFixed(0)})" stroke="#fff" stroke-width="1.6" opacity=".45" stroke-linecap="round">${[0, 60, 120].map(a => `<path transform="rotate(${a})" d="M0 -${z} V${z} M-3 -${z - 4} L0 -${z - 1} L3 -${z - 4} M-3 ${z - 4} L0 ${z - 1} L3 ${z - 4}"/>`).join('')}</g>`;
+  }
+  const flocken = svgEl('0 0 1600 700', schnee, 'w-schnee');
+  flocken.setAttribute('preserveAspectRatio', 'xMaxYMin slice');
+  const boden = svgEl('0 0 1280 44', '<path d="M0,26 C120,6 230,30 360,18 C500,4 600,28 740,16 C880,4 980,26 1110,14 C1190,8 1240,14 1280,18 L1280,44 L0,44 Z" fill="var(--bg)"/>', 'w-boden');
+  boden.setAttribute('preserveAspectRatio', 'none');
+  return h('div', { id: 'w-deko', 'aria-hidden': 'true' }, flocken, lichter, boden);
+}
+/* Was Kunden auf einer Produktkarte sehen: so viel kommt pro Stück ins Glas */
+function glasProStueck(p) {
+  if (!weihAn()) return null;
+  const w = S.shop.weihnachten;
+  if (!w.glas || w.danke) return null;
+  if (w.modus === 'fest') return w.festCent > 0 ? w.festCent : null;
+  if (w.modus === 'gewinn') { const c = w.karten[p.id]; return Number.isFinite(c) && c > 0 ? c : null; }
+  return null;
+}
+let weihSchluessel = '';
+function renderWeihnachten() {
+  const an = weihAn(), w = S.shop.weihnachten;
+  document.documentElement.toggleAttribute('data-weihnachten', an);
+  document.documentElement.toggleAttribute('data-wglas', an && w.glas);
+  const kopf = $('.kopf');
+  if (!an) { $('#w-deko')?.remove(); $('#w-box')?.remove(); weihSchluessel = ''; return; }
+  if (!$('#w-deko')) kopf.prepend(weihDeko());
+  const betrag = w.danke ? (w.gespendetCent ?? w.betragCent) : w.betragCent;
+  const schluessel = JSON.stringify([w.glas, w.danke, betrag, w.proGlasCent, w.zweck, w.zusatz, w.modus, w.festCent]);
+  if (schluessel === weihSchluessel && $('#w-box')) return;
+  weihSchluessel = schluessel;
+  $('#w-box')?.remove();
+  if (!w.glas) return;
+  const voll = Math.floor(betrag / w.proGlasCent), rest = (betrag % w.proGlasCent) / w.proGlasCent;
+  // kleine Gläser in der Karte
+  const minis = h('div', { class: 'w-minis' });
+  const anzahl = voll + (rest > 0 || !voll ? 1 : 0);
+  for (let i = 0; i < Math.min(anzahl, 10); i++) minis.append(svgEl('0 0 120 150', glasSvg(i < voll ? 1 : rest)));
+  const mehr = anzahl > 10 ? ` (+${anzahl - 10})` : '';
+  minis.append(h('span', { text: w.danke ? (voll ? `${voll} ${voll === 1 ? 'volles Glas' : 'volle Gläser'}${rest > 0 ? ' und ein bisschen' : ''}` : 'Ein Glas') + mehr : (voll === 0 ? (betrag ? 'Das erste Glas füllt sich' : 'Das Glas wartet auf den ersten Euro')
+    : voll === 1 ? (rest > 0 ? '1 Glas voll, das zweite füllt sich' : '1 Glas voll')
+    : `${voll} Gläser voll` + (rest > 0 ? `, das ${ordnung(voll + 1)} füllt sich` : '')) + mehr }));
+  const ziel = (w.zweck || 'einen guten Zweck') + (w.zusatz ? `: ${w.zusatz}` : '');
+  const text = w.danke
+    ? `So viel ist mit euren Einkäufen zusammengekommen. Das ganze Geld ist an ${ziel} gegangen. Danke an alle, die mitgemacht haben!`
+    : (w.modus === 'gewinn' ? 'Der ganze Gewinn aus jedem Verkauf kommt ins Spendenglas. '
+      : w.modus === 'fest' ? `Von jedem verkauften Teil kommen ${euro(w.festCent)} ins Spendenglas. ` : 'Wir sammeln im Spendenglas. ')
+      + `Alles geht an ${ziel}. Ist ein Glas voll, kommt ein neues dazu.`;
+  const karte = h('div', { class: 'w-karte' },
+    h('div', { class: 'w-karte-kopf' }, h('b', null, euroGanz(betrag) + ' ', h('small', { text: w.danke ? 'gespendet' : 'gesammelt' })), h('span', { text: w.danke ? 'Danke!' : 'Spendenglas' })),
+    minis, h('p', { text }));
+  // Junge und volle Gläser
+  const blase = w.danke ? `Danke! Wir haben ${euroGanz(betrag)} gespendet!`
+    : !betrag ? 'Hilfst du mit, das erste Glas zu füllen?'
+    : `Schon ${euroGanz(betrag)}! Hilfst du mit, das ${ordnung(voll + 1)} Glas voll zu machen?`;
+  const haltGlas = w.danke && rest === 0 && voll > 0 ? 1 : rest;
+  const stehend = Math.min(w.danke && rest === 0 && voll > 0 ? voll - 1 : voll, 5);
+  const pos = [[0, 150], [126, 150], [0, 0], [126, 0], [63, -150]].slice(0, stehend);
+  const figur = h('div', { class: 'w-figur', 'aria-hidden': 'true' },
+    h('div', { class: 'w-blase', text: blase }),
+    stehend ? svgEl('0 -150 250 450', pos.map(q => `<g transform="translate(${q[0]} ${q[1]})">${glasSvg(1)}</g>`).join(''), 'w-voll') : null,
+    svgEl('0 -14 300 434', jungeSvg(haltGlas), 'w-junge'));
+  const box = h('div', { id: 'w-box' }, karte, figur);
+  const zahlen = $('#zahlen');
+  zahlen.before(box);
+}
+
+/* Verwaltung: Betrag aus abgeholten Bestellungen rechnen und für Kunden speichern */
+function weihBerechnen(w) {
+  let ausVerkauf = 0, teile = 0, bestellungen = 0, ohnePos = 0;
+  const fehlt = new Set();
+  if (w.modus !== 'hand') for (const b of S.best.liste) {
+    if (b.art === 'wunsch' || b.status !== 'abgeholt') continue;
+    if (w.seit && new Date(b.erstellt).getTime() < w.seit) continue;
+    const pos = Array.isArray(b.positionen) ? b.positionen : [];
+    if (!pos.length) { ohnePos++; continue; }
+    bestellungen++;
+    for (const x of pos) {
+      const menge = Math.max(0, Math.round(Number(x.menge) || 0)); if (!menge) continue;
+      teile += menge;
+      if (w.modus === 'fest') { ausVerkauf += menge * w.festCent; continue; }
+      const p = S.produkte.find(q => q.id === x.id);
+      const k = p && produktKosten(p, x.variante);
+      if (!k || typeof x.einzelCent !== 'number') { fehlt.add(x.name || (p && p.name) || 'Unbekanntes Produkt'); continue; }
+      ausVerkauf += Math.max(0, Math.round(x.einzelCent - k.summe)) * menge;
+    }
+  }
+  const karten = {};
+  if (w.modus === 'gewinn') for (const p of S.produkte) {
+    if (p.sichtbar === false || p.beispiel) continue;
+    const g = gewinnKurz(p);
+    if (g && g.gewinn >= 10) karten[p.id] = Math.round(g.gewinn / 10) * 10;
+  }
+  const ohneKosten = w.modus === 'gewinn' ? S.produkte.filter(p => p.sichtbar !== false && !p.beispiel && !gewinnKurz(p)).map(p => p.name || 'Ohne Namen') : [];
+  return { ausVerkauf, teile, bestellungen, ohnePos, fehlt: [...fehlt], ohneKosten, karten, betragCent: ausVerkauf + w.extraCent };
+}
+const gleicheKarten = (a, b) => { const ka = Object.keys(a), kb = Object.keys(b); return ka.length === kb.length && ka.every(k => a[k] === b[k]); };
+const weihBereit = () => S.darfVerwalten && S.shopGeladen && S.produkteGeladen && S.intern.kostenGeladen && S.intern.geladen && S.best.status === 'bereit';
+let weihSyncTimer = null;
+function weihSync() {
+  if (!weihBereit() || !S.shop.weihnachten.aktiv) return;
+  clearTimeout(weihSyncTimer);
+  weihSyncTimer = setTimeout(async () => {
+    if (!weihBereit()) return;
+    const w = S.shop.weihnachten; if (!w.aktiv) return;
+    const r = weihBerechnen(w);
+    if (r.betragCent === w.betragCent && gleicheKarten(r.karten, w.karten)) return;
+    try { await S.db.doc('shop/info').update({ weihnachten: { ...w, betragCent: r.betragCent, karten: r.karten } }); } catch {}
+  }, 800);
+}
+
+function oeffneWeihnachten() {
+  const w0 = S.shop.weihnachten;
+  const radio = (name, wert, an, titel, info, extra) => h('label', null,
+    h('input', { type: 'radio', name, value: wert, checked: an }),
+    h('span', null, titel, extra || null, info ? h('small', { text: info }) : null));
+  const dDesign = h('div', { class: 'w-wahl' },
+    radio('w-design', 'normal', !w0.aktiv, 'Normal', 'So wie der Shop sonst aussieht.'),
+    radio('w-design', 'weihnachten', w0.aktiv, 'Weihnachten', 'Grün mit Schnee und Lichterkette, der Junge mit dem Spendenglas steht oben neben dem Namen.'));
+  const fGlas = h('input', { type: 'checkbox', checked: w0.glas });
+  const fZweck = h('input', { type: 'text', class: 'eingabe', value: w0.zweck, maxlength: '80', placeholder: 'das WDR 2 Weihnachtswunder' });
+  const fZusatz = h('input', { type: 'text', class: 'eingabe', value: w0.zusatz, maxlength: '120' });
+  const fProGlas = h('input', { type: 'text', class: 'eingabe', inputmode: 'decimal', value: geldFeld(w0.proGlasCent) });
+  const fFest = h('input', { type: 'text', class: 'eingabe', inputmode: 'decimal', value: geldFeld(w0.festCent), style: 'max-width:110px;min-height:34px;padding:4px 10px;margin-left:8px', 'aria-label': 'Betrag pro Teil in Euro' });
+  const heute = new Date(); const tag = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const fSeit = h('input', { type: 'date', class: 'eingabe', value: tag(w0.seit ? new Date(w0.seit) : heute) });
+  const fExtra = h('input', { type: 'text', class: 'eingabe', inputmode: 'decimal', value: geldFeld(w0.extraCent) });
+  const dModus = h('div', { class: 'w-wahl' },
+    radio('w-modus', 'gewinn', w0.modus === 'gewinn', 'Der ganze Gewinn', 'Preis minus Kosten, so wie sie bei jedem Produkt eingetragen sind. Zählt, sobald eine Bestellung auf „Abgeholt“ steht.'),
+    radio('w-modus', 'fest', w0.modus === 'fest', 'Fester Betrag pro Teil', 'Jedes verkaufte Teil bringt gleich viel ins Glas.', fFest),
+    radio('w-modus', 'hand', w0.modus === 'hand', 'Selbst eintragen', 'Nur der Betrag unten bei „Extra von Hand“ zählt.'));
+  const fDanke = h('input', { type: 'checkbox', checked: w0.danke });
+  const fGespendet = h('input', { type: 'text', class: 'eingabe', inputmode: 'decimal', value: geldFeld(w0.gespendetCent ?? undefined) });
+  const stand = h('div', { class: 'w-stand', role: 'status' });
+  const fehlerBox = h('div', { class: 'fehler', role: 'alert' });
+  const speichernBtn = h('button', { type: 'submit', class: 'btn primaer', text: 'Speichern' });
+
+  const wert = name => form.querySelector(`input[name="${name}"]:checked`)?.value;
+  function lesen() {
+    const pg = geldLesen(fProGlas.value), fe = geldLesen(fFest.value), ex = geldLesen(fExtra.value), gs = geldLesen(fGespendet.value);
+    if (!pg.ok || !pg.wert || pg.wert < 100) return { fehler: 'Ein Glas muss mindestens 1 € fassen.' };
+    if (!fe.ok) return { fehler: 'Der Betrag pro Teil ist keine gültige Zahl.' };
+    if (!ex.ok) return { fehler: '„Extra von Hand“ ist keine gültige Zahl.' };
+    if (!gs.ok) return { fehler: 'Der gespendete Betrag ist keine gültige Zahl.' };
+    const seit = fSeit.value ? new Date(fSeit.value + 'T00:00:00').getTime() : null;
+    return { w: normWeih({ ...w0, aktiv: wert('w-design') === 'weihnachten', glas: fGlas.checked, zweck: fZweck.value.trim() || WEIH_STANDARD.zweck,
+      zusatz: fZusatz.value.trim(), proGlasCent: pg.wert, modus: wert('w-modus') || 'gewinn', festCent: fe.wert ?? 0, extraCent: ex.wert ?? 0,
+      seit: Number.isFinite(seit) ? seit : null, danke: fDanke.checked, gespendetCent: gs.wert }) };
+  }
+  function standZeigen() {
+    const l = lesen();
+    if (l.fehler) { stand.replaceChildren(h('span', { class: 'fehler', text: l.fehler })); return; }
+    const w = l.w;
+    if (!weihBereit()) { stand.replaceChildren(h('span', { text: 'Bestellungen und Kosten werden noch geladen …' })); return; }
+    const r = weihBerechnen(w);
+    const zeile = (a, b) => h('div', { class: 'zeile-w' }, h('span', { text: a }), h('span', { text: b }));
+    stand.replaceChildren(
+      h('span', { text: 'So viel ist gerade im Glas' }), h('b', { text: euro(r.betragCent) }),
+      w.modus !== 'hand' ? zeile(w.modus === 'gewinn' ? `Gewinn aus ${r.bestellungen} abgeholten Bestellungen (${r.teile} Teile)` : `${r.teile} Teile × ${euro(w.festCent)}`, euro(r.ausVerkauf)) : null,
+      zeile('Extra von Hand', euro(w.extraCent)),
+      r.fehlt.length ? h('div', { class: 'w-warn', text: `Bei diesen verkauften Produkten fehlen die Kosten, sie zählen noch mit 0 €: ${r.fehlt.slice(0, 6).join(', ')}${r.fehlt.length > 6 ? ' …' : ''}. Trag die Kosten im Produkt ein.` }) : null,
+      r.ohneKosten.length ? h('div', { class: 'w-warn', text: `${r.ohneKosten.length} ${r.ohneKosten.length === 1 ? 'Produkt hat' : 'Produkte haben'} noch keine Kosten. Bei ${r.ohneKosten.length === 1 ? 'ihm' : 'ihnen'} steht kein „ins Glas“ auf der Karte.` }) : null,
+      r.ohnePos ? h('div', { class: 'w-warn', text: `${r.ohnePos} abgeholte ${r.ohnePos === 1 ? 'Bestellung hat' : 'Bestellungen haben'} keine Produktliste und ${r.ohnePos === 1 ? 'zählt' : 'zählen'} nicht mit. Trag das Geld dafür bei „Extra von Hand“ ein.` }) : null);
+  }
+
+  const form = h('form', { class: 'form', novalidate: true },
+    h('div', { class: 'abschnitt', style: 'border-top:0;padding-top:0' }, h('h3', { text: 'Welches Design?' }), dDesign,
+      h('small', { class: 'klein-hinweis', text: 'Du kannst jederzeit zurückwechseln. Produkte, Preise und Fotos bleiben gleich.' })),
+    h('div', { class: 'abschnitt' }, h('h3', { text: 'Spendenglas' }),
+      h('label', { class: 'zustimmen' }, fGlas, h('span', { text: 'Spendenglas und Jungen im Shop zeigen' })),
+      h('div', { class: 'zwei' },
+        h('label', { class: 'feld' }, h('span', { text: 'Wofür wird gesammelt?' }), fZweck, h('small', { text: 'So, wie es im Satz steht: „Alles geht an …“' })),
+        h('label', { class: 'feld' }, h('span', { text: 'Kurz erklärt (optional)' }), fZusatz)),
+      h('div', { class: 'zwei' },
+        h('label', { class: 'feld' }, h('span', { text: 'Ein Glas fasst (€)' }), fProGlas, h('small', { text: 'Ist ein Glas voll, stellt der Junge es ab und fängt ein neues an. Es gibt kein Ziel.' })),
+        h('label', { class: 'feld' }, h('span', { text: 'Bestellungen zählen ab' }), fSeit, h('small', { text: 'Ältere Bestellungen kommen nicht ins Glas.' }))),
+      h('div', { class: 'feld' }, h('span', { class: 'feld-titel', text: 'Wie füllt sich das Glas?' }), dModus),
+      h('label', { class: 'feld' }, h('span', { text: 'Extra von Hand (€)' }), fExtra, h('small', { text: 'Zum Beispiel eine Barspende am Abholtag. Wird immer dazugezählt.' })),
+      stand),
+    h('div', { class: 'abschnitt' }, h('h3', { text: 'Nach der Spende' }),
+      h('label', { class: 'zustimmen' }, fDanke, h('span', { text: 'Danke-Text zeigen (erst anschalten, wenn das Geld überwiesen ist)' })),
+      h('label', { class: 'feld' }, h('span', { text: 'Gespendeter Betrag (€)' }), fGespendet, h('small', { text: 'Leer lassen: Dann wird der Betrag aus dem Glas gezeigt.' }))),
+    fehlerBox,
+    h('div', { class: 'form-fuss' }, h('div', { class: 'rechts' }, h('button', { type: 'button', class: 'btn', onclick: () => blatt.schliessen('abbrechen'), text: 'Abbrechen' }), speichernBtn)));
+  form.addEventListener('input', standZeigen);
+  form.addEventListener('change', standZeigen);
+  form.addEventListener('submit', async ev => {
+    ev.preventDefault(); fehlerBox.textContent = '';
+    const l = lesen();
+    if (l.fehler) { fehlerBox.textContent = l.fehler; return; }
+    const w = l.w;
+    if (w.aktiv && !weihBereit()) { fehlerBox.textContent = 'Bestellungen und Kosten sind noch nicht geladen. Warte kurz und versuch es nochmal.'; return; }
+    if (weihBereit()) { const r = weihBerechnen(w); w.betragCent = r.betragCent; w.karten = r.karten; }
+    speichernBtn.disabled = true; speichernBtn.textContent = 'Speichert …';
+    try {
+      await S.db.doc('shop/info').update({ weihnachten: w });
+      schliesseBlattSofort(); toast(w.aktiv ? 'Weihnachts-Design ist an' : 'Gespeichert');
+    } catch (err) {
+      speichernBtn.disabled = false; speichernBtn.textContent = 'Speichern';
+      fehlerBox.textContent = speicherFehlerText(err);
+    }
+  });
+  const blatt = oeffneBlatt('Weihnachten & Spendenglas', form);
+  standZeigen();
 }
 
 /* ============ Shop, Angebote & Kosten ============ */
@@ -3033,7 +3417,8 @@ function oeffneShopEinstellungen() {
       await S.db.doc('shop/info').set({
         name, tagline: fTag.value.trim(), taglineGroesse: Number(fGroesse.value) || 16, kategorien: sauber, angebote: angSauber, logo: logo || null,
         kontakt: { whatsapp: fWa.value.trim(), email: mail, hinweis: fHinweis.value.trim() },
-        recht: { betreiber: fBetreiber.value.trim(), strasse: fStrasse.value.trim(), ort: fOrt.value.trim(), telefon: fTelefon.value.trim(), kleinunternehmer: fKlein.checked, dbRegion: fRegion.value }
+        recht: { betreiber: fBetreiber.value.trim(), strasse: fStrasse.value.trim(), ort: fOrt.value.trim(), telefon: fTelefon.value.trim(), kleinunternehmer: fKlein.checked, dbRegion: fRegion.value },
+        weihnachten: S.shop.weihnachten
       });
       // Logo ist jetzt live: alte und verworfene Logos aufräumen, das neue nicht mehr anfassen
       for (const id of logoNeu) if (id !== logo) S.assets?.delete(id).catch(() => {});
@@ -3304,7 +3689,7 @@ async function abmelden() {
 
   db.doc('shop/info').onSnapshot(snap => {
     if (snap.exists) S.shop = normShop(snap.data());
-    S.shopGeladen = true;
+    S.shopGeladen = true; weihSync();
     render();
     if (rechtSeiteOffen) { const f = rechtSeiteOffen; rechtSeiteOffen = null; f(); }
   }, () => { S.status = 'offline'; render(); });
@@ -3315,7 +3700,7 @@ async function abmelden() {
       if (Array.isArray(p.farben)) p.farben = p.farben.map(normFarbe);
       return p;
     });
-    S.produkteGeladen = true;
+    S.produkteGeladen = true; weihSync();
     if (S.status === 'offline') S.status = 'bereit';
     render();
   }, () => { S.status = 'offline'; render(); });
@@ -3328,7 +3713,7 @@ async function abmelden() {
     }, () => {});
     db.collection('intern/kosten/produkte').onSnapshot(q => {
       const k = {}; q.docs.forEach(d => { k[d.id] = d.data(); });
-      S.intern.kosten = k;
+      S.intern.kosten = k; S.intern.kostenGeladen = true; weihSync();
       if (verwalten()) { renderBereiche(); renderRaster(); }
     }, () => {});
   }
