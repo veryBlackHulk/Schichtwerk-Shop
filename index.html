@@ -431,7 +431,6 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
   .w-blase{top:110px;left:-40px;font-size:15px;max-width:200px}
   .w-blase::after{top:16px}
 }
-.badge.glas{background:#D9A93B;color:#17402C;text-transform:none;letter-spacing:0}
 .w-wahl{display:grid;gap:8px}
 .w-wahl label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:600;font-size:14.5px}
 .w-wahl label:has(input:checked){border-color:var(--accent);background:color-mix(in oklab,var(--accent) 7%,var(--surface))}
@@ -939,8 +938,6 @@ function karte(p, { reihenfolge = null } = {}) {
     if (p.nachdrucken === false && typeof p.lager === 'number' && p.lager > 0 && p.lager <= 3) badges.push(h('span', { class: 'badge knapp', text: `Nur noch ${p.lager}` }));
   }
   if (p.modell && p.modell.id) badges.push(h('span', { class: 'badge drei', text: '3D' }));
-  const glasCent = glasProStueck(p);
-  if (glasCent) badges.push(h('span', { class: 'badge glas', text: `+${euro(glasCent)} ins Glas` }));
   let adminZeile = null;
   if (verwalten()) {
     const g = gewinnKurz(p), teile = [];
@@ -3026,15 +3023,6 @@ function weihDeko() {
   boden.setAttribute('preserveAspectRatio', 'none');
   return h('div', { id: 'w-deko', 'aria-hidden': 'true' }, flocken, lichter, boden);
 }
-/* Was Kunden auf einer Produktkarte sehen: so viel kommt pro Stück ins Glas */
-function glasProStueck(p) {
-  if (!weihAn()) return null;
-  const w = S.shop.weihnachten;
-  if (!w.glas || w.danke) return null;
-  if (w.modus === 'fest') return w.festCent > 0 ? w.festCent : null;
-  if (w.modus === 'gewinn') { const c = w.karten[p.id]; return Number.isFinite(c) && c > 0 ? c : null; }
-  return null;
-}
 let weihSchluessel = '';
 function renderWeihnachten() {
   const an = weihAn(), w = S.shop.weihnachten;
@@ -3177,7 +3165,7 @@ function oeffneWeihnachten() {
       w.modus !== 'hand' ? zeile(w.modus === 'gewinn' ? `Gewinn aus ${r.bestellungen} abgeholten Bestellungen (${r.teile} Teile)` : `${r.teile} Teile × ${euro(w.festCent)}`, euro(r.ausVerkauf)) : null,
       zeile('Extra von Hand', euro(w.extraCent)),
       r.fehlt.length ? h('div', { class: 'w-warn', text: `Bei diesen verkauften Produkten fehlen die Kosten, sie zählen noch mit 0 €: ${r.fehlt.slice(0, 6).join(', ')}${r.fehlt.length > 6 ? ' …' : ''}. Trag die Kosten im Produkt ein.` }) : null,
-      r.ohneKosten.length ? h('div', { class: 'w-warn', text: `${r.ohneKosten.length} ${r.ohneKosten.length === 1 ? 'Produkt hat' : 'Produkte haben'} noch keine Kosten. Bei ${r.ohneKosten.length === 1 ? 'ihm' : 'ihnen'} steht kein „ins Glas“ auf der Karte.` }) : null,
+      r.ohneKosten.length ? h('div', { class: 'w-warn', text: `${r.ohneKosten.length} ${r.ohneKosten.length === 1 ? 'Produkt hat' : 'Produkte haben'} noch keine Kosten. Wenn ${r.ohneKosten.length === 1 ? 'es' : 'sie'} verkauft ${r.ohneKosten.length === 1 ? 'wird' : 'werden'}, zählt der Gewinn mit 0 €.` }) : null,
       r.ohnePos ? h('div', { class: 'w-warn', text: `${r.ohnePos} abgeholte ${r.ohnePos === 1 ? 'Bestellung hat' : 'Bestellungen haben'} keine Produktliste und ${r.ohnePos === 1 ? 'zählt' : 'zählen'} nicht mit. Trag das Geld dafür bei „Extra von Hand“ ein.` }) : null);
   }
 
