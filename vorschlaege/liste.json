@@ -1429,6 +1429,47 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-1258344",
+      "erstellt": "2026-10-29",
+      "name": "Halter für USB-Sticks, SD- und microSD-Karten",
+      "kategorie": "Schreibtisch",
+      "preisCent": 350,
+      "beschreibung": "Kleiner Halter für den Schreibtisch, in dem deine Speichermedien ordentlich nebeneinander stehen. Er hat Steckplätze für 8 USB-Sticks, 7 SD-Karten und 6 microSD-Karten, so liegt nichts mehr lose in der Schublade herum und du siehst sofort, wo welcher Stick steckt. Der Halter ist kompakt und flach gebaut, passt neben Bildschirm oder Laptop und lässt sich auch gut in die Tasche packen, wenn du Karten und Sticks unterwegs dabeihaben willst. Er ist aus einem Stück gedruckt und braucht keine Zusatzteile.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: PrintLabForge auf MakerWorld (https://makerworld.com/en/models/1258344-usb-sd-card-holder), Lizenz CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von PrintLabForge (MakerWorld), Lizenz CC BY-SA 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "",
+      "gewicht": "ca. 19 g",
+      "farben": [
+        "Braun",
+        "Grün",
+        "Rot",
+        "Gold"
+      ],
+      "druckTage": 3,
+      "gramm": 19,
+      "minuten": 62,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 0,43 € (19 g PLA geschätzt, 62 min Druck). Vergleichbare Angebote 9,45 €–11,78 € (Mitte 10,62 €). Preis 3,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000001258344/design/2025-03-29_6579cb5ee4a76.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000001258344/design/2025-03-29_d83a2280bff1e.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/DSM00000001258344/design/2025-03-29_f448a0577c6d.jpg?x-oss-process=image/resize,w_1000/format,webp"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: PrintLabForge (MakerWorld), Lizenz CC BY-SA 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/1258344-usb-sd-card-holder",
+        "titel": "USB & SD Card Holder",
+        "designer": "PrintLabForge",
+        "lizenz": "CC BY-SA 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     }
   ]
 }
