@@ -481,7 +481,7 @@ details.selbst > div{display:grid;gap:8px;margin-top:10px}
 
 <footer class="wrap fuss" id="fuss">
   <span><b>So bestellst du:</b> Produkte in den Warenkorb legen und unverbindlich reservieren. Wir melden uns per E-Mail mit einem Abholtermin. Gekauft und bezahlt wird erst bei der Abholung.</span>
-  <span class="recht-links"><button type="button" class="konto-link" id="impressum-link">Impressum</button> · <button type="button" class="konto-link" id="datenschutz-link">Datenschutz</button> · <button type="button" class="konto-link" id="bedingungen-link">Bestellbedingungen</button></span>
+  <span class="recht-links"><button type="button" class="konto-link" id="kontakt-link">Kontakt</button> · <button type="button" class="konto-link" id="impressum-link">Impressum</button> · <button type="button" class="konto-link" id="datenschutz-link">Datenschutz</button> · <button type="button" class="konto-link" id="bedingungen-link">Bestellbedingungen</button></span>
   <span id="fuss-kontakt"></span>
   <span id="fuss-konto"></span>
 </footer>
@@ -1920,6 +1920,51 @@ function oeffneDatenschutz() {
     h('small', { class: 'klein-hinweis', text: 'Stand: ' + BEDINGUNGEN_STAND })));
 }
 $('#impressum-link').addEventListener('click', oeffneImpressum);
+$('#kontakt-link').addEventListener('click', oeffneKontakt);
+
+/* ---------- Kontakt: Nachricht als E-Mail an den Shop ---------- */
+const KONTAKT_MAIL = 'schichtwerk.shop@gmail.com';
+function oeffneKontakt() {
+  const fName = h('input', { type: 'text', class: 'eingabe', autocomplete: 'name', maxlength: '80' });
+  const fMail = h('input', { type: 'email', class: 'eingabe', autocomplete: 'email', inputmode: 'email', maxlength: '120' });
+  const fText = h('textarea', { class: 'eingabe', maxlength: '1500', rows: '6', placeholder: 'Deine Frage, ein Wunsch oder einfach Hallo …' });
+  const fehlerBox = h('div', { class: 'fehler', role: 'alert' });
+  const vorschau = h('pre', { class: 'vorschau', hidden: true });
+  const daten = () => {
+    const name = fName.value.trim(), mail = fMail.value.trim(), text = fText.value.trim();
+    if (!name) return { fehler: 'Bitte gib deinen Namen an.', feld: fName };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return { fehler: 'Bitte gib deine E-Mail-Adresse an, damit wir dir antworten können.', feld: fMail };
+    if (!text) return { fehler: 'Schreib bitte eine Nachricht.', feld: fText };
+    return { betreff: `Nachricht von ${name} über ${S.shop.name || 'den Shop'}`, text: `${text}\n\n${name}\n${mail}` };
+  };
+  const pruefen = () => { fehlerBox.textContent = ''; const d = daten(); if (d.fehler) { fehlerBox.textContent = d.fehler; d.feld.focus(); return null; } return d; };
+  const knopfMail = h('button', { type: 'submit', class: 'btn primaer voll', text: 'E-Mail schreiben' });
+  const knopfGmail = h('button', { type: 'button', class: 'btn voll', text: 'In Gmail öffnen', onclick: () => {
+    const d = pruefen(); if (!d) return;
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(KONTAKT_MAIL) + '&su=' + encodeURIComponent(d.betreff) + '&body=' + encodeURIComponent(d.text), '_blank', 'noopener');
+  } });
+  const knopfKopieren = h('button', { type: 'button', class: 'btn voll', text: 'Nachricht kopieren', onclick: () => {
+    const d = pruefen(); if (!d) return;
+    vorschau.textContent = d.text; vorschau.hidden = false;
+    kopieren(d.text, vorschau, 'Nachricht kopiert');
+  } });
+  const form = h('form', { class: 'form', novalidate: true, onsubmit: e => {
+    e.preventDefault();
+    const d = pruefen(); if (!d) return;
+    location.href = `mailto:${KONTAKT_MAIL}?subject=${encodeURIComponent(d.betreff)}&body=${encodeURIComponent(d.text)}`;
+  } },
+    h('p', { style: 'margin:0', text: 'Hast du eine Frage zu einem Produkt, einen Wunsch oder etwas anderes? Schreib uns. Mit dem Knopf öffnet sich dein E-Mail-Programm mit der fertigen Nachricht, du musst nur noch auf Senden drücken.' }),
+    h('div', { class: 'zwei' },
+      h('label', { class: 'feld' }, h('span', { text: 'Dein Name' }), fName),
+      h('label', { class: 'feld' }, h('span', { text: 'Deine E-Mail' }), fMail)),
+    h('label', { class: 'feld' }, h('span', { text: 'Nachricht' }), fText),
+    fehlerBox, knopfMail, knopfGmail, knopfKopieren, vorschau,
+    h('div', { class: 'kontakt-box' },
+      h('div', { class: 'z' }, 'E-Mail:', h('span', { class: 'wert', text: KONTAKT_MAIL }), h('button', { type: 'button', onclick: () => kopieren(KONTAKT_MAIL, null, 'Adresse kopiert'), text: 'Kopieren' })),
+      h('small', { style: 'color:var(--muted)', text: 'Falls sich nichts öffnet: Nachricht kopieren und selbst an diese Adresse schicken.' })));
+  oeffneBlatt('Kontakt', form);
+  setTimeout(() => fName.focus(), 60);
+}
 $('#datenschutz-link').addEventListener('click', oeffneDatenschutz);
 
 /* Gemeinsames Formular für Bestellung und Wunsch.
@@ -3433,7 +3478,7 @@ if (sortSel.selectedIndex < 0) { S.sort = 'empfohlen'; sortSel.value = 'empfohle
 sortSel.addEventListener('change', () => { S.sort = sortSel.value; lsSet('shop-sort', S.sort); render(); });
 let hash = '';
 try { hash = decodeURIComponent((location.hash || '').slice(1)); } catch {}
-const RECHT_SEITEN = { impressum: () => oeffneImpressum(), datenschutz: () => oeffneDatenschutz(), bestellbedingungen: () => oeffneBedingungen(), bedingungen: () => oeffneBedingungen() };
+const RECHT_SEITEN = { kontakt: () => oeffneKontakt(), impressum: () => oeffneImpressum(), datenschutz: () => oeffneDatenschutz(), bestellbedingungen: () => oeffneBedingungen(), bedingungen: () => oeffneBedingungen() };
 let rechtSeiteOffen = RECHT_SEITEN[hash.toLowerCase()] || null;
 if (hash && !rechtSeiteOffen) S.kat = hash;
 render();
