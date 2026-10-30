@@ -2884,16 +2884,11 @@ async function ladeBestellungen() {
 }
 function antwortLink(b) {
   const vor = (b.name || '').trim().split(/\s+/)[0] || '';
-  const was = b.art === 'wunsch' ? 'deinen Wunsch' : 'deine Reservierung';
-  const L = [`Hallo ${vor},`, '', `vielen Dank für ${was}.`, ''];
-  if (b.art === 'wunsch') L.push('Preis: ', 'Fertig in ca.: ', '');
-  else {
-    L.push('Du kannst sie abholen am: ', `Abholort: ${S.shop.kontakt.hinweis || ''}`);
-    if (typeof b.summe_cent === 'number') L.push(`Betrag (zahlbar bei Abholung): ${euro(b.summe_cent)}`);
-    L.push('', 'Gekauft wird erst bei der Abholung. Du kannst dir die Ware vor Ort ansehen.', '');
-  }
+  const L = [vor ? `Hallo ${vor},` : 'Hallo,', ''];
+  if (b.art === 'wunsch') L.push('vielen Dank für deinen Wunsch.', '', 'Preis: ', 'Fertig in ca.: ', '');
+  else L.push('vielen Dank, dass du bei mir bestellt hast. Ich werde deine Bestellung in einem bis drei Tagen fertig haben. Ich melde mich so schnell wie möglich wegen der Übergabe.', '');
   L.push('Viele Grüße', S.shop.name || '');
-  const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Reservierung'} bei ${S.shop.name || 'uns'}`;
+  const betreff = `${b.art === 'wunsch' ? 'Dein Wunsch' : 'Deine Bestellung'} bei ${S.shop.name || 'uns'}`;
   const absender = (S.shop.kontakt.email || '').trim();
   // Ist die Shop-Adresse ein Gmail-Konto, direkt Gmail mit genau diesem Konto öffnen (unabhängig vom Mail-Programm des PCs)
   if (/^[^@\s]+@(gmail|googlemail)\.com$/i.test(absender)) {
