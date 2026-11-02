@@ -1470,6 +1470,47 @@
         "lizenz": "CC BY-SA 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
       }
+    },
+    {
+      "id": "mw-103599",
+      "erstellt": "2026-11-02",
+      "name": "Vase mit Wabenmuster, 10,5 cm breit",
+      "kategorie": "Deko",
+      "preisCent": 300,
+      "beschreibung": "Diese Vase hat eine Oberfläche aus vielen kleinen Sechsecken, ähnlich einer Bienenwabe. Sie wird in einem Zug als eine einzige, durchgehende Wand gedruckt und wirkt dadurch leicht und gleichmäßig. Der Durchmesser liegt bei etwa 10,5 cm. Sie passt ins Regal, auf die Fensterbank oder auf den Tisch, zum Beispiel für Trockenblumen, Gräser oder Kunstblumen. Für frische Blumen stellst du am besten ein Glas mit Wasser hinein, denn die dünne Wand ist nicht sicher wasserdicht. Glänzende Farben wie Gold lassen das Wabenmuster gut zur Geltung kommen.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: doctor.lex auf MakerWorld (https://makerworld.com/en/models/103599-hex-surface-vase-spiral-print), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von doctor.lex (MakerWorld), Lizenz CC BY 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "ca. 10,5 cm Durchmesser, Höhe je nach gewählter Variante",
+      "gewicht": "ca. 14 g (geschätzt)",
+      "farben": [
+        "Gold",
+        "Braun",
+        "Grün",
+        "Rot"
+      ],
+      "druckTage": 3,
+      "gramm": 14,
+      "minuten": 45,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 0,32 € (14 g PLA geschätzt, 45 min Druck). Vergleichbare Angebote 11,00 €–11,00 € (Mitte 11,00 €). Preis 3,00 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US156e0b095d8002/design/2023-12-23_ssluhkwjyh43.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US156e0b095d8002/design/2023-12-23_esw1oar1rz2e.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US156e0b095d8002/design/2023-12-23_9ebzzse6cyw9.jpg"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: doctor.lex (MakerWorld), Lizenz CC BY 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/103599-hex-surface-vase-spiral-print",
+        "titel": "Hex surface vase (spiral print)",
+        "designer": "doctor.lex",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }
