@@ -1511,6 +1511,46 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-147611",
+      "erstellt": "2026-11-03",
+      "name": "Papierständer für den Schreibtisch",
+      "kategorie": "Schreibtisch",
+      "preisCent": 350,
+      "beschreibung": "Dieser Papierständer hält ein Blatt Papier auf dem Schreibtisch so, dass du es gut lesen kannst. Er ist dafür gedacht, Texte vom Papier in den Computer abzutippen: Das Blatt steht neben deinem Bildschirm, statt flach auf dem Tisch zu liegen oder in deiner Hand. Das hilft zum Beispiel bei Briefen, Formularen, Rechnungen oder handschriftlichen Notizen, die du abschreiben möchtest. Der Ständer braucht keine Schrauben oder anderen Zusatzteile und wiegt etwa 71 g. Er passt ins Homeoffice, ins Büro oder an den Schreibtisch zum Lernen.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: Network_Dad auf MakerWorld (https://makerworld.com/en/models/147611-paper-stand), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von Network_Dad (MakerWorld), Lizenz CC BY 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "",
+      "gewicht": "ca. 71 g",
+      "farben": [
+        "Braun",
+        "Grün",
+        "Gold"
+      ],
+      "druckTage": 3,
+      "gramm": 71,
+      "minuten": 145,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 1,39 € (71 g PLA, 145 min Druck). Kein Marktvergleich gefunden. Preis 3,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US7bd0adef03270f/design/2024-01-19_5b4f0cbb9fd32.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US7bd0adef03270f/design/2024-01-19_8679dc25a0ca5.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US7bd0adef03270f/design/2024-01-19_6f210c02a7f86.jpg"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: Network_Dad (MakerWorld), Lizenz CC BY 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/147611-paper-stand",
+        "titel": "Paper Stand",
+        "designer": "Network_Dad",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }
