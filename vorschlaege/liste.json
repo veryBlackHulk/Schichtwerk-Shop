@@ -1551,6 +1551,46 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-182408",
+      "erstellt": "2026-11-07",
+      "name": "Schwammhalter-Korb für die Spüle",
+      "kategorie": "Haushalt",
+      "preisCent": 450,
+      "beschreibung": "Dieser kleine Korb ist ein Halter für deinen Spülschwamm. Damit hat der Schwamm an der Spüle einen festen Platz und liegt nicht einfach irgendwo auf der Arbeitsfläche oder im Becken herum. Der Halter wird in einem Stück gedruckt, wiegt etwa 110 g und braucht keine Schrauben oder anderen Zusatzteile. Er ist schlicht gehalten und passt so in die meisten Küchen. Schau dir die Beispielfotos an, um zu sehen, wie er aussieht und wie groß er im Vergleich zum Schwamm ist.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: 3D 123 auf MakerWorld (https://makerworld.com/en/models/182408-sink-basket-sponge-holder), Lizenz CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von 3D 123 (MakerWorld), Lizenz CC BY-SA 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "",
+      "gewicht": "ca. 110 g",
+      "farben": [
+        "Grün",
+        "Gelb",
+        "Braun"
+      ],
+      "druckTage": 3,
+      "gramm": 110,
+      "minuten": 218,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 2,14 € (110 g PLA, 218 min Druck). Kein Marktvergleich gefunden. Preis 4,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USc5e305cc17cb82/design/2024-02-11_281424e6a07d1.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USc5e305cc17cb82/design/2024-02-11_228946ad9414.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USc5e305cc17cb82/design/2024-02-11_04b8b81c4bbe2.jpg"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: 3D 123 (MakerWorld), Lizenz CC BY-SA 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/182408-sink-basket-sponge-holder",
+        "titel": "SINK BASKET SPONGE HOLDER",
+        "designer": "3D 123",
+        "lizenz": "CC BY-SA 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     }
   ]
 }
