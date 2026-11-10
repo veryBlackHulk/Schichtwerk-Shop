@@ -1591,6 +1591,47 @@
         "lizenz": "CC BY-SA 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
       }
+    },
+    {
+      "id": "mw-1502316",
+      "erstellt": "2026-11-10",
+      "name": "Ablageschale in Schmetterlingsform",
+      "kategorie": "Deko",
+      "preisCent": 350,
+      "beschreibung": "Diese flache Ablage hat die Form eines Schmetterlings und bringt etwas Natur auf deine Kommode, dein Regal oder deinen Schreibtisch. Darin finden Schlüssel, Münzen, Ringe, Ohrringe oder kleine Schreibtisch-Sachen wie Büroklammern einen festen Platz. Ein Flügel ist etwa 12 × 8 cm groß, der Rand ist ca. 1,6 cm hoch. So bleibt alles gut sichtbar und schnell griffbereit. Die Form ist schlicht und modern gehalten und wirkt in vielen Farben, zum Beispiel in Grün, Gelb oder Gold. Schau dir die Beispielfotos an, um zu sehen, wie die Schale aussieht.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: Sarafim auf MakerWorld (https://makerworld.com/en/models/1502316-modern-butterfly-tray), Lizenz CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von Sarafim (MakerWorld), Lizenz CC BY 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "ca. 12 × 8 × 1,6 cm je Flügel",
+      "gewicht": "ca. 63 g (geschätzt)",
+      "farben": [
+        "Grün",
+        "Gelb",
+        "Gold",
+        "Rot"
+      ],
+      "druckTage": 3,
+      "gramm": 63,
+      "minuten": 211,
+      "geschaetzt": true,
+      "preisInfo": "Kosten ca. 1,45 € (63 g PLA geschätzt, 211 min Druck). Kein Marktvergleich gefunden. Preis 3,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US3f4be0a90f3603/design/2025-06-09_a4fdac70f7c7f.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US3f4be0a90f3603/design/2025-06-09_b3c37869d32c6.jpg"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/US3f4be0a90f3603/design/2025-06-09_9a6418c5822688.jpg"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: Sarafim (MakerWorld), Lizenz CC BY 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/1502316-modern-butterfly-tray",
+        "titel": "Modern Butterfly Tray",
+        "designer": "Sarafim",
+        "lizenz": "CC BY 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
     }
   ]
 }
