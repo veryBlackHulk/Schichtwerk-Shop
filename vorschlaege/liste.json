@@ -1632,6 +1632,47 @@
         "lizenz": "CC BY 4.0",
         "lizenzUrl": "https://creativecommons.org/licenses/by/4.0/"
       }
+    },
+    {
+      "id": "mw-425646",
+      "erstellt": "2026-11-12",
+      "name": "Schlichter Handyständer aus einem Stück",
+      "kategorie": "Schreibtisch",
+      "preisCent": 250,
+      "beschreibung": "Dieser schlichte Handyständer hält dein Smartphone aufrecht auf dem Tisch. So kannst du bei Videoanrufen, beim Schauen von Videos oder beim Mitlesen von Nachrichten beide Hände frei haben. Der Ständer hat eine feste Größe und ist für fast alle gängigen Handys gedacht. Er ist aus einem Stück gedruckt, wiegt etwa 44 g und steht dadurch ruhig. Du kannst ihn auf den Schreibtisch im Büro oder zu Hause stellen, auf den Nachttisch oder in die Küche. Weil er klein und leicht ist, passt er auch in die Tasche für unterwegs. Die Form ist einfach gehalten und wirkt in jeder Farbe ordentlich.\n\nGut zu wissen: Gedruckt aus PLA, einem Kunststoff auf Pflanzenbasis. Feine Schichtlinien gehören zum 3D-Druck dazu. Nicht hitzebeständig über ca. 50 °C, nicht spülmaschinenfest, nicht für Lebensmittel.\n\nDesign: FireDragon3D auf MakerWorld (https://makerworld.com/en/models/425646-a-basic-phone-stand), Lizenz CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Gedruckt von Schichtwerk.\nFotos: Beispielfotos von FireDragon3D (MakerWorld), Lizenz CC BY-SA 4.0. Farbe und Aussehen deines Exemplars können abweichen.",
+      "material": "PLA",
+      "masse": "feste Größe, für fast alle Smartphones (genaue Maße nicht angegeben)",
+      "gewicht": "ca. 44 g",
+      "farben": [
+        "Braun",
+        "Grün",
+        "Rot",
+        "Gold"
+      ],
+      "druckTage": 3,
+      "gramm": 44,
+      "minuten": 79,
+      "geschaetzt": false,
+      "preisInfo": "Kosten ca. 0,83 € (44 g PLA, 79 min Druck). Kein Marktvergleich gefunden. Preis 2,50 €.",
+      "bilder": [
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USd836ae41469ae2/design/2024-04-12_41304b03ef24a8.png"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USd836ae41469ae2/design/2024-04-12_ed544b0849c688.png"
+        },
+        {
+          "url": "https://makerworld.bblmw.com/makerworld/model/USd836ae41469ae2/design/2024-04-12_80e637ef08d398.png"
+        }
+      ],
+      "bildNachweis": "Beispielfotos: FireDragon3D (MakerWorld), Lizenz CC BY-SA 4.0",
+      "quelle": {
+        "url": "https://makerworld.com/en/models/425646-a-basic-phone-stand",
+        "titel": "A Basic Phone Stand",
+        "designer": "FireDragon3D",
+        "lizenz": "CC BY-SA 4.0",
+        "lizenzUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     }
   ]
 }
